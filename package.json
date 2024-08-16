@@ -1,9 +1,13 @@
 {
   "name": "livepeer-ai",
   "version": "0.0.1",
-  "author": "Speakeasy",
+  "author": "Livepeer",
   "main": "./index.js",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livepeer/livepeer-ai-js.git"
+  },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",

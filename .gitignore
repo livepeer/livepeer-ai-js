@@ -1,3 +1,4 @@
+# Speakeasy
 /models
 /models/errors
 /types
@@ -14,3 +15,7 @@
 /.tsbuildinfo
 /.tshy
 /.tshy-*
+
+# IDEs
+.vscode
+*.code-workspace

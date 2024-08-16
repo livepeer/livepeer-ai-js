@@ -23,7 +23,7 @@ typescript:
   additionalPackageJSON: {}
   author: Livepeer
   clientServerStatusCodesAsErrors: true
-  enumFormat: union
+  enumFormat: enum
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -34,11 +34,11 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  maxMethodParams: 0
+  maxMethodParams: 4
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
   packageName: livepeer-ai
-  responseFormat: flat
+  responseFormat: envelope
   templateVersion: v2
   useIndexModules: true

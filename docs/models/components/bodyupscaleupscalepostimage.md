@@ -7,7 +7,7 @@ import { BodyUpscaleUpscalePostImage } from "livepeer-ai/models/components";
 
 let value: BodyUpscaleUpscalePostImage = {
     fileName: "your_file_here",
-    content: new TextEncoder().encode("0xDDFaBBabBe"),
+    content: new TextEncoder().encode("0xBabBe2fec3"),
 };
 ```
 

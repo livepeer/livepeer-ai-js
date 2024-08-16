@@ -1,0 +1,35 @@
+overlay: 1.0.0
+info:
+  title: CodeSamples overlay for typescript target
+  version: 0.0.0
+actions:
+  - target: $["paths"]["/audio-to-text"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "audio_to_text"
+          "source": "import { LivepeerAi } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAi = new LivepeerAi({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAi.audioToText({\n    audio: await openAsBlob(\"./sample-file\"),\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+  - target: $["paths"]["/text-to-image"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "text_to_image"
+          "source": "import { LivepeerAi } from \"livepeer-ai\";\n\nconst livepeerAi = new LivepeerAi({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAi.textToImage({\n    prompt: \"<value>\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+  - target: $["paths"]["/image-to-image"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "image_to_image"
+          "source": "import { LivepeerAi } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAi = new LivepeerAi({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAi.imageToImage({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"./sample-file\"),\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+  - target: $["paths"]["/image-to-video"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "image_to_video"
+          "source": "import { LivepeerAi } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAi = new LivepeerAi({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAi.imageToVideo({\n    image: await openAsBlob(\"./sample-file\"),\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+  - target: $["paths"]["/upscale"]["post"]
+    update:
+      "x-codeSamples":
+        - "lang": "typescript"
+          "label": "upscale"
+          "source": "import { LivepeerAi } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAi = new LivepeerAi({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAi.upscale({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"./sample-file\"),\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"

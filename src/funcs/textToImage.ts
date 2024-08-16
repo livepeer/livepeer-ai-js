@@ -20,6 +20,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -31,7 +32,7 @@ export async function textToImage(
     options?: RequestOptions
 ): Promise<
     Result<
-        components.ImageResponse,
+        operations.TextToImageResponse,
         | errors.HTTPError
         | errors.HTTPValidationError
         | SDKError
@@ -101,11 +102,14 @@ export async function textToImage(
     const response = doResult.value;
 
     const responseFields$ = {
-        HttpMeta: { Response: response, Request: request$ },
+        ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+        StatusCode: response.status,
+        RawResponse: response,
+        Headers: {},
     };
 
     const [result$] = await m$.match<
-        components.ImageResponse,
+        operations.TextToImageResponse,
         | errors.HTTPError
         | errors.HTTPValidationError
         | SDKError
@@ -116,7 +120,7 @@ export async function textToImage(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, components.ImageResponse$inboundSchema),
+        m$.json(200, operations.TextToImageResponse$inboundSchema, { key: "ImageResponse" }),
         m$.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
         m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
         m$.fail(["4XX", "5XX"])

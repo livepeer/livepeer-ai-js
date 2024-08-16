@@ -9,6 +9,7 @@ import { textToImage } from "../funcs/textToImage.js";
 import { upscale } from "../funcs/upscale.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class LivepeerAi extends ClientSDK {
@@ -18,7 +19,7 @@ export class LivepeerAi extends ClientSDK {
     async textToImage(
         request: components.TextToImageParams,
         options?: RequestOptions
-    ): Promise<components.ImageResponse> {
+    ): Promise<operations.TextToImageResponse> {
         return unwrapAsync(textToImage(this, request, options));
     }
 
@@ -28,7 +29,7 @@ export class LivepeerAi extends ClientSDK {
     async imageToImage(
         request: components.BodyImageToImageImageToImagePost,
         options?: RequestOptions
-    ): Promise<components.ImageResponse> {
+    ): Promise<operations.ImageToImageResponse> {
         return unwrapAsync(imageToImage(this, request, options));
     }
 
@@ -38,7 +39,7 @@ export class LivepeerAi extends ClientSDK {
     async imageToVideo(
         request: components.BodyImageToVideoImageToVideoPost,
         options?: RequestOptions
-    ): Promise<components.VideoResponse> {
+    ): Promise<operations.ImageToVideoResponse> {
         return unwrapAsync(imageToVideo(this, request, options));
     }
 
@@ -48,7 +49,7 @@ export class LivepeerAi extends ClientSDK {
     async upscale(
         request: components.BodyUpscaleUpscalePost,
         options?: RequestOptions
-    ): Promise<components.ImageResponse> {
+    ): Promise<operations.UpscaleResponse> {
         return unwrapAsync(upscale(this, request, options));
     }
 
@@ -58,7 +59,7 @@ export class LivepeerAi extends ClientSDK {
     async audioToText(
         request: components.BodyAudioToTextAudioToTextPost,
         options?: RequestOptions
-    ): Promise<components.TextResponse> {
+    ): Promise<operations.AudioToTextResponse> {
         return unwrapAsync(audioToText(this, request, options));
     }
 }

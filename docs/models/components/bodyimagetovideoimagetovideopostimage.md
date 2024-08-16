@@ -7,7 +7,7 @@ import { BodyImageToVideoImageToVideoPostImage } from "livepeer-ai/models/compon
 
 let value: BodyImageToVideoImageToVideoPostImage = {
     fileName: "your_file_here",
-    content: new TextEncoder().encode("0x171e08CFB3"),
+    content: new TextEncoder().encode("0x8CFB3DDFaB"),
 };
 ```
 

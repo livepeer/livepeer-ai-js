@@ -1,0 +1,11 @@
+workflowVersion: 1.0.0
+sources:
+    livepeer-ai-OAS:
+        inputs:
+            - location: https://raw.githubusercontent.com/livepeer/ai-worker/main/runner/openapi.gateway.json
+        registry:
+            location: registry.speakeasyapi.dev/livepeer-8mq/livepeer-ai/livepeer-ai-oas
+targets:
+    livepeer-ai:
+        target: typescript
+        source: livepeer-ai-OAS

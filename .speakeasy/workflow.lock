@@ -2,10 +2,11 @@ speakeasyVersion: 1.372.0
 sources:
     livepeer-ai-OAS:
         sourceNamespace: livepeer-ai-oas
-        sourceRevisionDigest: sha256:d9dab0807effddb874fd488be2aa51ce7ff20cf0e2fc832d8aff9cee8f5eb9a8
-        sourceBlobDigest: sha256:81af44ae23c4192a9493c755662ebeafd4293968b1ff919f0acccefbb9a1bd3f
+        sourceRevisionDigest: sha256:38afa7f1861a22fb18d400f362331305d3d261805959e73bf3ab6eb0cb4845a7
+        sourceBlobDigest: sha256:33f4138b25cfe97858b17c1966a1559000e32e20e588fa2298902060da23900c
         tags:
             - latest
+            - main
 targets:
     livepeer-ai:
         source: livepeer-ai-OAS
@@ -13,8 +14,17 @@ targets:
         sourceRevisionDigest: sha256:d9dab0807effddb874fd488be2aa51ce7ff20cf0e2fc832d8aff9cee8f5eb9a8
         sourceBlobDigest: sha256:81af44ae23c4192a9493c755662ebeafd4293968b1ff919f0acccefbb9a1bd3f
         outLocation: /home/ricks/development/livepeer/ai/livepeer-ai-js
+    livepeer-ts:
+        source: livepeer-ai-OAS
+        sourceNamespace: livepeer-ai-oas
+        sourceRevisionDigest: sha256:38afa7f1861a22fb18d400f362331305d3d261805959e73bf3ab6eb0cb4845a7
+        sourceBlobDigest: sha256:33f4138b25cfe97858b17c1966a1559000e32e20e588fa2298902060da23900c
+        codeSamplesNamespace: code-samples-typescript-livepeer-ts
+        codeSamplesRevisionDigest: sha256:a4cf6a478083c4c544e2193d4ee083013ee403df4eadd4c184a66a66b8cfe7f1
+        outLocation: /github/workspace/repo
 workflow:
     workflowVersion: 1.0.0
+    speakeasyVersion: latest
     sources:
         livepeer-ai-OAS:
             inputs:
@@ -22,6 +32,10 @@ workflow:
             registry:
                 location: registry.speakeasyapi.dev/livepeer-8mq/livepeer-ai/livepeer-ai-oas
     targets:
-        livepeer-ai:
+        livepeer-ts:
             target: typescript
             source: livepeer-ai-OAS
+            codeSamples:
+                output: codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/livepeer-8mq/livepeer-ai/code-samples-typescript-livepeer-ts

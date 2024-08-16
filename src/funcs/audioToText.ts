@@ -19,6 +19,7 @@ import {
 import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
+import * as operations from "../models/operations/index.js";
 import { isBlobLike } from "../types/blobs.js";
 import { Result } from "../types/fp.js";
 
@@ -31,7 +32,7 @@ export async function audioToText(
     options?: RequestOptions
 ): Promise<
     Result<
-        components.TextResponse,
+        operations.AudioToTextResponse,
         | errors.HTTPError
         | errors.HTTPValidationError
         | SDKError
@@ -113,11 +114,14 @@ export async function audioToText(
     const response = doResult.value;
 
     const responseFields$ = {
-        HttpMeta: { Response: response, Request: request$ },
+        ContentType: response.headers.get("content-type") ?? "application/octet-stream",
+        StatusCode: response.status,
+        RawResponse: response,
+        Headers: {},
     };
 
     const [result$] = await m$.match<
-        components.TextResponse,
+        operations.AudioToTextResponse,
         | errors.HTTPError
         | errors.HTTPValidationError
         | SDKError
@@ -128,7 +132,7 @@ export async function audioToText(
         | RequestTimeoutError
         | ConnectionError
     >(
-        m$.json(200, components.TextResponse$inboundSchema),
+        m$.json(200, operations.AudioToTextResponse$inboundSchema, { key: "TextResponse" }),
         m$.jsonErr([400, 401, 413, 500], errors.HTTPError$inboundSchema),
         m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
         m$.fail(["4XX", "5XX"])

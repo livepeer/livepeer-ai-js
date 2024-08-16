@@ -83,7 +83,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ImageResponse](../../models/components/imageresponse.md)\>**
+**Promise\<[operations.TextToImageResponse](../../models/operations/texttoimageresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -166,7 +166,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ImageResponse](../../models/components/imageresponse.md)\>**
+**Promise\<[operations.ImageToImageResponse](../../models/operations/imagetoimageresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -247,7 +247,7 @@ run();
 
 ### Response
 
-**Promise\<[components.VideoResponse](../../models/components/videoresponse.md)\>**
+**Promise\<[operations.ImageToVideoResponse](../../models/operations/imagetovideoresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -330,7 +330,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ImageResponse](../../models/components/imageresponse.md)\>**
+**Promise\<[operations.UpscaleResponse](../../models/operations/upscaleresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -411,7 +411,7 @@ run();
 
 ### Response
 
-**Promise\<[components.TextResponse](../../models/components/textresponse.md)\>**
+**Promise\<[operations.AudioToTextResponse](../../models/operations/audiototextresponse.md)\>**
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |

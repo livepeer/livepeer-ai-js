@@ -7,7 +7,7 @@ import { Audio } from "livepeer-ai/models/components";
 
 let value: Audio = {
     fileName: "your_file_here",
-    content: new TextEncoder().encode("0x2fec3bEAb2"),
+    content: new TextEncoder().encode("0xbEAb29a54B"),
 };
 ```
 

@@ -6,8 +6,8 @@
 import { Media } from "livepeer-ai/models/components";
 
 let value: Media = {
-    url: "https://moral-star.info",
-    seed: 623564,
+    url: "https://high-hound.biz",
+    seed: 891773,
     nsfw: false,
 };
 ```

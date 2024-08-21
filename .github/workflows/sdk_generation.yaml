@@ -11,10 +11,6 @@ permissions:
                 description: Force generation of SDKs
                 type: boolean
                 default: false
-            push_code_samples_only:
-                description: Force push only code samples from SDK generation
-                type: boolean
-                default: false
             set_version:
                 description: optionally set a specific SDK version
                 type: string
@@ -26,7 +22,6 @@ jobs:
         with:
             force: ${{ github.event.inputs.force }}
             mode: pr
-            push_code_samples_only: ${{ fromJSON(github.event.inputs.push_code_samples_only != '' && github.event.inputs.push_code_samples_only || 'false') }}
             set_version: ${{ github.event.inputs.set_version }}
             speakeasy_version: latest
         secrets:

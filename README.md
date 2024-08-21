@@ -15,25 +15,25 @@ Welcome to the [Livepeer AI](https://livepeer.ai/) JavaScript/TypeScript Library
 ### NPM
 
 ```bash
-npm add https://github.com/livepeer/livepeer-ai-js
+npm add <UNSET>
 ```
 
 ### PNPM
 
 ```bash
-pnpm add https://github.com/livepeer/livepeer-ai-js
+pnpm add <UNSET>
 ```
 
 ### Bun
 
 ```bash
-bun add https://github.com/livepeer/livepeer-ai-js
+bun add <UNSET>
 ```
 
 ### Yarn
 
 ```bash
-yarn add https://github.com/livepeer/livepeer-ai-js zod
+yarn add <UNSET> zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.

@@ -1,6 +1,5 @@
 # LivepeerAI SDK
 
-
 ## Overview
 
 Livepeer AI Runner: An application to run AI pipelines
@@ -37,7 +36,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -80,10 +78,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.TextToImageResponse](../../models/operations/texttoimageresponse.md)\>**
+
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -91,6 +89,7 @@ run();
 | errors.HTTPError           | 400,401,500                | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4xx-5xx                    | */*                        |
+
 
 ## imageToImage
 
@@ -118,7 +117,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -163,10 +161,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ImageToImageResponse](../../models/operations/imagetoimageresponse.md)\>**
+
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -174,6 +172,7 @@ run();
 | errors.HTTPError           | 400,401,500                | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4xx-5xx                    | */*                        |
+
 
 ## imageToVideo
 
@@ -200,7 +199,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -244,10 +242,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.ImageToVideoResponse](../../models/operations/imagetovideoresponse.md)\>**
+
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -255,6 +253,7 @@ run();
 | errors.HTTPError           | 400,401,500                | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4xx-5xx                    | */*                        |
+
 
 ## upscale
 
@@ -282,7 +281,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -327,10 +325,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.UpscaleResponse](../../models/operations/upscaleresponse.md)\>**
+
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |
@@ -338,6 +336,7 @@ run();
 | errors.HTTPError           | 400,401,500                | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
 | errors.SDKError            | 4xx-5xx                    | */*                        |
+
 
 ## audioToText
 
@@ -364,7 +363,6 @@ async function run() {
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -408,10 +406,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[operations.AudioToTextResponse](../../models/operations/audiototextresponse.md)\>**
+
 ### Errors
 
 | Error Object               | Status Code                | Content Type               |

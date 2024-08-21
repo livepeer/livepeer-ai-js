@@ -27,4 +27,4 @@ EOL
 echo "$TS_CONFIG_CONTENT" > samples/tsconfig.json
 
 # Generate starter usage sample with speakeasy
-speakeasy generate usage -s https://raw.githubusercontent.com/livepeer/ai-worker/main/runner/openapi.gateway.json -l typescript -o samples/root.ts
+speakeasy generate usage -s https://raw.githubusercontent.com/livepeer/ai-worker/main/runner/gateway.openapi.json -l typescript -o samples/root.ts

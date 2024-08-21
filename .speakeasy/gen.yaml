@@ -2,7 +2,7 @@ configVersion: 2.0.0
 generation:
   devContainers:
     enabled: true
-    schemaPath: https://raw.githubusercontent.com/livepeer/ai-worker/main/runner/openapi.gateway.json
+    schemaPath: https://raw.githubusercontent.com/livepeer/ai-worker/main/runner/gateway.openapi.json
   sdkClassName: LivepeerAi
   maintainOpenAPIOrder: true
   usageSnippets:

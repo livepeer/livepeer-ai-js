@@ -1,4 +1,4 @@
-# LivepeerAi SDK
+# LivepeerAI SDK
 
 
 ## Overview
@@ -20,14 +20,14 @@ Text To Image
 ### Example Usage
 
 ```typescript
-import { LivepeerAi } from "livepeer-ai";
+import { LivepeerAI } from "livepeer-ai";
 
-const livepeerAi = new LivepeerAi({
+const livepeerAI = new LivepeerAI({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAi.textToImage({
+  const result = await livepeerAI.textToImage({
     prompt: "<value>",
   });
 
@@ -44,17 +44,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAiCore } from "livepeer-ai/core.js";
+import { LivepeerAICore } from "livepeer-ai/core.js";
 import { textToImage } from "livepeer-ai/funcs/textToImage.js";
 
-// Use `LivepeerAiCore` for best tree-shaking performance.
+// Use `LivepeerAICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const livepeerAi = new LivepeerAiCore({
+const livepeerAI = new LivepeerAICore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await textToImage(livepeerAi, {
+  const res = await textToImage(livepeerAI, {
     prompt: "<value>",
   });
 
@@ -99,15 +99,15 @@ Image To Image
 ### Example Usage
 
 ```typescript
-import { LivepeerAi } from "livepeer-ai";
+import { LivepeerAI } from "livepeer-ai";
 import { openAsBlob } from "node:fs";
 
-const livepeerAi = new LivepeerAi({
+const livepeerAI = new LivepeerAI({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAi.imageToImage({
+  const result = await livepeerAI.imageToImage({
     image: await openAsBlob("./sample-file"),
     prompt: "<value>",
   });
@@ -125,18 +125,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAiCore } from "livepeer-ai/core.js";
+import { LivepeerAICore } from "livepeer-ai/core.js";
 import { imageToImage } from "livepeer-ai/funcs/imageToImage.js";
 import { openAsBlob } from "node:fs";
 
-// Use `LivepeerAiCore` for best tree-shaking performance.
+// Use `LivepeerAICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const livepeerAi = new LivepeerAiCore({
+const livepeerAI = new LivepeerAICore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await imageToImage(livepeerAi, {
+  const res = await imageToImage(livepeerAI, {
     image: await openAsBlob("./sample-file"),
     prompt: "<value>",
   });
@@ -182,15 +182,15 @@ Image To Video
 ### Example Usage
 
 ```typescript
-import { LivepeerAi } from "livepeer-ai";
+import { LivepeerAI } from "livepeer-ai";
 import { openAsBlob } from "node:fs";
 
-const livepeerAi = new LivepeerAi({
+const livepeerAI = new LivepeerAI({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAi.imageToVideo({
+  const result = await livepeerAI.imageToVideo({
     image: await openAsBlob("./sample-file"),
   });
 
@@ -207,18 +207,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAiCore } from "livepeer-ai/core.js";
+import { LivepeerAICore } from "livepeer-ai/core.js";
 import { imageToVideo } from "livepeer-ai/funcs/imageToVideo.js";
 import { openAsBlob } from "node:fs";
 
-// Use `LivepeerAiCore` for best tree-shaking performance.
+// Use `LivepeerAICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const livepeerAi = new LivepeerAiCore({
+const livepeerAI = new LivepeerAICore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await imageToVideo(livepeerAi, {
+  const res = await imageToVideo(livepeerAI, {
     image: await openAsBlob("./sample-file"),
   });
 
@@ -263,15 +263,15 @@ Upscale
 ### Example Usage
 
 ```typescript
-import { LivepeerAi } from "livepeer-ai";
+import { LivepeerAI } from "livepeer-ai";
 import { openAsBlob } from "node:fs";
 
-const livepeerAi = new LivepeerAi({
+const livepeerAI = new LivepeerAI({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAi.upscale({
+  const result = await livepeerAI.upscale({
     image: await openAsBlob("./sample-file"),
     prompt: "<value>",
   });
@@ -289,18 +289,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAiCore } from "livepeer-ai/core.js";
+import { LivepeerAICore } from "livepeer-ai/core.js";
 import { upscale } from "livepeer-ai/funcs/upscale.js";
 import { openAsBlob } from "node:fs";
 
-// Use `LivepeerAiCore` for best tree-shaking performance.
+// Use `LivepeerAICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const livepeerAi = new LivepeerAiCore({
+const livepeerAI = new LivepeerAICore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await upscale(livepeerAi, {
+  const res = await upscale(livepeerAI, {
     image: await openAsBlob("./sample-file"),
     prompt: "<value>",
   });
@@ -346,15 +346,15 @@ Audio To Text
 ### Example Usage
 
 ```typescript
-import { LivepeerAi } from "livepeer-ai";
+import { LivepeerAI } from "livepeer-ai";
 import { openAsBlob } from "node:fs";
 
-const livepeerAi = new LivepeerAi({
+const livepeerAI = new LivepeerAI({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAi.audioToText({
+  const result = await livepeerAI.audioToText({
     audio: await openAsBlob("./sample-file"),
   });
 
@@ -371,18 +371,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAiCore } from "livepeer-ai/core.js";
+import { LivepeerAICore } from "livepeer-ai/core.js";
 import { audioToText } from "livepeer-ai/funcs/audioToText.js";
 import { openAsBlob } from "node:fs";
 
-// Use `LivepeerAiCore` for best tree-shaking performance.
+// Use `LivepeerAICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const livepeerAi = new LivepeerAiCore({
+const livepeerAI = new LivepeerAICore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await audioToText(livepeerAi, {
+  const res = await audioToText(livepeerAI, {
     audio: await openAsBlob("./sample-file"),
   });
 

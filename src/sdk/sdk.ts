@@ -12,7 +12,7 @@ import * as components from "../models/components/index.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
-export class LivepeerAi extends ClientSDK {
+export class LivepeerAI extends ClientSDK {
     /**
      * Text To Image
      */

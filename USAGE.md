@@ -1,13 +1,13 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { LivepeerAi } from "livepeer-ai";
+import { LivepeerAI } from "livepeer-ai";
 
-const livepeerAi = new LivepeerAi({
+const livepeerAI = new LivepeerAI({
     httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await livepeerAi.textToImage({
+    const result = await livepeerAI.textToImage({
         prompt: "<value>",
     });
 

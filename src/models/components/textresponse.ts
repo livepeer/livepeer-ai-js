@@ -5,8 +5,17 @@
 import { Chunk, Chunk$inboundSchema, Chunk$Outbound, Chunk$outboundSchema } from "./chunk.js";
 import * as z from "zod";
 
+/**
+ * Response model for text generation.
+ */
 export type TextResponse = {
+    /**
+     * The generated text.
+     */
     text: string;
+    /**
+     * The generated text chunks.
+     */
     chunks: Array<Chunk>;
 };
 

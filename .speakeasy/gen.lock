@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 8766970f-4397-4dff-8082-81333329536d
 management:
-  docChecksum: c222ffbf28e5f62770dc8cbd99010f96
+  docChecksum: 83217fd4aabc3c12bd4c7c073283767b
   docVersion: v0.1.2
-  speakeasyVersion: 1.377.0
-  generationVersion: 2.404.0
-  releaseVersion: 0.1.3
-  configChecksum: eefe057d141baa2c05728e0706976ccb
+  speakeasyVersion: 1.379.0
+  generationVersion: 2.404.3
+  releaseVersion: 0.1.4
+  configChecksum: dc87f155690efe292553b5f415f0fe91
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
 features:
   typescript:
     additionalDependencies: 0.1.0
-    constsAndDefaults: 0.1.10
+    constsAndDefaults: 0.1.11
     core: 3.14.1
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0

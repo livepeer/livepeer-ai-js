@@ -1,5 +1,7 @@
 # Chunk
 
+A chunk of text with a timestamp.
+
 ## Example Usage
 
 ```typescript
@@ -13,7 +15,7 @@ let value: Chunk = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `timestamp`        | *any*[]            | :heavy_check_mark: | N/A                |
-| `text`             | *string*           | :heavy_check_mark: | N/A                |
+| Field                       | Type                        | Required                    | Description                 |
+| --------------------------- | --------------------------- | --------------------------- | --------------------------- |
+| `timestamp`                 | *any*[]                     | :heavy_check_mark:          | The timestamp of the chunk. |
+| `text`                      | *string*                    | :heavy_check_mark:          | The text of the chunk.      |

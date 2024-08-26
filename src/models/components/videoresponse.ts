@@ -5,7 +5,13 @@
 import { Media, Media$inboundSchema, Media$Outbound, Media$outboundSchema } from "./media.js";
 import * as z from "zod";
 
+/**
+ * Response model for image generation.
+ */
 export type VideoResponse = {
+    /**
+     * The generated images.
+     */
     images: Array<Media>;
 };
 

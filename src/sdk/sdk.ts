@@ -15,6 +15,9 @@ import { unwrapAsync } from "../types/fp.js";
 export class LivepeerAI extends ClientSDK {
     /**
      * Text To Image
+     *
+     * @remarks
+     * Generate images from text prompts.
      */
     async textToImage(
         request: components.TextToImageParams,
@@ -25,6 +28,9 @@ export class LivepeerAI extends ClientSDK {
 
     /**
      * Image To Image
+     *
+     * @remarks
+     * Apply image transformations to a provided image.
      */
     async imageToImage(
         request: components.BodyImageToImageImageToImagePost,
@@ -35,6 +41,9 @@ export class LivepeerAI extends ClientSDK {
 
     /**
      * Image To Video
+     *
+     * @remarks
+     * Generate a video from a provided image.
      */
     async imageToVideo(
         request: components.BodyImageToVideoImageToVideoPost,
@@ -45,6 +54,9 @@ export class LivepeerAI extends ClientSDK {
 
     /**
      * Upscale
+     *
+     * @remarks
+     * Upscale an image by increasing its resolution.
      */
     async upscale(
         request: components.BodyUpscaleUpscalePost,
@@ -55,6 +67,9 @@ export class LivepeerAI extends ClientSDK {
 
     /**
      * Audio To Text
+     *
+     * @remarks
+     * Transcribe audio files to text.
      */
     async audioToText(
         request: components.BodyAudioToTextAudioToTextPost,

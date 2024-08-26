@@ -6,16 +6,22 @@ import * as components from "../components/index.js";
 import * as z from "zod";
 
 /**
- * Bad Request
+ * HTTP error response model.
  */
 export type HTTPErrorData = {
+    /**
+     * Detailed error information.
+     */
     detail: components.APIError;
 };
 
 /**
- * Bad Request
+ * HTTP error response model.
  */
 export class HTTPError extends Error {
+    /**
+     * Detailed error information.
+     */
     detail: components.APIError;
 
     /** The original data that was passed to this error instance. */

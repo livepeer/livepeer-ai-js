@@ -25,6 +25,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Upscale
+ *
+ * @remarks
+ * Upscale an image by increasing its resolution.
  */
 export async function upscale(
     client$: LivepeerAICore,

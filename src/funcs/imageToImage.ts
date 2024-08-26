@@ -25,6 +25,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Image To Image
+ *
+ * @remarks
+ * Apply image transformations to a provided image.
  */
 export async function imageToImage(
     client$: LivepeerAICore,

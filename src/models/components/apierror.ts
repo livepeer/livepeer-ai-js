@@ -4,7 +4,13 @@
 
 import * as z from "zod";
 
+/**
+ * API error response model.
+ */
 export type APIError = {
+    /**
+     * The error message.
+     */
     msg: string;
 };
 

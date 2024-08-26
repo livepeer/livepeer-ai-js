@@ -1,5 +1,7 @@
 # Media
 
+A media object containing information about the generated media.
+
 ## Example Usage
 
 ```typescript
@@ -14,8 +16,8 @@ let value: Media = {
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `url`              | *string*           | :heavy_check_mark: | N/A                |
-| `seed`             | *number*           | :heavy_check_mark: | N/A                |
-| `nsfw`             | *boolean*          | :heavy_check_mark: | N/A                |
+| Field                                    | Type                                     | Required                                 | Description                              |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `url`                                    | *string*                                 | :heavy_check_mark:                       | The URL where the media can be accessed. |
+| `seed`                                   | *number*                                 | :heavy_check_mark:                       | The seed used to generate the media.     |
+| `nsfw`                                   | *boolean*                                | :heavy_check_mark:                       | Whether the media was flagged as NSFW.   |

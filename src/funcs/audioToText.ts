@@ -25,6 +25,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Audio To Text
+ *
+ * @remarks
+ * Transcribe audio files to text.
  */
 export async function audioToText(
     client$: LivepeerAICore,

@@ -25,6 +25,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Image To Video
+ *
+ * @remarks
+ * Generate a video from a provided image.
  */
 export async function imageToVideo(
     client$: LivepeerAICore,

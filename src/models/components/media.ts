@@ -4,9 +4,21 @@
 
 import * as z from "zod";
 
+/**
+ * A media object containing information about the generated media.
+ */
 export type Media = {
+    /**
+     * The URL where the media can be accessed.
+     */
     url: string;
+    /**
+     * The seed used to generate the media.
+     */
     seed: number;
+    /**
+     * Whether the media was flagged as NSFW.
+     */
     nsfw: boolean;
 };
 

@@ -1,5 +1,7 @@
 # APIError
 
+API error response model.
+
 ## Example Usage
 
 ```typescript
@@ -14,4 +16,4 @@ let value: APIError = {
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `msg`              | *string*           | :heavy_check_mark: | N/A                |
+| `msg`              | *string*           | :heavy_check_mark: | The error message. |

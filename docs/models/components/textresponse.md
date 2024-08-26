@@ -1,5 +1,7 @@
 # TextResponse
 
+Response model for text generation.
+
 ## Example Usage
 
 ```typescript
@@ -20,5 +22,5 @@ let value: TextResponse = {
 
 | Field                                                  | Type                                                   | Required                                               | Description                                            |
 | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `text`                                                 | *string*                                               | :heavy_check_mark:                                     | N/A                                                    |
-| `chunks`                                               | [components.Chunk](../../models/components/chunk.md)[] | :heavy_check_mark:                                     | N/A                                                    |
+| `text`                                                 | *string*                                               | :heavy_check_mark:                                     | The generated text.                                    |
+| `chunks`                                               | [components.Chunk](../../models/components/chunk.md)[] | :heavy_check_mark:                                     | The generated text chunks.                             |

@@ -1,5 +1,7 @@
 # VideoResponse
 
+Response model for image generation.
+
 ## Example Usage
 
 ```typescript
@@ -20,4 +22,4 @@ let value: VideoResponse = {
 
 | Field                                                  | Type                                                   | Required                                               | Description                                            |
 | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `images`                                               | [components.Media](../../models/components/media.md)[] | :heavy_check_mark:                                     | N/A                                                    |
+| `images`                                               | [components.Media](../../models/components/media.md)[] | :heavy_check_mark:                                     | The generated images.                                  |

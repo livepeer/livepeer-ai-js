@@ -4,8 +4,17 @@
 
 import * as z from "zod";
 
+/**
+ * A chunk of text with a timestamp.
+ */
 export type Chunk = {
+    /**
+     * The timestamp of the chunk.
+     */
     timestamp: Array<any>;
+    /**
+     * The text of the chunk.
+     */
     text: string;
 };
 

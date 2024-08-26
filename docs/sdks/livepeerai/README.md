@@ -14,7 +14,7 @@ Livepeer AI Runner: An application to run AI pipelines
 
 ## textToImage
 
-Text To Image
+Generate images from text prompts.
 
 ### Example Usage
 
@@ -93,7 +93,7 @@ run();
 
 ## imageToImage
 
-Image To Image
+Apply image transformations to a provided image.
 
 ### Example Usage
 
@@ -176,7 +176,7 @@ run();
 
 ## imageToVideo
 
-Image To Video
+Generate a video from a provided image.
 
 ### Example Usage
 
@@ -257,7 +257,7 @@ run();
 
 ## upscale
 
-Upscale
+Upscale an image by increasing its resolution.
 
 ### Example Usage
 
@@ -340,7 +340,7 @@ run();
 
 ## audioToText
 
-Audio To Text
+Transcribe audio files to text.
 
 ### Example Usage
 

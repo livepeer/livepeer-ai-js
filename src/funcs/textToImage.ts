@@ -25,6 +25,9 @@ import { Result } from "../types/fp.js";
 
 /**
  * Text To Image
+ *
+ * @remarks
+ * Generate images from text prompts.
  */
 export async function textToImage(
     client$: LivepeerAICore,

@@ -3,29 +3,6 @@ info:
   title: CodeSamples overlay for typescript target
   version: 0.0.0
 actions:
-  - target: $["paths"]["/image-to-video"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: image_to_video
-          source: |-
-            import { LivepeerAI } from "livepeer-ai";
-            import { openAsBlob } from "node:fs";
-
-            const livepeerAI = new LivepeerAI({
-              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
-            });
-
-            async function run() {
-              const result = await livepeerAI.imageToVideo({
-                image: await openAsBlob("./sample-file"),
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
   - target: $["paths"]["/upscale"]["post"]
     update:
       x-codeSamples:
@@ -111,6 +88,29 @@ actions:
             async function run() {
               const result = await livepeerAI.imageToImage({
                 prompt: "<value>",
+                image: await openAsBlob("./sample-file"),
+              });
+
+              // Handle the result
+              console.log(result)
+            }
+
+            run();
+  - target: $["paths"]["/image-to-video"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: image_to_video
+          source: |-
+            import { LivepeerAI } from "livepeer-ai";
+            import { openAsBlob } from "node:fs";
+
+            const livepeerAI = new LivepeerAI({
+              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+            });
+
+            async function run() {
+              const result = await livepeerAI.imageToVideo({
                 image: await openAsBlob("./sample-file"),
               });
 

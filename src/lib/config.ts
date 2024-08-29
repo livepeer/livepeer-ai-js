@@ -15,6 +15,10 @@ export const ServerList = [
      * Livepeer Cloud Community Gateway
      */
     "https://dream-gateway.livepeer.cloud",
+    /**
+     * Livepeer Studio Gateway
+     */
+    "https://livepeer.studio/api/beta/generate",
 ] as const;
 
 export type SDKOptions = {
@@ -57,7 +61,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
     language: "typescript",
     openapiDocVersion: "v0.1.2",
-    sdkVersion: "0.1.4",
-    genVersion: "2.404.3",
-    userAgent: "speakeasy-sdk/typescript 0.1.4 2.404.3 v0.1.2 livepeer-ai",
+    sdkVersion: "0.1.5",
+    genVersion: "2.404.11",
+    userAgent: "speakeasy-sdk/typescript 0.1.5 2.404.11 v0.1.2 livepeer-ai",
 } as const;

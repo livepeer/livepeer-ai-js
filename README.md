@@ -288,12 +288,13 @@ You can override the default server globally by passing a server index to the `s
 | # | Server | Variables |
 | - | ------ | --------- |
 | 0 | `https://dream-gateway.livepeer.cloud` | None |
+| 1 | `https://livepeer.studio/api/beta/generate` | None |
 
 ```typescript
 import { LivepeerAI } from "livepeer-ai";
 
 const livepeerAI = new LivepeerAI({
-    serverIdx: 0,
+    serverIdx: 1,
     httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 

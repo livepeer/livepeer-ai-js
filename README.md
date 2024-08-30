@@ -12,6 +12,8 @@ Welcome to the [Livepeer AI](https://livepeer.ai/) JavaScript/TypeScript Library
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
+
 ### NPM
 
 ```bash
@@ -234,7 +236,7 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { LivepeerAI } from "livepeer-ai";
-import { SDKValidationError } from "livepeer-ai/models/errors";
+import { HTTPError, HTTPValidationError, SDKValidationError } from "livepeer-ai/models/errors";
 
 const livepeerAI = new LivepeerAI({
     httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
@@ -255,12 +257,14 @@ async function run() {
                 console.error(err.rawValue);
                 return;
             }
-            case err instanceof errors.HTTPError: {
-                console.error(err); // handle exception
+            case err instanceof HTTPError: {
+                // Handle err.data$: HTTPErrorData
+                console.error(err);
                 return;
             }
-            case err instanceof errors.HTTPValidationError: {
-                console.error(err); // handle exception
+            case err instanceof HTTPValidationError: {
+                // Handle err.data$: HTTPValidationErrorData
+                console.error(err);
                 return;
             }
             default: {
@@ -436,6 +440,29 @@ import { LivepeerAI } from "livepeer-ai";
 const sdk = new LivepeerAI({ debugLogger: console });
 ```
 <!-- End Debugging [debug] -->
+
+<!-- Start Summary [summary] -->
+## Summary
+
+Livepeer AI Runner: An application to run AI pipelines
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [File uploads](#file-uploads)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

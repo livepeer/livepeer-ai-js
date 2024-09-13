@@ -5,5 +5,6 @@
 export * from "./audiototext.js";
 export * from "./imagetoimage.js";
 export * from "./imagetovideo.js";
+export * from "./segmentanything2.js";
 export * from "./texttoimage.js";
 export * from "./upscale.js";

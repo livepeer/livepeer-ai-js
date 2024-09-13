@@ -6,7 +6,7 @@
 import { Security } from "livepeer-ai/models/components";
 
 let value: Security = {
-    httpBearer: "<value>",
+  httpBearer: "<value>",
 };
 ```
 

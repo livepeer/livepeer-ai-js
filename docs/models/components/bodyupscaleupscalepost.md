@@ -4,12 +4,8 @@
 
 ```typescript
 import { BodyUpscaleUpscalePost } from "livepeer-ai/models/components";
-import { openAsBlob } from "node:fs";
 
-let value: BodyUpscaleUpscalePost = {
-    image: await openAsBlob("./sample-file"),
-    prompt: "<value>",
-};
+// No examples available for this model
 ```
 
 ## Fields

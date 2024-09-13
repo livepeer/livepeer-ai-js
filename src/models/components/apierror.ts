@@ -8,37 +8,44 @@ import * as z from "zod";
  * API error response model.
  */
 export type APIError = {
-    /**
-     * The error message.
-     */
-    msg: string;
+  /**
+   * The error message.
+   */
+  msg: string;
 };
 
 /** @internal */
-export const APIError$inboundSchema: z.ZodType<APIError, z.ZodTypeDef, unknown> = z.object({
-    msg: z.string(),
+export const APIError$inboundSchema: z.ZodType<
+  APIError,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  msg: z.string(),
 });
 
 /** @internal */
 export type APIError$Outbound = {
-    msg: string;
+  msg: string;
 };
 
 /** @internal */
-export const APIError$outboundSchema: z.ZodType<APIError$Outbound, z.ZodTypeDef, APIError> =
-    z.object({
-        msg: z.string(),
-    });
+export const APIError$outboundSchema: z.ZodType<
+  APIError$Outbound,
+  z.ZodTypeDef,
+  APIError
+> = z.object({
+  msg: z.string(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace APIError$ {
-    /** @deprecated use `APIError$inboundSchema` instead. */
-    export const inboundSchema = APIError$inboundSchema;
-    /** @deprecated use `APIError$outboundSchema` instead. */
-    export const outboundSchema = APIError$outboundSchema;
-    /** @deprecated use `APIError$Outbound` instead. */
-    export type Outbound = APIError$Outbound;
+  /** @deprecated use `APIError$inboundSchema` instead. */
+  export const inboundSchema = APIError$inboundSchema;
+  /** @deprecated use `APIError$outboundSchema` instead. */
+  export const outboundSchema = APIError$outboundSchema;
+  /** @deprecated use `APIError$Outbound` instead. */
+  export type Outbound = APIError$Outbound;
 }

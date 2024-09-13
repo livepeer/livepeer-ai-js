@@ -8,8 +8,10 @@ A chunk of text with a timestamp.
 import { Chunk } from "livepeer-ai/models/components";
 
 let value: Chunk = {
-    timestamp: ["<value>"],
-    text: "<value>",
+  timestamp: [
+    "<value>",
+  ],
+  text: "<value>",
 };
 ```
 

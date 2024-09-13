@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 8766970f-4397-4dff-8082-81333329536d
 management:
-  docChecksum: 24fe39a0fb7794800b7d995f98944b86
-  docVersion: v0.1.3
-  speakeasyVersion: 1.383.2
-  generationVersion: 2.407.0
-  releaseVersion: 0.1.6
-  configChecksum: acd240653e474292cc47a4d915ea6a83
+  docChecksum: 57e99cb8e6e8b32242245c05aacb18c7
+  docVersion: v0.2.0
+  speakeasyVersion: 1.396.6
+  generationVersion: 2.415.6
+  releaseVersion: 0.2.0
+  configChecksum: 070fffd68711f91890b67094a60e2aaa
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.14.1
+    core: 3.17.2
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     envVarSecurityUsage: 0.1.1
@@ -25,25 +25,67 @@ features:
     retries: 2.83.0
     sdkHooks: 0.1.0
     unions: 2.85.7
+    uploadStreams: 0.1.0
 generatedFiles:
-  - src/funcs/textToImage.ts
-  - src/funcs/imageToImage.ts
-  - src/funcs/imageToVideo.ts
-  - src/funcs/upscale.ts
-  - src/funcs/audioToText.ts
-  - src/sdk/sdk.ts
+  - .devcontainer/README.md
+  - .devcontainer/devcontainer.json
+  - .devcontainer/setup.sh
   - .eslintrc.cjs
+  - .gitattributes
   - .npmignore
+  - CONTRIBUTING.md
   - FUNCTIONS.md
   - RUNTIMES.md
+  - USAGE.md
+  - docs/lib/utils/retryconfig.md
+  - docs/models/components/apierror.md
+  - docs/models/components/audio.md
+  - docs/models/components/bodyaudiototextaudiototextpost.md
+  - docs/models/components/bodyimagetoimageimagetoimagepost.md
+  - docs/models/components/bodyimagetovideoimagetovideopost.md
+  - docs/models/components/bodyimagetovideoimagetovideopostimage.md
+  - docs/models/components/bodysegmentanything2segmentanything2post.md
+  - docs/models/components/bodysegmentanything2segmentanything2postimage.md
+  - docs/models/components/bodyupscaleupscalepost.md
+  - docs/models/components/bodyupscaleupscalepostimage.md
+  - docs/models/components/chunk.md
+  - docs/models/components/image.md
+  - docs/models/components/imageresponse.md
+  - docs/models/components/loc.md
+  - docs/models/components/masksresponse.md
+  - docs/models/components/media.md
+  - docs/models/components/security.md
+  - docs/models/components/textresponse.md
+  - docs/models/components/texttoimageparams.md
+  - docs/models/components/validationerror.md
+  - docs/models/components/videoresponse.md
+  - docs/models/errors/httperror.md
+  - docs/models/errors/httpvalidationerror.md
+  - docs/models/operations/audiototextresponse.md
+  - docs/models/operations/imagetoimageresponse.md
+  - docs/models/operations/imagetovideoresponse.md
+  - docs/models/operations/segmentanything2response.md
+  - docs/models/operations/texttoimageresponse.md
+  - docs/models/operations/upscaleresponse.md
+  - docs/sdks/livepeerai/README.md
   - jsr.json
   - package.json
   - src/core.ts
+  - src/funcs/audioToText.ts
+  - src/funcs/imageToImage.ts
+  - src/funcs/imageToVideo.ts
+  - src/funcs/segmentAnything2.ts
+  - src/funcs/textToImage.ts
+  - src/funcs/upscale.ts
+  - src/hooks/hooks.ts
+  - src/hooks/index.ts
+  - src/hooks/types.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
   - src/lib/dlv.ts
   - src/lib/encodings.ts
+  - src/lib/files.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
   - src/lib/logger.ts
@@ -54,10 +96,37 @@ generatedFiles:
   - src/lib/sdks.ts
   - src/lib/security.ts
   - src/lib/url.ts
-  - src/sdk/index.ts
+  - src/models/components/apierror.ts
+  - src/models/components/bodyaudiototextaudiototextpost.ts
+  - src/models/components/bodyimagetoimageimagetoimagepost.ts
+  - src/models/components/bodyimagetovideoimagetovideopost.ts
+  - src/models/components/bodysegmentanything2segmentanything2post.ts
+  - src/models/components/bodyupscaleupscalepost.ts
+  - src/models/components/chunk.ts
+  - src/models/components/imageresponse.ts
+  - src/models/components/index.ts
+  - src/models/components/masksresponse.ts
+  - src/models/components/media.ts
+  - src/models/components/security.ts
+  - src/models/components/textresponse.ts
+  - src/models/components/texttoimageparams.ts
+  - src/models/components/validationerror.ts
+  - src/models/components/videoresponse.ts
   - src/models/errors/httpclienterrors.ts
+  - src/models/errors/httperror.ts
+  - src/models/errors/httpvalidationerror.ts
+  - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/audiototext.ts
+  - src/models/operations/imagetoimage.ts
+  - src/models/operations/imagetovideo.ts
+  - src/models/operations/index.ts
+  - src/models/operations/segmentanything2.ts
+  - src/models/operations/texttoimage.ts
+  - src/models/operations/upscale.ts
+  - src/sdk/index.ts
+  - src/sdk/sdk.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts
@@ -65,63 +134,66 @@ generatedFiles:
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
+  - src/types/streams.ts
   - tsconfig.json
-  - src/models/operations/texttoimage.ts
-  - src/models/operations/imagetoimage.ts
-  - src/models/operations/imagetovideo.ts
-  - src/models/operations/upscale.ts
-  - src/models/operations/audiototext.ts
-  - src/models/components/imageresponse.ts
-  - src/models/components/media.ts
-  - src/models/components/apierror.ts
-  - src/models/components/validationerror.ts
-  - src/models/components/texttoimageparams.ts
-  - src/models/components/bodyimagetoimageimagetoimagepost.ts
-  - src/models/components/videoresponse.ts
-  - src/models/components/bodyimagetovideoimagetovideopost.ts
-  - src/models/components/bodyupscaleupscalepost.ts
-  - src/models/components/textresponse.ts
-  - src/models/components/chunk.ts
-  - src/models/components/bodyaudiototextaudiototextpost.ts
-  - src/models/components/security.ts
-  - src/models/errors/httperror.ts
-  - src/models/errors/httpvalidationerror.ts
-  - src/models/errors/index.ts
-  - src/models/operations/index.ts
-  - src/models/components/index.ts
-  - docs/models/operations/texttoimageresponse.md
-  - docs/models/operations/imagetoimageresponse.md
-  - docs/models/operations/imagetovideoresponse.md
-  - docs/models/operations/upscaleresponse.md
-  - docs/models/operations/audiototextresponse.md
-  - docs/models/components/imageresponse.md
-  - docs/models/components/media.md
-  - docs/models/components/apierror.md
-  - docs/models/components/loc.md
-  - docs/models/components/validationerror.md
-  - docs/models/components/texttoimageparams.md
-  - docs/models/components/image.md
-  - docs/models/components/bodyimagetoimageimagetoimagepost.md
-  - docs/models/components/videoresponse.md
-  - docs/models/components/bodyimagetovideoimagetovideopostimage.md
-  - docs/models/components/bodyimagetovideoimagetovideopost.md
-  - docs/models/components/bodyupscaleupscalepostimage.md
-  - docs/models/components/bodyupscaleupscalepost.md
-  - docs/models/components/textresponse.md
-  - docs/models/components/chunk.md
-  - docs/models/components/audio.md
-  - docs/models/components/bodyaudiototextaudiototextpost.md
-  - docs/models/components/security.md
-  - docs/models/errors/httperror.md
-  - docs/models/errors/httpvalidationerror.md
-  - docs/lib/utils/retryconfig.md
-  - docs/sdks/livepeerai/README.md
-  - USAGE.md
-  - .gitattributes
-  - .devcontainer/README.md
-  - .devcontainer/devcontainer.json
-  - .devcontainer/setup.sh
-  - src/hooks/hooks.ts
-  - src/hooks/types.ts
-  - src/hooks/index.ts
-  - CONTRIBUTING.md
+examples:
+  text_to_image:
+    speakeasy-default-text-to-image:
+      requestBody:
+        application/json: {"prompt": "<value>"}
+      responses:
+        "200":
+          application/json: {"images": []}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}
+  image_to_image:
+    speakeasy-default-image-to-image:
+      requestBody:
+        multipart/form-data: {"prompt": "<value>", "image": {}}
+      responses:
+        "200":
+          application/json: {"images": []}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}
+  image_to_video:
+    speakeasy-default-image-to-video:
+      requestBody:
+        multipart/form-data: {"image": {}}
+      responses:
+        "200":
+          application/json: {"images": []}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}
+  upscale:
+    speakeasy-default-upscale:
+      requestBody:
+        multipart/form-data: {"prompt": "<value>", "image": {}}
+      responses:
+        "200":
+          application/json: {"images": []}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}
+  audio_to_text:
+    speakeasy-default-audio-to-text:
+      requestBody:
+        multipart/form-data: {"audio": {}}
+      responses:
+        "200":
+          application/json: {"text": "<value>", "chunks": []}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}
+  segment_anything_2:
+    speakeasy-default-segment-anything-2:
+      requestBody:
+        multipart/form-data: {"image": {}}
+      responses:
+        "200":
+          application/json: {"masks": "<value>", "scores": "<value>", "logits": "<value>"}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}

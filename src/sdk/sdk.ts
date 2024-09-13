@@ -5,6 +5,7 @@
 import { audioToText } from "../funcs/audioToText.js";
 import { imageToImage } from "../funcs/imageToImage.js";
 import { imageToVideo } from "../funcs/imageToVideo.js";
+import { segmentAnything2 } from "../funcs/segmentAnything2.js";
 import { textToImage } from "../funcs/textToImage.js";
 import { upscale } from "../funcs/upscale.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
@@ -13,68 +14,105 @@ import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class LivepeerAI extends ClientSDK {
-    /**
-     * Text To Image
-     *
-     * @remarks
-     * Generate images from text prompts.
-     */
-    async textToImage(
-        request: components.TextToImageParams,
-        options?: RequestOptions
-    ): Promise<operations.TextToImageResponse> {
-        return unwrapAsync(textToImage(this, request, options));
-    }
+  /**
+   * Text To Image
+   *
+   * @remarks
+   * Generate images from text prompts.
+   */
+  async textToImage(
+    request: components.TextToImageParams,
+    options?: RequestOptions,
+  ): Promise<operations.TextToImageResponse> {
+    return unwrapAsync(textToImage(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Image To Image
-     *
-     * @remarks
-     * Apply image transformations to a provided image.
-     */
-    async imageToImage(
-        request: components.BodyImageToImageImageToImagePost,
-        options?: RequestOptions
-    ): Promise<operations.ImageToImageResponse> {
-        return unwrapAsync(imageToImage(this, request, options));
-    }
+  /**
+   * Image To Image
+   *
+   * @remarks
+   * Apply image transformations to a provided image.
+   */
+  async imageToImage(
+    request: components.BodyImageToImageImageToImagePost,
+    options?: RequestOptions,
+  ): Promise<operations.ImageToImageResponse> {
+    return unwrapAsync(imageToImage(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Image To Video
-     *
-     * @remarks
-     * Generate a video from a provided image.
-     */
-    async imageToVideo(
-        request: components.BodyImageToVideoImageToVideoPost,
-        options?: RequestOptions
-    ): Promise<operations.ImageToVideoResponse> {
-        return unwrapAsync(imageToVideo(this, request, options));
-    }
+  /**
+   * Image To Video
+   *
+   * @remarks
+   * Generate a video from a provided image.
+   */
+  async imageToVideo(
+    request: components.BodyImageToVideoImageToVideoPost,
+    options?: RequestOptions,
+  ): Promise<operations.ImageToVideoResponse> {
+    return unwrapAsync(imageToVideo(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Upscale
-     *
-     * @remarks
-     * Upscale an image by increasing its resolution.
-     */
-    async upscale(
-        request: components.BodyUpscaleUpscalePost,
-        options?: RequestOptions
-    ): Promise<operations.UpscaleResponse> {
-        return unwrapAsync(upscale(this, request, options));
-    }
+  /**
+   * Upscale
+   *
+   * @remarks
+   * Upscale an image by increasing its resolution.
+   */
+  async upscale(
+    request: components.BodyUpscaleUpscalePost,
+    options?: RequestOptions,
+  ): Promise<operations.UpscaleResponse> {
+    return unwrapAsync(upscale(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Audio To Text
-     *
-     * @remarks
-     * Transcribe audio files to text.
-     */
-    async audioToText(
-        request: components.BodyAudioToTextAudioToTextPost,
-        options?: RequestOptions
-    ): Promise<operations.AudioToTextResponse> {
-        return unwrapAsync(audioToText(this, request, options));
-    }
+  /**
+   * Audio To Text
+   *
+   * @remarks
+   * Transcribe audio files to text.
+   */
+  async audioToText(
+    request: components.BodyAudioToTextAudioToTextPost,
+    options?: RequestOptions,
+  ): Promise<operations.AudioToTextResponse> {
+    return unwrapAsync(audioToText(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Segment Anything 2
+   *
+   * @remarks
+   * Segment objects in an image.
+   */
+  async segmentAnything2(
+    request: components.BodySegmentAnything2SegmentAnything2Post,
+    options?: RequestOptions,
+  ): Promise<operations.SegmentAnything2Response> {
+    return unwrapAsync(segmentAnything2(
+      this,
+      request,
+      options,
+    ));
+  }
 }

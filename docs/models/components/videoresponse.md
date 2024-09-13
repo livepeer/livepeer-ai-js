@@ -8,13 +8,13 @@ Response model for image generation.
 import { VideoResponse } from "livepeer-ai/models/components";
 
 let value: VideoResponse = {
-    images: [
-        {
-            url: "http://gloomy-blanket.name",
-            seed: 20218,
-            nsfw: false,
-        },
-    ],
+  images: [
+    {
+      url: "http://spotted-skyline.name",
+      seed: 479977,
+      nsfw: false,
+    },
+  ],
 };
 ```
 

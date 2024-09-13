@@ -4,11 +4,8 @@
 
 ```typescript
 import { BodyImageToVideoImageToVideoPost } from "livepeer-ai/models/components";
-import { openAsBlob } from "node:fs";
 
-let value: BodyImageToVideoImageToVideoPost = {
-    image: await openAsBlob("./sample-file"),
-};
+// No examples available for this model
 ```
 
 ## Fields

@@ -4,11 +4,8 @@
 
 ```typescript
 import { BodyAudioToTextAudioToTextPost } from "livepeer-ai/models/components";
-import { openAsBlob } from "node:fs";
 
-let value: BodyAudioToTextAudioToTextPost = {
-    audio: await openAsBlob("./sample-file"),
-};
+// No examples available for this model
 ```
 
 ## Fields

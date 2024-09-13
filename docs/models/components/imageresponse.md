@@ -8,13 +8,13 @@ Response model for image generation.
 import { ImageResponse } from "livepeer-ai/models/components";
 
 let value: ImageResponse = {
-    images: [
-        {
-            url: "https://moral-star.info",
-            seed: 623564,
-            nsfw: false,
-        },
-    ],
+  images: [
+    {
+      url: "https://that-hellcat.name",
+      seed: 645894,
+      nsfw: false,
+    },
+  ],
 };
 ```
 

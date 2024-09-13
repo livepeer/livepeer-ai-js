@@ -6,7 +6,7 @@ import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
 import * as components from "../components/index.js";
 
-export type TextToImageResponse = {
+export type SegmentAnything2Response = {
   /**
    * HTTP response content type for this operation
    */
@@ -22,54 +22,54 @@ export type TextToImageResponse = {
   /**
    * Successful Response
    */
-  imageResponse?: components.ImageResponse | undefined;
+  masksResponse?: components.MasksResponse | undefined;
 };
 
 /** @internal */
-export const TextToImageResponse$inboundSchema: z.ZodType<
-  TextToImageResponse,
+export const SegmentAnything2Response$inboundSchema: z.ZodType<
+  SegmentAnything2Response,
   z.ZodTypeDef,
   unknown
 > = z.object({
   ContentType: z.string(),
   StatusCode: z.number().int(),
   RawResponse: z.instanceof(Response),
-  ImageResponse: components.ImageResponse$inboundSchema.optional(),
+  MasksResponse: components.MasksResponse$inboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     "ContentType": "contentType",
     "StatusCode": "statusCode",
     "RawResponse": "rawResponse",
-    "ImageResponse": "imageResponse",
+    "MasksResponse": "masksResponse",
   });
 });
 
 /** @internal */
-export type TextToImageResponse$Outbound = {
+export type SegmentAnything2Response$Outbound = {
   ContentType: string;
   StatusCode: number;
   RawResponse: never;
-  ImageResponse?: components.ImageResponse$Outbound | undefined;
+  MasksResponse?: components.MasksResponse$Outbound | undefined;
 };
 
 /** @internal */
-export const TextToImageResponse$outboundSchema: z.ZodType<
-  TextToImageResponse$Outbound,
+export const SegmentAnything2Response$outboundSchema: z.ZodType<
+  SegmentAnything2Response$Outbound,
   z.ZodTypeDef,
-  TextToImageResponse
+  SegmentAnything2Response
 > = z.object({
   contentType: z.string(),
   statusCode: z.number().int(),
   rawResponse: z.instanceof(Response).transform(() => {
     throw new Error("Response cannot be serialized");
   }),
-  imageResponse: components.ImageResponse$outboundSchema.optional(),
+  masksResponse: components.MasksResponse$outboundSchema.optional(),
 }).transform((v) => {
   return remap$(v, {
     contentType: "ContentType",
     statusCode: "StatusCode",
     rawResponse: "RawResponse",
-    imageResponse: "ImageResponse",
+    masksResponse: "MasksResponse",
   });
 });
 
@@ -77,11 +77,11 @@ export const TextToImageResponse$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace TextToImageResponse$ {
-  /** @deprecated use `TextToImageResponse$inboundSchema` instead. */
-  export const inboundSchema = TextToImageResponse$inboundSchema;
-  /** @deprecated use `TextToImageResponse$outboundSchema` instead. */
-  export const outboundSchema = TextToImageResponse$outboundSchema;
-  /** @deprecated use `TextToImageResponse$Outbound` instead. */
-  export type Outbound = TextToImageResponse$Outbound;
+export namespace SegmentAnything2Response$ {
+  /** @deprecated use `SegmentAnything2Response$inboundSchema` instead. */
+  export const inboundSchema = SegmentAnything2Response$inboundSchema;
+  /** @deprecated use `SegmentAnything2Response$outboundSchema` instead. */
+  export const outboundSchema = SegmentAnything2Response$outboundSchema;
+  /** @deprecated use `SegmentAnything2Response$Outbound` instead. */
+  export type Outbound = SegmentAnything2Response$Outbound;
 }

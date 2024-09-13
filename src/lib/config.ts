@@ -11,57 +11,57 @@ import { Params, pathToFunc } from "./url.js";
  * Contains the list of servers available to the SDK
  */
 export const ServerList = [
-    /**
-     * Livepeer Cloud Community Gateway
-     */
-    "https://dream-gateway.livepeer.cloud",
-    /**
-     * Livepeer Studio Gateway
-     */
-    "https://livepeer.studio/api/beta/generate",
+  /**
+   * Livepeer Cloud Community Gateway
+   */
+  "https://dream-gateway.livepeer.cloud",
+  /**
+   * Livepeer Studio Gateway
+   */
+  "https://livepeer.studio/api/beta/generate",
 ] as const;
 
 export type SDKOptions = {
-    httpBearer?: string | (() => Promise<string>);
+  httpBearer?: string | (() => Promise<string>);
 
-    httpClient?: HTTPClient;
-    /**
-     * Allows overriding the default server used by the SDK
-     */
-    serverIdx?: number;
-    /**
-     * Allows overriding the default server URL used by the SDK
-     */
-    serverURL?: string;
-    /**
-     * Allows overriding the default retry config used by the SDK
-     */
-    retryConfig?: RetryConfig;
-    timeoutMs?: number;
-    debugLogger?: Logger;
+  httpClient?: HTTPClient;
+  /**
+   * Allows overriding the default server used by the SDK
+   */
+  serverIdx?: number;
+  /**
+   * Allows overriding the default server URL used by the SDK
+   */
+  serverURL?: string;
+  /**
+   * Allows overriding the default retry config used by the SDK
+   */
+  retryConfig?: RetryConfig;
+  timeoutMs?: number;
+  debugLogger?: Logger;
 };
 
 export function serverURLFromOptions(options: SDKOptions): URL | null {
-    let serverURL = options.serverURL;
+  let serverURL = options.serverURL;
 
-    const params: Params = {};
+  const params: Params = {};
 
-    if (!serverURL) {
-        const serverIdx = options.serverIdx ?? 0;
-        if (serverIdx < 0 || serverIdx >= ServerList.length) {
-            throw new Error(`Invalid server index ${serverIdx}`);
-        }
-        serverURL = ServerList[serverIdx] || "";
+  if (!serverURL) {
+    const serverIdx = options.serverIdx ?? 0;
+    if (serverIdx < 0 || serverIdx >= ServerList.length) {
+      throw new Error(`Invalid server index ${serverIdx}`);
     }
+    serverURL = ServerList[serverIdx] || "";
+  }
 
-    const u = pathToFunc(serverURL)(params);
-    return new URL(u);
+  const u = pathToFunc(serverURL)(params);
+  return new URL(u);
 }
 
 export const SDK_METADATA = {
-    language: "typescript",
-    openapiDocVersion: "v0.1.3",
-    sdkVersion: "0.1.6",
-    genVersion: "2.407.0",
-    userAgent: "speakeasy-sdk/typescript 0.1.6 2.407.0 v0.1.3 livepeer-ai",
+  language: "typescript",
+  openapiDocVersion: "v0.2.0",
+  sdkVersion: "0.2.0",
+  genVersion: "2.415.6",
+  userAgent: "speakeasy-sdk/typescript 0.2.0 2.415.6 v0.2.0 livepeer-ai",
 } as const;

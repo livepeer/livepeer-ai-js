@@ -8,9 +8,9 @@ A media object containing information about the generated media.
 import { Media } from "livepeer-ai/models/components";
 
 let value: Media = {
-    url: "https://high-hound.biz",
-    seed: 891773,
-    nsfw: false,
+  url: "http://innocent-effect.org",
+  seed: 56713,
+  nsfw: false,
 };
 ```
 

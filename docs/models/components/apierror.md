@@ -8,7 +8,7 @@ API error response model.
 import { APIError } from "livepeer-ai/models/components";
 
 let value: APIError = {
-    msg: "<value>",
+  msg: "<value>",
 };
 ```
 

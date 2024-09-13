@@ -6,11 +6,11 @@
 import { UpscaleResponse } from "livepeer-ai/models/operations";
 
 let value: UpscaleResponse = {
-    contentType: "<value>",
-    statusCode: 844266,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 844266,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

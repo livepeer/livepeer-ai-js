@@ -8,13 +8,15 @@ Response model for text generation.
 import { TextResponse } from "livepeer-ai/models/components";
 
 let value: TextResponse = {
-    text: "<value>",
-    chunks: [
-        {
-            timestamp: ["<value>"],
-            text: "<value>",
-        },
-    ],
+  text: "<value>",
+  chunks: [
+    {
+      timestamp: [
+        "<value>",
+      ],
+      text: "<value>",
+    },
+  ],
 };
 ```
 

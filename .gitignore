@@ -1,3 +1,4 @@
+/__tests__
 # Speakeasy
 /models
 /models/errors
@@ -15,7 +16,6 @@
 /.tsbuildinfo
 /.tshy
 /.tshy-*
-
 # IDEs
 .vscode
 *.code-workspace

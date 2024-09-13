@@ -26,18 +26,18 @@ import { Result } from "../types/fp.js";
 import { isReadableStream } from "../types/streams.js";
 
 /**
- * Audio To Text
+ * Segment Anything 2
  *
  * @remarks
- * Transcribe audio files to text.
+ * Segment objects in an image.
  */
-export async function audioToText(
+export async function segmentAnything2(
   client$: LivepeerAICore,
-  request: components.BodyAudioToTextAudioToTextPost,
+  request: components.BodySegmentAnything2SegmentAnything2Post,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.AudioToTextResponse,
+    operations.SegmentAnything2Response,
     | errors.HTTPError
     | errors.HTTPValidationError
     | SDKError
@@ -54,7 +54,9 @@ export async function audioToText(
   const parsed$ = schemas$.safeParse(
     input$,
     (value$) =>
-      components.BodyAudioToTextAudioToTextPost$outboundSchema.parse(value$),
+      components.BodySegmentAnything2SegmentAnything2Post$outboundSchema.parse(
+        value$,
+      ),
     "Input validation failed",
   );
   if (!parsed$.ok) {
@@ -63,24 +65,45 @@ export async function audioToText(
   const payload$ = parsed$.value;
   const body$ = new FormData();
 
-  if (isBlobLike(payload$.audio)) {
-    body$.append("audio", payload$.audio);
-  } else if (isReadableStream(payload$.audio.content)) {
-    const buffer = await readableStreamToArrayBuffer(payload$.audio.content);
+  if (isBlobLike(payload$.image)) {
+    body$.append("image", payload$.image);
+  } else if (isReadableStream(payload$.image.content)) {
+    const buffer = await readableStreamToArrayBuffer(payload$.image.content);
     const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body$.append("audio", blob);
+    body$.append("image", blob);
   } else {
     body$.append(
-      "audio",
-      new Blob([payload$.audio.content], { type: "application/octet-stream" }),
-      payload$.audio.fileName,
+      "image",
+      new Blob([payload$.image.content], { type: "application/octet-stream" }),
+      payload$.image.fileName,
     );
+  }
+  if (payload$.box !== undefined) {
+    body$.append("box", payload$.box);
+  }
+  if (payload$.mask_input !== undefined) {
+    body$.append("mask_input", payload$.mask_input);
   }
   if (payload$.model_id !== undefined) {
     body$.append("model_id", payload$.model_id);
   }
+  if (payload$.multimask_output !== undefined) {
+    body$.append("multimask_output", String(payload$.multimask_output));
+  }
+  if (payload$.normalize_coords !== undefined) {
+    body$.append("normalize_coords", String(payload$.normalize_coords));
+  }
+  if (payload$.point_coords !== undefined) {
+    body$.append("point_coords", payload$.point_coords);
+  }
+  if (payload$.point_labels !== undefined) {
+    body$.append("point_labels", payload$.point_labels);
+  }
+  if (payload$.return_logits !== undefined) {
+    body$.append("return_logits", String(payload$.return_logits));
+  }
 
-  const path$ = pathToFunc("/audio-to-text")();
+  const path$ = pathToFunc("/segment-anything-2")();
 
   const headers$ = new Headers({
     Accept: "application/json",
@@ -89,7 +112,7 @@ export async function audioToText(
   const httpBearer$ = await extractSecurity(client$.options$.httpBearer);
   const security$ = httpBearer$ == null ? {} : { httpBearer: httpBearer$ };
   const context = {
-    operationID: "audio_to_text",
+    operationID: "segment_anything_2",
     oAuth2Scopes: [],
     securitySource: client$.options$.httpBearer,
   };
@@ -110,7 +133,7 @@ export async function audioToText(
 
   const doResult = await client$.do$(request$, {
     context,
-    errorCodes: ["400", "401", "413", "422", "4XX", "500", "5XX"],
+    errorCodes: ["400", "401", "422", "4XX", "500", "5XX"],
     retryConfig: options?.retries
       || client$.options$.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
@@ -129,7 +152,7 @@ export async function audioToText(
   };
 
   const [result$] = await m$.match<
-    operations.AudioToTextResponse,
+    operations.SegmentAnything2Response,
     | errors.HTTPError
     | errors.HTTPValidationError
     | SDKError
@@ -140,10 +163,10 @@ export async function audioToText(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.AudioToTextResponse$inboundSchema, {
-      key: "TextResponse",
+    m$.json(200, operations.SegmentAnything2Response$inboundSchema, {
+      key: "MasksResponse",
     }),
-    m$.jsonErr([400, 401, 413, 500], errors.HTTPError$inboundSchema),
+    m$.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
     m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     m$.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields$ });

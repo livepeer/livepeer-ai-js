@@ -6,7 +6,7 @@
 import { TextToImageParams } from "livepeer-ai/models/components";
 
 let value: TextToImageParams = {
-    prompt: "<value>",
+  prompt: "<value>",
 };
 ```
 

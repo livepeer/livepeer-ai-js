@@ -1,9 +1,9 @@
-# BodyImageToVideoImageToVideoPostImage
+# BodySegmentAnything2SegmentAnything2PostImage
 
 ## Example Usage
 
 ```typescript
-import { BodyImageToVideoImageToVideoPostImage } from "livepeer-ai/models/components";
+import { BodySegmentAnything2SegmentAnything2PostImage } from "livepeer-ai/models/components";
 
 // No examples available for this model
 ```

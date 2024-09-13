@@ -3,119 +3,39 @@ info:
   title: CodeSamples overlay for typescript target
   version: 0.0.0
 actions:
-  - target: $["paths"]["/upscale"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: upscale
-          source: |-
-            import { LivepeerAI } from "livepeer-ai";
-            import { openAsBlob } from "node:fs";
-
-            const livepeerAI = new LivepeerAI({
-              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
-            });
-
-            async function run() {
-              const result = await livepeerAI.upscale({
-                prompt: "<value>",
-                image: await openAsBlob("./sample-file"),
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
   - target: $["paths"]["/audio-to-text"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
           label: audio_to_text
-          source: |-
-            import { LivepeerAI } from "livepeer-ai";
-            import { openAsBlob } from "node:fs";
-
-            const livepeerAI = new LivepeerAI({
-              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
-            });
-
-            async function run() {
-              const result = await livepeerAI.audioToText({
-                audio: await openAsBlob("./sample-file"),
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  - target: $["paths"]["/text-to-image"]["post"]
-    update:
-      x-codeSamples:
-        - lang: typescript
-          label: text_to_image
-          source: |-
-            import { LivepeerAI } from "livepeer-ai";
-
-            const livepeerAI = new LivepeerAI({
-              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
-            });
-
-            async function run() {
-              const result = await livepeerAI.textToImage({
-                prompt: "<value>",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.audioToText({\n    audio: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/image-to-image"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
           label: image_to_image
-          source: |-
-            import { LivepeerAI } from "livepeer-ai";
-            import { openAsBlob } from "node:fs";
-
-            const livepeerAI = new LivepeerAI({
-              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
-            });
-
-            async function run() {
-              const result = await livepeerAI.imageToImage({
-                prompt: "<value>",
-                image: await openAsBlob("./sample-file"),
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.imageToImage({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/image-to-video"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
           label: image_to_video
-          source: |-
-            import { LivepeerAI } from "livepeer-ai";
-            import { openAsBlob } from "node:fs";
-
-            const livepeerAI = new LivepeerAI({
-              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
-            });
-
-            async function run() {
-              const result = await livepeerAI.imageToVideo({
-                image: await openAsBlob("./sample-file"),
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.imageToVideo({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+  - target: $["paths"]["/segment-anything-2"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: segment_anything_2
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.segmentAnything2({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+  - target: $["paths"]["/text-to-image"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: text_to_image
+          source: "import { LivepeerAI } from \"livepeer-ai\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.textToImage({\n    prompt: \"<value>\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+  - target: $["paths"]["/upscale"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: upscale
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.upscale({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"

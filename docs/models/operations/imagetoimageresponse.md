@@ -6,11 +6,11 @@
 import { ImageToImageResponse } from "livepeer-ai/models/operations";
 
 let value: ImageToImageResponse = {
-    contentType: "<value>",
-    statusCode: 592845,
-    rawResponse: new Response('{"message": "hello world"}', {
-        headers: { "Content-Type": "application/json" },
-    }),
+  contentType: "<value>",
+  statusCode: 592845,
+  rawResponse: new Response("{\"message\": \"hello world\"}", {
+    headers: { "Content-Type": "application/json" },
+  }),
 };
 ```
 

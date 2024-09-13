@@ -57,16 +57,16 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 import { LivepeerAI } from "livepeer-ai";
 
 const livepeerAI = new LivepeerAI({
-    httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+  httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await livepeerAI.textToImage({
-        prompt: "<value>",
-    });
+  const result = await livepeerAI.textToImage({
+    prompt: "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -77,6 +77,9 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
 ### [LivepeerAI SDK](docs/sdks/livepeerai/README.md)
 
 * [textToImage](docs/sdks/livepeerai/README.md#texttoimage) - Text To Image
@@ -84,6 +87,9 @@ run();
 * [imageToVideo](docs/sdks/livepeerai/README.md#imagetovideo) - Image To Video
 * [upscale](docs/sdks/livepeerai/README.md#upscale) - Upscale
 * [audioToText](docs/sdks/livepeerai/README.md#audiototext) - Audio To Text
+* [segmentAnything2](docs/sdks/livepeerai/README.md#segmentanything2) - Segment Anything 2
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Standalone functions [standalone-funcs] -->
@@ -104,6 +110,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [audioToText](docs/sdks/livepeerai/README.md#audiototext)
 - [imageToImage](docs/sdks/livepeerai/README.md#imagetoimage)
 - [imageToVideo](docs/sdks/livepeerai/README.md#imagetovideo)
+- [segmentAnything2](docs/sdks/livepeerai/README.md#segmentanything2)
 - [textToImage](docs/sdks/livepeerai/README.md#texttoimage)
 - [upscale](docs/sdks/livepeerai/README.md#upscale)
 
@@ -130,17 +137,17 @@ import { LivepeerAI } from "livepeer-ai";
 import { openAsBlob } from "node:fs";
 
 const livepeerAI = new LivepeerAI({
-    httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+  httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await livepeerAI.imageToImage({
-        image: await openAsBlob("./sample-file"),
-        prompt: "<value>",
-    });
+  const result = await livepeerAI.imageToImage({
+    image: await openAsBlob("example.file"),
+    prompt: "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -158,30 +165,27 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { LivepeerAI } from "livepeer-ai";
 
 const livepeerAI = new LivepeerAI({
-    httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+  httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await livepeerAI.textToImage(
-        {
-            prompt: "<value>",
-        },
-        {
-            retries: {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1,
-                    maxInterval: 50,
-                    exponent: 1.1,
-                    maxElapsedTime: 100,
-                },
-                retryConnectionErrors: false,
-            },
-        }
-    );
+  const result = await livepeerAI.textToImage({
+    prompt: "<value>",
+  }, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -193,26 +197,26 @@ If you'd like to override the default retry strategy for all operations that sup
 import { LivepeerAI } from "livepeer-ai";
 
 const livepeerAI = new LivepeerAI({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+    retryConnectionErrors: false,
+  },
+  httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await livepeerAI.textToImage({
-        prompt: "<value>",
-    });
+  const result = await livepeerAI.textToImage({
+    prompt: "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -236,45 +240,49 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { LivepeerAI } from "livepeer-ai";
-import { HTTPError, HTTPValidationError, SDKValidationError } from "livepeer-ai/models/errors";
+import {
+  HTTPError,
+  HTTPValidationError,
+  SDKValidationError,
+} from "livepeer-ai/models/errors";
 
 const livepeerAI = new LivepeerAI({
-    httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+  httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    let result;
-    try {
-        result = await livepeerAI.textToImage({
-            prompt: "<value>",
-        });
-    } catch (err) {
-        switch (true) {
-            case err instanceof SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
-            case err instanceof HTTPError: {
-                // Handle err.data$: HTTPErrorData
-                console.error(err);
-                return;
-            }
-            case err instanceof HTTPValidationError: {
-                // Handle err.data$: HTTPValidationErrorData
-                console.error(err);
-                return;
-            }
-            default: {
-                throw err;
-            }
-        }
-    }
+  let result;
+  try {
+    result = await livepeerAI.textToImage({
+      prompt: "<value>",
+    });
 
     // Handle the result
     console.log(result);
+  } catch (err) {
+    switch (true) {
+      case (err instanceof SDKValidationError): {
+        // Validation errors can be pretty-printed
+        console.error(err.pretty());
+        // Raw value may also be inspected
+        console.error(err.rawValue);
+        return;
+      }
+      case (err instanceof HTTPError): {
+        // Handle err.data$: HTTPErrorData
+        console.error(err);
+        return;
+      }
+      case (err instanceof HTTPValidationError): {
+        // Handle err.data$: HTTPValidationErrorData
+        console.error(err);
+        return;
+      }
+      default: {
+        throw err;
+      }
+    }
+  }
 }
 
 run();
@@ -298,17 +306,17 @@ You can override the default server globally by passing a server index to the `s
 import { LivepeerAI } from "livepeer-ai";
 
 const livepeerAI = new LivepeerAI({
-    serverIdx: 1,
-    httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+  serverIdx: 1,
+  httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await livepeerAI.textToImage({
-        prompt: "<value>",
-    });
+  const result = await livepeerAI.textToImage({
+    prompt: "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -324,17 +332,17 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { LivepeerAI } from "livepeer-ai";
 
 const livepeerAI = new LivepeerAI({
-    serverURL: "https://dream-gateway.livepeer.cloud",
-    httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+  serverURL: "https://dream-gateway.livepeer.cloud",
+  httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await livepeerAI.textToImage({
-        prompt: "<value>",
-    });
+  const result = await livepeerAI.textToImage({
+    prompt: "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -407,16 +415,16 @@ To authenticate with the API the `httpBearer` parameter must be set when initial
 import { LivepeerAI } from "livepeer-ai";
 
 const livepeerAI = new LivepeerAI({
-    httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+  httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-    const result = await livepeerAI.textToImage({
-        prompt: "<value>",
-    });
+  const result = await livepeerAI.textToImage({
+    prompt: "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();

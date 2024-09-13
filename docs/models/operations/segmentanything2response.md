@@ -1,13 +1,13 @@
-# AudioToTextResponse
+# SegmentAnything2Response
 
 ## Example Usage
 
 ```typescript
-import { AudioToTextResponse } from "livepeer-ai/models/operations";
+import { SegmentAnything2Response } from "livepeer-ai/models/operations";
 
-let value: AudioToTextResponse = {
+let value: SegmentAnything2Response = {
   contentType: "<value>",
-  statusCode: 602763,
+  statusCode: 857946,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),
@@ -21,4 +21,4 @@ let value: AudioToTextResponse = {
 | `contentType`                                                         | *string*                                                              | :heavy_check_mark:                                                    | HTTP response content type for this operation                         |
 | `statusCode`                                                          | *number*                                                              | :heavy_check_mark:                                                    | HTTP response status code for this operation                          |
 | `rawResponse`                                                         | [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) | :heavy_check_mark:                                                    | Raw HTTP response; suitable for custom response parsing               |
-| `textResponse`                                                        | [components.TextResponse](../../models/components/textresponse.md)    | :heavy_minus_sign:                                                    | Successful Response                                                   |
+| `masksResponse`                                                       | [components.MasksResponse](../../models/components/masksresponse.md)  | :heavy_minus_sign:                                                    | Successful Response                                                   |

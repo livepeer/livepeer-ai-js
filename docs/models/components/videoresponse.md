@@ -5,7 +5,7 @@ Response model for image generation.
 ## Example Usage
 
 ```typescript
-import { VideoResponse } from "livepeer-ai/models/components";
+import { VideoResponse } from "@livepeer/ai/models/components";
 
 let value: VideoResponse = {
   images: [

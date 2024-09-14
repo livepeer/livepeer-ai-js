@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BodyGenAudioToText } from "livepeer-ai/models/components";
+import { BodyGenAudioToText } from "@livepeer/ai/models/components";
 
 // No examples available for this model
 ```

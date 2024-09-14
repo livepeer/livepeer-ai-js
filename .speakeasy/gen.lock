@@ -5,8 +5,8 @@ management:
   docVersion: v0.5.0
   speakeasyVersion: 1.396.9
   generationVersion: 2.415.7
-  releaseVersion: 0.3.0
-  configChecksum: c8aa17308629ebd7735417f6e6f6e9ed
+  releaseVersion: 0.3.1
+  configChecksum: 55e9bab6bcb0c20f712039a3dc9fd310
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
   published: true

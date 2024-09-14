@@ -1,6 +1,6 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { LivepeerAI } from "livepeer-ai";
+import { LivepeerAI } from "@livepeer/ai";
 
 const livepeerAI = new LivepeerAI({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",

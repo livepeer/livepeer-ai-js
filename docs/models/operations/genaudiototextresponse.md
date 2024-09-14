@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GenAudioToTextResponse } from "livepeer-ai/models/operations";
+import { GenAudioToTextResponse } from "@livepeer/ai/models/operations";
 
 let value: GenAudioToTextResponse = {
   contentType: "<value>",

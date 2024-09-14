@@ -19,9 +19,9 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { LivepeerAICore } from "livepeer-ai/core.js";
-import { generateTextToImage } from "livepeer-ai/funcs/generateTextToImage.js";
-import { SDKValidationError } from "livepeer-ai/models/errors/sdkvalidationerror.js";
+import { LivepeerAICore } from "@livepeer/ai/core.js";
+import { generateTextToImage } from "@livepeer/ai/funcs/generateTextToImage.js";
+import { SDKValidationError } from "@livepeer/ai/models/errors/sdkvalidationerror.js";
 
 // Use `LivepeerAICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.

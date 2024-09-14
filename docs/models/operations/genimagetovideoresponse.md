@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GenImageToVideoResponse } from "livepeer-ai/models/operations";
+import { GenImageToVideoResponse } from "@livepeer/ai/models/operations";
 
 let value: GenImageToVideoResponse = {
   contentType: "<value>",

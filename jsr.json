@@ -1,8 +1,8 @@
 
 
 {
-  "name": "livepeer-ai",
-  "version": "0.3.0",
+  "name": "@livepeer/ai",
+  "version": "0.3.1",
   "exports": {
     ".": "./src/index.ts",    
     "./models/errors": "./src/models/errors/index.ts",    

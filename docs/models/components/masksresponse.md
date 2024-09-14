@@ -5,7 +5,7 @@ Response model for object segmentation.
 ## Example Usage
 
 ```typescript
-import { MasksResponse } from "livepeer-ai/models/components";
+import { MasksResponse } from "@livepeer/ai/models/components";
 
 let value: MasksResponse = {
   masks: "<value>",

@@ -5,7 +5,7 @@ A media object containing information about the generated media.
 ## Example Usage
 
 ```typescript
-import { Media } from "livepeer-ai/models/components";
+import { Media } from "@livepeer/ai/models/components";
 
 let value: Media = {
   url: "http://innocent-effect.org",

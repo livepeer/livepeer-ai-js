@@ -7,35 +7,35 @@ actions:
     update:
       x-codeSamples:
         - lang: typescript
-          label: audio_to_text
-          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.audioToText({\n    audio: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          label: genAudioToText
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.generate.audioToText({\n    audio: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/image-to-image"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: image_to_image
-          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.imageToImage({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          label: genImageToImage
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.generate.imageToImage({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/image-to-video"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: image_to_video
-          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.imageToVideo({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          label: genImageToVideo
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.generate.imageToVideo({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/segment-anything-2"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: segment_anything_2
-          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.segmentAnything2({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          label: genSegmentAnything2
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.generate.segmentAnything2({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/text-to-image"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: text_to_image
-          source: "import { LivepeerAI } from \"livepeer-ai\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.textToImage({\n    prompt: \"<value>\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          label: genTextToImage
+          source: "import { LivepeerAI } from \"livepeer-ai\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.generate.textToImage({\n    prompt: \"<value>\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/upscale"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
-          label: upscale
-          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.upscale({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          label: genUpscale
+          source: "import { LivepeerAI } from \"livepeer-ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeerAI = new LivepeerAI({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeerAI.generate.upscale({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"

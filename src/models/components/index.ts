@@ -3,11 +3,11 @@
  */
 
 export * from "./apierror.js";
-export * from "./bodyaudiototextaudiototextpost.js";
-export * from "./bodyimagetoimageimagetoimagepost.js";
-export * from "./bodyimagetovideoimagetovideopost.js";
-export * from "./bodysegmentanything2segmentanything2post.js";
-export * from "./bodyupscaleupscalepost.js";
+export * from "./bodygenaudiototext.js";
+export * from "./bodygenimagetoimage.js";
+export * from "./bodygenimagetovideo.js";
+export * from "./bodygensegmentanything2.js";
+export * from "./bodygenupscale.js";
 export * from "./chunk.js";
 export * from "./imageresponse.js";
 export * from "./masksresponse.js";

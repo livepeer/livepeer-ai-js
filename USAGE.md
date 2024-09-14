@@ -7,7 +7,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.textToImage({
+  const result = await livepeerAI.generate.textToImage({
     prompt: "<value>",
   });
 

@@ -61,7 +61,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.textToImage({
+  const result = await livepeerAI.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -80,14 +80,15 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-### [LivepeerAI SDK](docs/sdks/livepeerai/README.md)
+### [generate](docs/sdks/generate/README.md)
 
-* [textToImage](docs/sdks/livepeerai/README.md#texttoimage) - Text To Image
-* [imageToImage](docs/sdks/livepeerai/README.md#imagetoimage) - Image To Image
-* [imageToVideo](docs/sdks/livepeerai/README.md#imagetovideo) - Image To Video
-* [upscale](docs/sdks/livepeerai/README.md#upscale) - Upscale
-* [audioToText](docs/sdks/livepeerai/README.md#audiototext) - Audio To Text
-* [segmentAnything2](docs/sdks/livepeerai/README.md#segmentanything2) - Segment Anything 2
+* [textToImage](docs/sdks/generate/README.md#texttoimage) - Text To Image
+* [imageToImage](docs/sdks/generate/README.md#imagetoimage) - Image To Image
+* [imageToVideo](docs/sdks/generate/README.md#imagetovideo) - Image To Video
+* [upscale](docs/sdks/generate/README.md#upscale) - Upscale
+* [audioToText](docs/sdks/generate/README.md#audiototext) - Audio To Text
+* [segmentAnything2](docs/sdks/generate/README.md#segmentanything2) - Segment Anything 2
+
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -107,12 +108,12 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [audioToText](docs/sdks/livepeerai/README.md#audiototext)
-- [imageToImage](docs/sdks/livepeerai/README.md#imagetoimage)
-- [imageToVideo](docs/sdks/livepeerai/README.md#imagetovideo)
-- [segmentAnything2](docs/sdks/livepeerai/README.md#segmentanything2)
-- [textToImage](docs/sdks/livepeerai/README.md#texttoimage)
-- [upscale](docs/sdks/livepeerai/README.md#upscale)
+- [generateAudioToText](docs/sdks/generate/README.md#audiototext)
+- [generateImageToImage](docs/sdks/generate/README.md#imagetoimage)
+- [generateImageToVideo](docs/sdks/generate/README.md#imagetovideo)
+- [generateSegmentAnything2](docs/sdks/generate/README.md#segmentanything2)
+- [generateTextToImage](docs/sdks/generate/README.md#texttoimage)
+- [generateUpscale](docs/sdks/generate/README.md#upscale)
 
 
 </details>
@@ -141,7 +142,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.imageToImage({
+  const result = await livepeerAI.generate.imageToImage({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
   });
@@ -169,7 +170,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.textToImage({
+  const result = await livepeerAI.generate.textToImage({
     prompt: "<value>",
   }, {
     retries: {
@@ -211,7 +212,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.textToImage({
+  const result = await livepeerAI.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -253,7 +254,7 @@ const livepeerAI = new LivepeerAI({
 async function run() {
   let result;
   try {
-    result = await livepeerAI.textToImage({
+    result = await livepeerAI.generate.textToImage({
       prompt: "<value>",
     });
 
@@ -311,7 +312,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.textToImage({
+  const result = await livepeerAI.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -337,7 +338,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.textToImage({
+  const result = await livepeerAI.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -419,7 +420,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.textToImage({
+  const result = await livepeerAI.generate.textToImage({
     prompt: "<value>",
   });
 

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GenSegmentAnything2Response } from "livepeer-ai/models/operations";
+import { GenSegmentAnything2Response } from "@livepeer/ai/models/operations";
 
 let value: GenSegmentAnything2Response = {
   contentType: "<value>",

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Loc } from "livepeer-ai/models/components";
+import { Loc } from "@livepeer/ai/models/components";
 
 let value: Loc = 272656;
 ```

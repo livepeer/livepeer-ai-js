@@ -19,7 +19,7 @@ Generate images from text prompts.
 ### Example Usage
 
 ```typescript
-import { LivepeerAI } from "livepeer-ai";
+import { LivepeerAI } from "@livepeer/ai";
 
 const livepeerAI = new LivepeerAI({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
@@ -42,8 +42,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAICore } from "livepeer-ai/core.js";
-import { generateTextToImage } from "livepeer-ai/funcs/generateTextToImage.js";
+import { LivepeerAICore } from "@livepeer/ai/core.js";
+import { generateTextToImage } from "@livepeer/ai/funcs/generateTextToImage.js";
 
 // Use `LivepeerAICore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -98,7 +98,7 @@ Apply image transformations to a provided image.
 ### Example Usage
 
 ```typescript
-import { LivepeerAI } from "livepeer-ai";
+import { LivepeerAI } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
 
 const livepeerAI = new LivepeerAI({
@@ -123,8 +123,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAICore } from "livepeer-ai/core.js";
-import { generateImageToImage } from "livepeer-ai/funcs/generateImageToImage.js";
+import { LivepeerAICore } from "@livepeer/ai/core.js";
+import { generateImageToImage } from "@livepeer/ai/funcs/generateImageToImage.js";
 import { openAsBlob } from "node:fs";
 
 // Use `LivepeerAICore` for best tree-shaking performance.
@@ -181,7 +181,7 @@ Generate a video from a provided image.
 ### Example Usage
 
 ```typescript
-import { LivepeerAI } from "livepeer-ai";
+import { LivepeerAI } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
 
 const livepeerAI = new LivepeerAI({
@@ -205,8 +205,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAICore } from "livepeer-ai/core.js";
-import { generateImageToVideo } from "livepeer-ai/funcs/generateImageToVideo.js";
+import { LivepeerAICore } from "@livepeer/ai/core.js";
+import { generateImageToVideo } from "@livepeer/ai/funcs/generateImageToVideo.js";
 import { openAsBlob } from "node:fs";
 
 // Use `LivepeerAICore` for best tree-shaking performance.
@@ -262,7 +262,7 @@ Upscale an image by increasing its resolution.
 ### Example Usage
 
 ```typescript
-import { LivepeerAI } from "livepeer-ai";
+import { LivepeerAI } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
 
 const livepeerAI = new LivepeerAI({
@@ -287,8 +287,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAICore } from "livepeer-ai/core.js";
-import { generateUpscale } from "livepeer-ai/funcs/generateUpscale.js";
+import { LivepeerAICore } from "@livepeer/ai/core.js";
+import { generateUpscale } from "@livepeer/ai/funcs/generateUpscale.js";
 import { openAsBlob } from "node:fs";
 
 // Use `LivepeerAICore` for best tree-shaking performance.
@@ -345,7 +345,7 @@ Transcribe audio files to text.
 ### Example Usage
 
 ```typescript
-import { LivepeerAI } from "livepeer-ai";
+import { LivepeerAI } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
 
 const livepeerAI = new LivepeerAI({
@@ -369,8 +369,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAICore } from "livepeer-ai/core.js";
-import { generateAudioToText } from "livepeer-ai/funcs/generateAudioToText.js";
+import { LivepeerAICore } from "@livepeer/ai/core.js";
+import { generateAudioToText } from "@livepeer/ai/funcs/generateAudioToText.js";
 import { openAsBlob } from "node:fs";
 
 // Use `LivepeerAICore` for best tree-shaking performance.
@@ -426,7 +426,7 @@ Segment objects in an image.
 ### Example Usage
 
 ```typescript
-import { LivepeerAI } from "livepeer-ai";
+import { LivepeerAI } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
 
 const livepeerAI = new LivepeerAI({
@@ -450,8 +450,8 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { LivepeerAICore } from "livepeer-ai/core.js";
-import { generateSegmentAnything2 } from "livepeer-ai/funcs/generateSegmentAnything2.js";
+import { LivepeerAICore } from "@livepeer/ai/core.js";
+import { generateSegmentAnything2 } from "@livepeer/ai/funcs/generateSegmentAnything2.js";
 import { openAsBlob } from "node:fs";
 
 // Use `LivepeerAICore` for best tree-shaking performance.

@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { GenUpscaleResponse } from "livepeer-ai/models/operations";
+import { GenUpscaleResponse } from "@livepeer/ai/models/operations";
 
 let value: GenUpscaleResponse = {
   contentType: "<value>",

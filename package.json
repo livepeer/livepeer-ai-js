@@ -1,5 +1,5 @@
 {
-  "name": "livepeer-ai",
+  "name": "@livepeer/ai",
   "version": "0.2.0",
   "author": "Livepeer",
   "main": "./index.js",
@@ -26,7 +26,5 @@
     "typescript": "^5.4.5",
     "zod": "^3.23.4"
   },
-  "dependencies": {
-    
-  }
+  "dependencies": {}
 }

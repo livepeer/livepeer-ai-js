@@ -38,7 +38,7 @@ typescript:
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: livepeer-ai
+  packageName: '@livepeer/ai'
   responseFormat: envelope
   templateVersion: v2
   useIndexModules: true

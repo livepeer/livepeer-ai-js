@@ -20,7 +20,7 @@ specific category of applications.
 
 ```typescript
 import { LivepeerAICore } from "livepeer-ai/core.js";
-import { textToImage } from "livepeer-ai/funcs/textToImage.js";
+import { generateTextToImage } from "livepeer-ai/funcs/generateTextToImage.js";
 import { SDKValidationError } from "livepeer-ai/models/errors/sdkvalidationerror.js";
 
 // Use `LivepeerAICore` for best tree-shaking performance.
@@ -30,7 +30,7 @@ const livepeerAI = new LivepeerAICore({
 });
 
 async function run() {
-  const res = await textToImage(livepeerAI, {
+  const res = await generateTextToImage(livepeerAI, {
     prompt: "<value>",
   });
 

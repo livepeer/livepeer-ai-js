@@ -10,6 +10,9 @@ targets:
     livepeer-ai-ts:
         target: typescript
         source: livepeer-ai-OAS
+        publish:
+            npm:
+                token: $npm_token
         codeSamples:
             output: codeSamples.yaml
             registry:

@@ -1,9 +1,13 @@
 {
   "name": "openapi",
-  "version": "0.0.1",
+  "version": "0.3.2",
   "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/livepeer/livepeer-ai-js.git"
+  },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",

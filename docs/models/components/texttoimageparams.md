@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { TextToImageParams } from "@livepeer/ai/models/components";
+import { TextToImageParams } from "openapi/models/components";
 
 let value: TextToImageParams = {
   prompt: "<value>",

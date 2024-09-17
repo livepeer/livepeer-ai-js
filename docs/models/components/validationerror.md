@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { ValidationError } from "@livepeer/ai/models/components";
+import { ValidationError } from "openapi/models/components";
 
 let value: ValidationError = {
   loc: [

@@ -1,14 +1,12 @@
 lockVersion: 2.0.0
-id: 8766970f-4397-4dff-8082-81333329536d
+id: 8bd6d3b6-cae6-4e55-b72f-6fdc1dbce9a1
 management:
   docChecksum: 5649b2692e9b9f3c1065851a47fbba06
   docVersion: v0.5.0
-  speakeasyVersion: 1.396.9
-  generationVersion: 2.415.7
-  releaseVersion: 0.3.1
-  configChecksum: 55e9bab6bcb0c20f712039a3dc9fd310
-  repoURL: https://github.com/livepeer/livepeer-ai-js.git
-  installationURL: https://github.com/livepeer/livepeer-ai-js
+  speakeasyVersion: 1.398.0
+  generationVersion: 2.415.8
+  releaseVersion: 0.0.1
+  configChecksum: a4e81b731eaa5742879d8054adb52f6d
   published: true
 features:
   typescript:
@@ -16,7 +14,6 @@ features:
     constsAndDefaults: 0.1.11
     core: 3.17.3
     defaultEnabledRetries: 0.1.0
-    devContainers: 2.90.0
     envVarSecurityUsage: 0.1.1
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
@@ -29,13 +26,9 @@ features:
     unions: 2.85.7
     uploadStreams: 0.1.0
 generatedFiles:
-  - .devcontainer/README.md
-  - .devcontainer/devcontainer.json
-  - .devcontainer/setup.sh
   - .eslintrc.cjs
   - .gitattributes
   - .npmignore
-  - CONTRIBUTING.md
   - FUNCTIONS.md
   - RUNTIMES.md
   - USAGE.md
@@ -63,14 +56,8 @@ generatedFiles:
   - docs/models/components/videoresponse.md
   - docs/models/errors/httperror.md
   - docs/models/errors/httpvalidationerror.md
-  - docs/models/operations/genaudiototextresponse.md
-  - docs/models/operations/genimagetoimageresponse.md
-  - docs/models/operations/genimagetovideoresponse.md
-  - docs/models/operations/gensegmentanything2response.md
-  - docs/models/operations/gentexttoimageresponse.md
-  - docs/models/operations/genupscaleresponse.md
   - docs/sdks/generate/README.md
-  - docs/sdks/livepeerai/README.md
+  - docs/sdks/sdk/README.md
   - jsr.json
   - package.json
   - src/core.ts
@@ -121,13 +108,6 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
-  - src/models/operations/genaudiototext.ts
-  - src/models/operations/genimagetoimage.ts
-  - src/models/operations/genimagetovideo.ts
-  - src/models/operations/gensegmentanything2.ts
-  - src/models/operations/gentexttoimage.ts
-  - src/models/operations/genupscale.ts
-  - src/models/operations/index.ts
   - src/sdk/generate.ts
   - src/sdk/index.ts
   - src/sdk/sdk.ts
@@ -141,66 +121,6 @@ generatedFiles:
   - src/types/streams.ts
   - tsconfig.json
 examples:
-  text_to_image:
-    speakeasy-default-text-to-image:
-      requestBody:
-        application/json: {"prompt": "<value>"}
-      responses:
-        "200":
-          application/json: {"images": []}
-        "400":
-          application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
-  image_to_image:
-    speakeasy-default-image-to-image:
-      requestBody:
-        multipart/form-data: {"prompt": "<value>", "image": {}}
-      responses:
-        "200":
-          application/json: {"images": []}
-        "400":
-          application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
-  image_to_video:
-    speakeasy-default-image-to-video:
-      requestBody:
-        multipart/form-data: {"image": {}}
-      responses:
-        "200":
-          application/json: {"images": []}
-        "400":
-          application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
-  upscale:
-    speakeasy-default-upscale:
-      requestBody:
-        multipart/form-data: {"prompt": "<value>", "image": {}}
-      responses:
-        "200":
-          application/json: {"images": []}
-        "400":
-          application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
-  audio_to_text:
-    speakeasy-default-audio-to-text:
-      requestBody:
-        multipart/form-data: {"audio": {}}
-      responses:
-        "200":
-          application/json: {"text": "<value>", "chunks": []}
-        "400":
-          application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
-  segment_anything_2:
-    speakeasy-default-segment-anything-2:
-      requestBody:
-        multipart/form-data: {"image": {}}
-      responses:
-        "200":
-          application/json: {"masks": "<value>", "scores": "<value>", "logits": "<value>"}
-        "400":
-          application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
   genTextToImage:
     speakeasy-default-gen-text-to-image:
       requestBody:

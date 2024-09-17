@@ -10,7 +10,6 @@ import { generateTextToImage } from "../funcs/generateTextToImage.js";
 import { generateUpscale } from "../funcs/generateUpscale.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
-import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Generate extends ClientSDK {
@@ -23,7 +22,7 @@ export class Generate extends ClientSDK {
   async textToImage(
     request: components.TextToImageParams,
     options?: RequestOptions,
-  ): Promise<operations.GenTextToImageResponse> {
+  ): Promise<components.ImageResponse> {
     return unwrapAsync(generateTextToImage(
       this,
       request,
@@ -40,7 +39,7 @@ export class Generate extends ClientSDK {
   async imageToImage(
     request: components.BodyGenImageToImage,
     options?: RequestOptions,
-  ): Promise<operations.GenImageToImageResponse> {
+  ): Promise<components.ImageResponse> {
     return unwrapAsync(generateImageToImage(
       this,
       request,
@@ -57,7 +56,7 @@ export class Generate extends ClientSDK {
   async imageToVideo(
     request: components.BodyGenImageToVideo,
     options?: RequestOptions,
-  ): Promise<operations.GenImageToVideoResponse> {
+  ): Promise<components.VideoResponse> {
     return unwrapAsync(generateImageToVideo(
       this,
       request,
@@ -74,7 +73,7 @@ export class Generate extends ClientSDK {
   async upscale(
     request: components.BodyGenUpscale,
     options?: RequestOptions,
-  ): Promise<operations.GenUpscaleResponse> {
+  ): Promise<components.ImageResponse> {
     return unwrapAsync(generateUpscale(
       this,
       request,
@@ -91,7 +90,7 @@ export class Generate extends ClientSDK {
   async audioToText(
     request: components.BodyGenAudioToText,
     options?: RequestOptions,
-  ): Promise<operations.GenAudioToTextResponse> {
+  ): Promise<components.TextResponse> {
     return unwrapAsync(generateAudioToText(
       this,
       request,
@@ -108,7 +107,7 @@ export class Generate extends ClientSDK {
   async segmentAnything2(
     request: components.BodyGenSegmentAnything2,
     options?: RequestOptions,
-  ): Promise<operations.GenSegmentAnything2Response> {
+  ): Promise<components.MasksResponse> {
     return unwrapAsync(generateSegmentAnything2(
       this,
       request,

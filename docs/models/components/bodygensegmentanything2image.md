@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { BodyGenSegmentAnything2Image } from "@livepeer/ai/models/components";
+import { BodyGenSegmentAnything2Image } from "openapi/models/components";
 
 // No examples available for this model
 ```

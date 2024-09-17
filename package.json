@@ -1,7 +1,7 @@
 {
-  "name": "openapi",
-  "version": "0.3.2",
-  "author": "Speakeasy",
+  "name": "@livepeer/ai",
+  "version": "0.3.3",
+  "author": "Livepeer",
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
@@ -17,6 +17,7 @@
     "zod": ">= 3"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.7.1",
     "@typescript-eslint/parser": "^7.7.1",
     "eslint": "^8.57.0",
@@ -26,6 +27,8 @@
     "zod": "^3.23.4"
   },
   "dependencies": {
-    
+    "jest": "^29.7.0",
+    "jest-junit": "^16.0.0",
+    "ts-jest": "^29.1.4"
   }
 }

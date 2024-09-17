@@ -1,4 +1,4 @@
-# SDK
+# Livepeer SDK
 
 ## Overview
 

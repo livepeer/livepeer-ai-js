@@ -5,7 +5,7 @@ HTTP error response model.
 ## Example Usage
 
 ```typescript
-import { HTTPError } from "openapi/models/errors";
+import { HTTPError } from "@livepeer/ai/models/errors";
 
 // No examples available for this model
 ```

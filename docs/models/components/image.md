@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Image } from "openapi/models/components";
+import { Image } from "@livepeer/ai/models/components";
 
 // No examples available for this model
 ```

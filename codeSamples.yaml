@@ -8,34 +8,34 @@ actions:
       x-codeSamples:
         - lang: typescript
           label: genAudioToText
-          source: "import { openAsBlob } from \"node:fs\";\nimport { SDK } from \"openapi\";\n\nconst sdk = new SDK({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await sdk.generate.audioToText({\n    audio: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          source: "import { Livepeer } from \"@livepeer/ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.audioToText({\n    audio: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/image-to-image"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
           label: genImageToImage
-          source: "import { openAsBlob } from \"node:fs\";\nimport { SDK } from \"openapi\";\n\nconst sdk = new SDK({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await sdk.generate.imageToImage({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          source: "import { Livepeer } from \"@livepeer/ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.imageToImage({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/image-to-video"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
           label: genImageToVideo
-          source: "import { openAsBlob } from \"node:fs\";\nimport { SDK } from \"openapi\";\n\nconst sdk = new SDK({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await sdk.generate.imageToVideo({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          source: "import { Livepeer } from \"@livepeer/ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.imageToVideo({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/segment-anything-2"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
           label: genSegmentAnything2
-          source: "import { openAsBlob } from \"node:fs\";\nimport { SDK } from \"openapi\";\n\nconst sdk = new SDK({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await sdk.generate.segmentAnything2({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          source: "import { Livepeer } from \"@livepeer/ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.segmentAnything2({\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/text-to-image"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
           label: genTextToImage
-          source: "import { SDK } from \"openapi\";\n\nconst sdk = new SDK({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await sdk.generate.textToImage({\n    prompt: \"<value>\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          source: "import { Livepeer } from \"@livepeer/ai\";\n\nconst livepeer = new Livepeer({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.textToImage({\n    prompt: \"<value>\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   - target: $["paths"]["/upscale"]["post"]
     update:
       x-codeSamples:
         - lang: typescript
           label: genUpscale
-          source: "import { openAsBlob } from \"node:fs\";\nimport { SDK } from \"openapi\";\n\nconst sdk = new SDK({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await sdk.generate.upscale({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
+          source: "import { Livepeer } from \"@livepeer/ai\";\nimport { openAsBlob } from \"node:fs\";\n\nconst livepeer = new Livepeer({\n  httpBearer: \"<YOUR_BEARER_TOKEN_HERE>\",\n});\n\nasync function run() {\n  const result = await livepeer.generate.upscale({\n    prompt: \"<value>\",\n    image: await openAsBlob(\"example.file\"),\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"

@@ -5,7 +5,7 @@ A chunk of text with a timestamp.
 ## Example Usage
 
 ```typescript
-import { Chunk } from "openapi/models/components";
+import { Chunk } from "@livepeer/ai/models/components";
 
 let value: Chunk = {
   timestamp: [

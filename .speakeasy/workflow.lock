@@ -1,8 +1,8 @@
-speakeasyVersion: 1.398.0
+speakeasyVersion: 1.398.1
 sources:
     livepeer-ai-OAS:
         sourceNamespace: livepeer-ai-oas
-        sourceRevisionDigest: sha256:2669ab1291e247bb0e107d4bb7cb28c63c6b05f7175432f08ccfffb6345ca88d
+        sourceRevisionDigest: sha256:ecb4cf674e1ac45f4116cd5eebcfabd9446312c5f5a6fc6ff95c8e0b6d3ab3f0
         sourceBlobDigest: sha256:84962d1cdd2b3ec311a1e3de4848a560478cefda5b3038810a518281c8032152
         tags:
             - latest
@@ -11,10 +11,10 @@ targets:
     livepeer-ai-ts:
         source: livepeer-ai-OAS
         sourceNamespace: livepeer-ai-oas
-        sourceRevisionDigest: sha256:2669ab1291e247bb0e107d4bb7cb28c63c6b05f7175432f08ccfffb6345ca88d
+        sourceRevisionDigest: sha256:ecb4cf674e1ac45f4116cd5eebcfabd9446312c5f5a6fc6ff95c8e0b6d3ab3f0
         sourceBlobDigest: sha256:84962d1cdd2b3ec311a1e3de4848a560478cefda5b3038810a518281c8032152
         codeSamplesNamespace: code-samples-typescript-livepeer-ts
-        codeSamplesRevisionDigest: sha256:c60f96803da3346cc88704ebeb80dd54f05d92dd85f69a516bc80a212e656f08
+        codeSamplesRevisionDigest: sha256:c7c5056503bcc37a38d70ed10bafd2ee5d820cddeaac64aef6224d8290571a90
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

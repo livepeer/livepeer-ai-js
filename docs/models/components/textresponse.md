@@ -5,7 +5,7 @@ Response model for text generation.
 ## Example Usage
 
 ```typescript
-import { TextResponse } from "openapi/models/components";
+import { TextResponse } from "@livepeer/ai/models/components";
 
 let value: TextResponse = {
   text: "<value>",

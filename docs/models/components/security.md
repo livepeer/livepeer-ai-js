@@ -3,7 +3,7 @@
 ## Example Usage
 
 ```typescript
-import { Security } from "@livepeer/ai/models/components";
+import { Security } from "openapi/models/components";
 
 let value: Security = {
   httpBearer: "<value>",

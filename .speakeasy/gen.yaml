@@ -1,9 +1,6 @@
 configVersion: 2.0.0
 generation:
-  devContainers:
-    enabled: true
-    schemaPath: https://raw.githubusercontent.com/livepeer/ai-worker/main/runner/gateway.openapi.yaml
-  sdkClassName: LivepeerAI
+  sdkClassName: SDK
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
@@ -13,17 +10,17 @@ generation:
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
   auth:
-    oAuth2ClientCredentialsEnabled: false
+    oAuth2ClientCredentialsEnabled: true
 typescript:
-  version: 0.3.1
+  version: 0.0.1
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
     peerDependencies: {}
   additionalPackageJSON: {}
-  author: Livepeer
+  author: Speakeasy
   clientServerStatusCodesAsErrors: true
-  enumFormat: enum
+  enumFormat: union
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -34,11 +31,11 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  maxMethodParams: 4
+  maxMethodParams: 0
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: '@livepeer/ai'
-  responseFormat: envelope
+  packageName: openapi
+  responseFormat: flat
   templateVersion: v2
   useIndexModules: true

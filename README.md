@@ -17,25 +17,25 @@ The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https
 ### NPM
 
 ```bash
-npm add @livepeer/ai
+npm add openapi
 ```
 
 ### PNPM
 
 ```bash
-pnpm add @livepeer/ai
+pnpm add openapi
 ```
 
 ### Bun
 
 ```bash
-bun add @livepeer/ai
+bun add openapi
 ```
 
 ### Yarn
 
 ```bash
-yarn add @livepeer/ai zod
+yarn add openapi zod
 
 # Note that Yarn does not install peer dependencies automatically. You will need
 # to install zod as shown above.
@@ -54,14 +54,14 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 ### Example
 
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
+import { SDK } from "openapi";
 
-const livepeerAI = new LivepeerAI({
+const sdk = new SDK({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAI.generate.textToImage({
+  const result = await sdk.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -134,15 +134,15 @@ Certain SDK methods accept files as part of a multi-part request. It is possible
 > - **Node.js v18:** A file stream can be created using the `fileFrom` helper from [`fetch-blob/from.js`](https://www.npmjs.com/package/fetch-blob).
 
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
+import { SDK } from "openapi";
 
-const livepeerAI = new LivepeerAI({
+const sdk = new SDK({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAI.generate.imageToImage({
+  const result = await sdk.generate.imageToImage({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
   });
@@ -163,14 +163,14 @@ Some of the endpoints in this SDK support retries.  If you use the SDK without a
 
 To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
+import { SDK } from "openapi";
 
-const livepeerAI = new LivepeerAI({
+const sdk = new SDK({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAI.generate.textToImage({
+  const result = await sdk.generate.textToImage({
     prompt: "<value>",
   }, {
     retries: {
@@ -195,9 +195,9 @@ run();
 
 If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
+import { SDK } from "openapi";
 
-const livepeerAI = new LivepeerAI({
+const sdk = new SDK({
   retryConfig: {
     strategy: "backoff",
     backoff: {
@@ -212,7 +212,7 @@ const livepeerAI = new LivepeerAI({
 });
 
 async function run() {
-  const result = await livepeerAI.generate.textToImage({
+  const result = await sdk.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -240,21 +240,21 @@ Validation errors can also occur when either method arguments or data returned f
 
 
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
+import { SDK } from "openapi";
 import {
   HTTPError,
   HTTPValidationError,
   SDKValidationError,
-} from "@livepeer/ai/models/errors";
+} from "openapi/models/errors";
 
-const livepeerAI = new LivepeerAI({
+const sdk = new SDK({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
   let result;
   try {
-    result = await livepeerAI.generate.textToImage({
+    result = await sdk.generate.textToImage({
       prompt: "<value>",
     });
 
@@ -304,15 +304,15 @@ You can override the default server globally by passing a server index to the `s
 | 1 | `https://livepeer.studio/api/beta/generate` | None |
 
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
+import { SDK } from "openapi";
 
-const livepeerAI = new LivepeerAI({
+const sdk = new SDK({
   serverIdx: 1,
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAI.generate.textToImage({
+  const result = await sdk.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -330,15 +330,15 @@ run();
 The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
 
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
+import { SDK } from "openapi";
 
-const livepeerAI = new LivepeerAI({
+const sdk = new SDK({
   serverURL: "https://dream-gateway.livepeer.cloud",
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAI.generate.textToImage({
+  const result = await sdk.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -369,8 +369,8 @@ custom header and a timeout to requests and how to use the `"requestError"` hook
 to log errors:
 
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
-import { HTTPClient } from "@livepeer/ai/lib/http";
+import { SDK } from "openapi";
+import { HTTPClient } from "openapi/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -396,7 +396,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new LivepeerAI({ httpClient });
+const sdk = new SDK({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -413,14 +413,14 @@ This SDK supports the following security scheme globally:
 
 To authenticate with the API the `httpBearer` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
+import { SDK } from "openapi";
 
-const livepeerAI = new LivepeerAI({
+const sdk = new SDK({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await livepeerAI.generate.textToImage({
+  const result = await sdk.generate.textToImage({
     prompt: "<value>",
   });
 
@@ -444,9 +444,9 @@ You can pass a logger that matches `console`'s interface as an SDK option.
 > Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
 
 ```typescript
-import { LivepeerAI } from "@livepeer/ai";
+import { SDK } from "openapi";
 
-const sdk = new LivepeerAI({ debugLogger: console });
+const sdk = new SDK({ debugLogger: console });
 ```
 <!-- End Debugging [debug] -->
 

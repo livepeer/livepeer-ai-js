@@ -5,7 +5,7 @@ API error response model.
 ## Example Usage
 
 ```typescript
-import { APIError } from "@livepeer/ai/models/components";
+import { APIError } from "openapi/models/components";
 
 let value: APIError = {
   msg: "<value>",

@@ -1,21 +1,19 @@
-speakeasyVersion: 1.383.2
+speakeasyVersion: 1.398.0
 sources:
     livepeer-ai-OAS:
         sourceNamespace: livepeer-ai-oas
-        sourceRevisionDigest: sha256:1f692e5ce7a00cd1d21f94c0de2f1984edc3f7aaea3efe0de3cca938d90f5417
-        sourceBlobDigest: sha256:6062f3b4ac6538ff6f4465a264f1806261e6509c5581be6c2189430acb21b315
+        sourceRevisionDigest: sha256:0fd321fb5787817ba851277e110ac642e2b24ec29226eec3e5af0f76c56ae389
+        sourceBlobDigest: sha256:5322fbd3b97169599a532e36e7599241cb4b6e5d339c23a422c5f6a10a0ff291
         tags:
             - latest
-            - main
 targets:
     livepeer-ai-ts:
         source: livepeer-ai-OAS
         sourceNamespace: livepeer-ai-oas
-        sourceRevisionDigest: sha256:1f692e5ce7a00cd1d21f94c0de2f1984edc3f7aaea3efe0de3cca938d90f5417
-        sourceBlobDigest: sha256:6062f3b4ac6538ff6f4465a264f1806261e6509c5581be6c2189430acb21b315
+        sourceRevisionDigest: sha256:0fd321fb5787817ba851277e110ac642e2b24ec29226eec3e5af0f76c56ae389
+        sourceBlobDigest: sha256:5322fbd3b97169599a532e36e7599241cb4b6e5d339c23a422c5f6a10a0ff291
         codeSamplesNamespace: code-samples-typescript-livepeer-ts
-        codeSamplesRevisionDigest: sha256:1c78aecda79a28b59b82956c246fb9e1b3d6d4f683833677899e2bd9e21e4137
-        outLocation: /github/workspace/repo
+        codeSamplesRevisionDigest: sha256:a6c6e5614183eb8b486eb7228b8c5b5b6f80ec3d0049081cfddd7dd86085cd52
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -24,12 +22,15 @@ workflow:
             inputs:
                 - location: https://raw.githubusercontent.com/livepeer/ai-worker/main/runner/gateway.openapi.yaml
             registry:
-                location: registry.speakeasyapi.dev/livepeer-ai/livepeer-ai/livepeer-ai-oas
+                location: registry.speakeasyapi.dev/livepeer/livepeer-ai/livepeer-ai-oas
     targets:
         livepeer-ai-ts:
             target: typescript
             source: livepeer-ai-OAS
+            publish:
+                npm:
+                    token: $npm_token
             codeSamples:
                 output: codeSamples.yaml
                 registry:
-                    location: registry.speakeasyapi.dev/livepeer-ai/livepeer-ai/code-samples-typescript-livepeer-ts
+                    location: registry.speakeasyapi.dev/livepeer/livepeer-ai/code-samples-typescript-livepeer-ts

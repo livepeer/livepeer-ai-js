@@ -19,18 +19,18 @@ specific category of applications.
 ## Example
 
 ```typescript
-import { LivepeerAICore } from "@livepeer/ai/core.js";
-import { generateTextToImage } from "@livepeer/ai/funcs/generateTextToImage.js";
-import { SDKValidationError } from "@livepeer/ai/models/errors/sdkvalidationerror.js";
+import { SDKCore } from "openapi/core.js";
+import { generateTextToImage } from "openapi/funcs/generateTextToImage.js";
+import { SDKValidationError } from "openapi/models/errors/sdkvalidationerror.js";
 
-// Use `LivepeerAICore` for best tree-shaking performance.
+// Use `SDKCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const livepeerAI = new LivepeerAICore({
+const sdk = new SDKCore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await generateTextToImage(livepeerAI, {
+  const res = await generateTextToImage(sdk, {
     prompt: "<value>",
   });
 

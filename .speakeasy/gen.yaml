@@ -1,26 +1,29 @@
 configVersion: 2.0.0
 generation:
-  sdkClassName: SDK
+  sdkClassName: Livepeer
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
-  useClassNamesForArrayFields: true
   fixes:
-    nameResolutionDec2023: true
-    parameterOrderingFeb2024: true
-    requestResponseComponentNamesFeb2024: true
+    nameResolutionDec2023: false
+    parameterOrderingFeb2024: false
+    requestResponseComponentNamesFeb2024: false
   auth:
     oAuth2ClientCredentialsEnabled: true
 typescript:
   version: 0.3.2
   additionalDependencies:
-    dependencies: {}
-    devDependencies: {}
+    dependencies:
+      jest: ^29.7.0
+      jest-junit: ^16.0.0
+      ts-jest: ^29.1.4
+    devDependencies:
+      '@types/jest': ^29.5.12
     peerDependencies: {}
   additionalPackageJSON: {}
-  author: Speakeasy
+  author: Livepeer
   clientServerStatusCodesAsErrors: true
-  enumFormat: union
+  enumFormat: enum
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -31,11 +34,11 @@ typescript:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  maxMethodParams: 0
+  maxMethodParams: 4
   methodArguments: require-security-and-request
   moduleFormat: commonjs
   outputModelSuffix: output
-  packageName: openapi
-  responseFormat: flat
+  packageName: '@livepeer/ai'
+  responseFormat: envelope
   templateVersion: v2
   useIndexModules: true

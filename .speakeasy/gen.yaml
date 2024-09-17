@@ -9,7 +9,7 @@ generation:
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
   auth:
-    oAuth2ClientCredentialsEnabled: true
+    oAuth2ClientCredentialsEnabled: false
 typescript:
   version: 0.3.2
   additionalDependencies:

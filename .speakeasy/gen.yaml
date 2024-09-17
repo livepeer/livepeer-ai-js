@@ -11,7 +11,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.3.2
+  version: 0.3.3
   additionalDependencies:
     dependencies:
       jest: ^29.7.0

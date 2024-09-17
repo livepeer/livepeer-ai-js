@@ -3,9 +3,9 @@
 ## Example Usage
 
 ```typescript
-import { Loc } from "openapi/models/components";
+import { Loc } from "@livepeer/ai/models/components";
 
-let value: Loc = 384382;
+let value: Loc = 272656;
 ```
 
 ## Supported Types

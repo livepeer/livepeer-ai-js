@@ -1,13 +1,13 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { SDK } from "openapi";
+import { Livepeer } from "@livepeer/ai";
 
-const sdk = new SDK({
+const livepeer = new Livepeer({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.generate.textToImage({
+  const result = await livepeer.generate.textToImage({
     prompt: "<value>",
   });
 

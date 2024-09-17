@@ -5,13 +5,13 @@ Response model for image generation.
 ## Example Usage
 
 ```typescript
-import { VideoResponse } from "openapi/models/components";
+import { VideoResponse } from "@livepeer/ai/models/components";
 
 let value: VideoResponse = {
   images: [
     {
-      url: "http://unique-baboon.org",
-      seed: 272656,
+      url: "http://spotted-skyline.name",
+      seed: 479977,
       nsfw: false,
     },
   ],

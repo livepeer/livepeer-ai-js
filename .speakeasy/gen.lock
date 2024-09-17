@@ -3,10 +3,10 @@ id: 8bd6d3b6-cae6-4e55-b72f-6fdc1dbce9a1
 management:
   docChecksum: 5649b2692e9b9f3c1065851a47fbba06
   docVersion: v0.5.0
-  speakeasyVersion: 1.398.0
+  speakeasyVersion: 1.398.1
   generationVersion: 2.415.8
-  releaseVersion: 0.3.2
-  configChecksum: 233760f35f485f692b0ac4fae9a1ae2e
+  releaseVersion: 0.3.3
+  configChecksum: eefe05e12f05c605ef3a39485c1596c1
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
   published: true
@@ -58,8 +58,14 @@ generatedFiles:
   - docs/models/components/videoresponse.md
   - docs/models/errors/httperror.md
   - docs/models/errors/httpvalidationerror.md
+  - docs/models/operations/genaudiototextresponse.md
+  - docs/models/operations/genimagetoimageresponse.md
+  - docs/models/operations/genimagetovideoresponse.md
+  - docs/models/operations/gensegmentanything2response.md
+  - docs/models/operations/gentexttoimageresponse.md
+  - docs/models/operations/genupscaleresponse.md
   - docs/sdks/generate/README.md
-  - docs/sdks/sdk/README.md
+  - docs/sdks/livepeer/README.md
   - jsr.json
   - package.json
   - src/core.ts
@@ -110,6 +116,13 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
+  - src/models/operations/genaudiototext.ts
+  - src/models/operations/genimagetoimage.ts
+  - src/models/operations/genimagetovideo.ts
+  - src/models/operations/gensegmentanything2.ts
+  - src/models/operations/gentexttoimage.ts
+  - src/models/operations/genupscale.ts
+  - src/models/operations/index.ts
   - src/sdk/generate.ts
   - src/sdk/index.ts
   - src/sdk/sdk.ts

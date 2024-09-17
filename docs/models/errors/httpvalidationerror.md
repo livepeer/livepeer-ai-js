@@ -5,7 +5,7 @@ Validation Error
 ## Example Usage
 
 ```typescript
-import { HTTPValidationError } from "openapi/models/errors";
+import { HTTPValidationError } from "@livepeer/ai/models/errors";
 
 // No examples available for this model
 ```

@@ -5,7 +5,7 @@
 import { ClientSDK } from "../lib/sdks.js";
 import { Generate } from "./generate.js";
 
-export class SDK extends ClientSDK {
+export class Livepeer extends ClientSDK {
   private _generate?: Generate;
   get generate(): Generate {
     return (this._generate ??= new Generate(this.options$));

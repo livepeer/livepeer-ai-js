@@ -5,11 +5,11 @@ A media object containing information about the generated media.
 ## Example Usage
 
 ```typescript
-import { Media } from "openapi/models/components";
+import { Media } from "@livepeer/ai/models/components";
 
 let value: Media = {
-  url: "https://moral-star.info",
-  seed: 623564,
+  url: "http://innocent-effect.org",
+  seed: 56713,
   nsfw: false,
 };
 ```

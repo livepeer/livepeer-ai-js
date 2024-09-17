@@ -19,14 +19,14 @@ Generate images from text prompts.
 ### Example Usage
 
 ```typescript
-import { SDK } from "openapi";
+import { Livepeer } from "@livepeer/ai";
 
-const sdk = new SDK({
+const livepeer = new Livepeer({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.generate.textToImage({
+  const result = await livepeer.generate.textToImage({
     prompt: "<value>",
   });
   
@@ -42,17 +42,17 @@ run();
 The standalone function version of this method:
 
 ```typescript
-import { SDKCore } from "openapi/core.js";
-import { generateTextToImage } from "openapi/funcs/generateTextToImage.js";
+import { LivepeerCore } from "@livepeer/ai/core.js";
+import { generateTextToImage } from "@livepeer/ai/funcs/generateTextToImage.js";
 
-// Use `SDKCore` for best tree-shaking performance.
+// Use `LivepeerCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const sdk = new SDKCore({
+const livepeer = new LivepeerCore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await generateTextToImage(sdk, {
+  const res = await generateTextToImage(livepeer, {
     prompt: "<value>",
   });
 
@@ -80,7 +80,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ImageResponse](../../models/components/imageresponse.md)\>**
+**Promise\<[operations.GenTextToImageResponse](../../models/operations/gentexttoimageresponse.md)\>**
 
 ### Errors
 
@@ -98,15 +98,15 @@ Apply image transformations to a provided image.
 ### Example Usage
 
 ```typescript
+import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
-import { SDK } from "openapi";
 
-const sdk = new SDK({
+const livepeer = new Livepeer({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.generate.imageToImage({
+  const result = await livepeer.generate.imageToImage({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
   });
@@ -123,18 +123,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
+import { LivepeerCore } from "@livepeer/ai/core.js";
+import { generateImageToImage } from "@livepeer/ai/funcs/generateImageToImage.js";
 import { openAsBlob } from "node:fs";
-import { SDKCore } from "openapi/core.js";
-import { generateImageToImage } from "openapi/funcs/generateImageToImage.js";
 
-// Use `SDKCore` for best tree-shaking performance.
+// Use `LivepeerCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const sdk = new SDKCore({
+const livepeer = new LivepeerCore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await generateImageToImage(sdk, {
+  const res = await generateImageToImage(livepeer, {
     image: await openAsBlob("example.file"),
     prompt: "<value>",
   });
@@ -163,7 +163,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ImageResponse](../../models/components/imageresponse.md)\>**
+**Promise\<[operations.GenImageToImageResponse](../../models/operations/genimagetoimageresponse.md)\>**
 
 ### Errors
 
@@ -181,15 +181,15 @@ Generate a video from a provided image.
 ### Example Usage
 
 ```typescript
+import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
-import { SDK } from "openapi";
 
-const sdk = new SDK({
+const livepeer = new Livepeer({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.generate.imageToVideo({
+  const result = await livepeer.generate.imageToVideo({
     image: await openAsBlob("example.file"),
   });
   
@@ -205,18 +205,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
+import { LivepeerCore } from "@livepeer/ai/core.js";
+import { generateImageToVideo } from "@livepeer/ai/funcs/generateImageToVideo.js";
 import { openAsBlob } from "node:fs";
-import { SDKCore } from "openapi/core.js";
-import { generateImageToVideo } from "openapi/funcs/generateImageToVideo.js";
 
-// Use `SDKCore` for best tree-shaking performance.
+// Use `LivepeerCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const sdk = new SDKCore({
+const livepeer = new LivepeerCore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await generateImageToVideo(sdk, {
+  const res = await generateImageToVideo(livepeer, {
     image: await openAsBlob("example.file"),
   });
 
@@ -244,7 +244,7 @@ run();
 
 ### Response
 
-**Promise\<[components.VideoResponse](../../models/components/videoresponse.md)\>**
+**Promise\<[operations.GenImageToVideoResponse](../../models/operations/genimagetovideoresponse.md)\>**
 
 ### Errors
 
@@ -262,15 +262,15 @@ Upscale an image by increasing its resolution.
 ### Example Usage
 
 ```typescript
+import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
-import { SDK } from "openapi";
 
-const sdk = new SDK({
+const livepeer = new Livepeer({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.generate.upscale({
+  const result = await livepeer.generate.upscale({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
   });
@@ -287,18 +287,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
+import { LivepeerCore } from "@livepeer/ai/core.js";
+import { generateUpscale } from "@livepeer/ai/funcs/generateUpscale.js";
 import { openAsBlob } from "node:fs";
-import { SDKCore } from "openapi/core.js";
-import { generateUpscale } from "openapi/funcs/generateUpscale.js";
 
-// Use `SDKCore` for best tree-shaking performance.
+// Use `LivepeerCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const sdk = new SDKCore({
+const livepeer = new LivepeerCore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await generateUpscale(sdk, {
+  const res = await generateUpscale(livepeer, {
     image: await openAsBlob("example.file"),
     prompt: "<value>",
   });
@@ -327,7 +327,7 @@ run();
 
 ### Response
 
-**Promise\<[components.ImageResponse](../../models/components/imageresponse.md)\>**
+**Promise\<[operations.GenUpscaleResponse](../../models/operations/genupscaleresponse.md)\>**
 
 ### Errors
 
@@ -345,15 +345,15 @@ Transcribe audio files to text.
 ### Example Usage
 
 ```typescript
+import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
-import { SDK } from "openapi";
 
-const sdk = new SDK({
+const livepeer = new Livepeer({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.generate.audioToText({
+  const result = await livepeer.generate.audioToText({
     audio: await openAsBlob("example.file"),
   });
   
@@ -369,18 +369,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
+import { LivepeerCore } from "@livepeer/ai/core.js";
+import { generateAudioToText } from "@livepeer/ai/funcs/generateAudioToText.js";
 import { openAsBlob } from "node:fs";
-import { SDKCore } from "openapi/core.js";
-import { generateAudioToText } from "openapi/funcs/generateAudioToText.js";
 
-// Use `SDKCore` for best tree-shaking performance.
+// Use `LivepeerCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const sdk = new SDKCore({
+const livepeer = new LivepeerCore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await generateAudioToText(sdk, {
+  const res = await generateAudioToText(livepeer, {
     audio: await openAsBlob("example.file"),
   });
 
@@ -408,7 +408,7 @@ run();
 
 ### Response
 
-**Promise\<[components.TextResponse](../../models/components/textresponse.md)\>**
+**Promise\<[operations.GenAudioToTextResponse](../../models/operations/genaudiototextresponse.md)\>**
 
 ### Errors
 
@@ -426,15 +426,15 @@ Segment objects in an image.
 ### Example Usage
 
 ```typescript
+import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
-import { SDK } from "openapi";
 
-const sdk = new SDK({
+const livepeer = new Livepeer({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const result = await sdk.generate.segmentAnything2({
+  const result = await livepeer.generate.segmentAnything2({
     image: await openAsBlob("example.file"),
   });
   
@@ -450,18 +450,18 @@ run();
 The standalone function version of this method:
 
 ```typescript
+import { LivepeerCore } from "@livepeer/ai/core.js";
+import { generateSegmentAnything2 } from "@livepeer/ai/funcs/generateSegmentAnything2.js";
 import { openAsBlob } from "node:fs";
-import { SDKCore } from "openapi/core.js";
-import { generateSegmentAnything2 } from "openapi/funcs/generateSegmentAnything2.js";
 
-// Use `SDKCore` for best tree-shaking performance.
+// Use `LivepeerCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
-const sdk = new SDKCore({
+const livepeer = new LivepeerCore({
   httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
 });
 
 async function run() {
-  const res = await generateSegmentAnything2(sdk, {
+  const res = await generateSegmentAnything2(livepeer, {
     image: await openAsBlob("example.file"),
   });
 
@@ -489,7 +489,7 @@ run();
 
 ### Response
 
-**Promise\<[components.MasksResponse](../../models/components/masksresponse.md)\>**
+**Promise\<[operations.GenSegmentAnything2Response](../../models/operations/gensegmentanything2response.md)\>**
 
 ### Errors
 

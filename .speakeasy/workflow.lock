@@ -24,7 +24,7 @@ workflow:
             inputs:
                 - location: https://raw.githubusercontent.com/livepeer/ai-worker/main/runner/gateway.openapi.yaml
             registry:
-                location: registry.speakeasyapi.dev/livepeer-8mq/livepeer-ai/livepeer-ai-oas
+                location: registry.speakeasyapi.dev/livepeer-ai/livepeer-ai/livepeer-ai-oas
     targets:
         livepeer-ai-ts:
             target: typescript
@@ -32,4 +32,4 @@ workflow:
             codeSamples:
                 output: codeSamples.yaml
                 registry:
-                    location: registry.speakeasyapi.dev/livepeer-8mq/livepeer-ai/code-samples-typescript-livepeer-ts
+                    location: registry.speakeasyapi.dev/livepeer-ai/livepeer-ai/code-samples-typescript-livepeer-ts

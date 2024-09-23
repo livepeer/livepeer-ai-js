@@ -4,8 +4,8 @@
 
 import { LivepeerCore } from "../core.js";
 import { readableStreamToArrayBuffer } from "../lib/files.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -32,7 +32,7 @@ import { isReadableStream } from "../types/streams.js";
  * Apply image transformations to a provided image.
  */
 export async function generateImageToImage(
-  client$: LivepeerCore,
+  client: LivepeerCore,
   request: components.BodyGenImageToImage,
   options?: RequestOptions,
 ): Promise<
@@ -49,97 +49,97 @@ export async function generateImageToImage(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => components.BodyGenImageToImage$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => components.BodyGenImageToImage$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = new FormData();
+  const payload = parsed.value;
+  const body = new FormData();
 
-  if (isBlobLike(payload$.image)) {
-    body$.append("image", payload$.image);
-  } else if (isReadableStream(payload$.image.content)) {
-    const buffer = await readableStreamToArrayBuffer(payload$.image.content);
+  if (isBlobLike(payload.image)) {
+    body.append("image", payload.image);
+  } else if (isReadableStream(payload.image.content)) {
+    const buffer = await readableStreamToArrayBuffer(payload.image.content);
     const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body$.append("image", blob);
+    body.append("image", blob);
   } else {
-    body$.append(
+    body.append(
       "image",
-      new Blob([payload$.image.content], { type: "application/octet-stream" }),
-      payload$.image.fileName,
+      new Blob([payload.image.content], { type: "application/octet-stream" }),
+      payload.image.fileName,
     );
   }
-  body$.append("prompt", payload$.prompt);
-  if (payload$.guidance_scale !== undefined) {
-    body$.append("guidance_scale", String(payload$.guidance_scale));
+  body.append("prompt", payload.prompt);
+  if (payload.guidance_scale !== undefined) {
+    body.append("guidance_scale", String(payload.guidance_scale));
   }
-  if (payload$.image_guidance_scale !== undefined) {
-    body$.append("image_guidance_scale", String(payload$.image_guidance_scale));
+  if (payload.image_guidance_scale !== undefined) {
+    body.append("image_guidance_scale", String(payload.image_guidance_scale));
   }
-  if (payload$.model_id !== undefined) {
-    body$.append("model_id", payload$.model_id);
+  if (payload.loras !== undefined) {
+    body.append("loras", payload.loras);
   }
-  if (payload$.negative_prompt !== undefined) {
-    body$.append("negative_prompt", payload$.negative_prompt);
+  if (payload.model_id !== undefined) {
+    body.append("model_id", payload.model_id);
   }
-  if (payload$.num_images_per_prompt !== undefined) {
-    body$.append(
-      "num_images_per_prompt",
-      String(payload$.num_images_per_prompt),
-    );
+  if (payload.negative_prompt !== undefined) {
+    body.append("negative_prompt", payload.negative_prompt);
   }
-  if (payload$.num_inference_steps !== undefined) {
-    body$.append("num_inference_steps", String(payload$.num_inference_steps));
+  if (payload.num_images_per_prompt !== undefined) {
+    body.append("num_images_per_prompt", String(payload.num_images_per_prompt));
   }
-  if (payload$.safety_check !== undefined) {
-    body$.append("safety_check", String(payload$.safety_check));
+  if (payload.num_inference_steps !== undefined) {
+    body.append("num_inference_steps", String(payload.num_inference_steps));
   }
-  if (payload$.seed !== undefined) {
-    body$.append("seed", String(payload$.seed));
+  if (payload.safety_check !== undefined) {
+    body.append("safety_check", String(payload.safety_check));
   }
-  if (payload$.strength !== undefined) {
-    body$.append("strength", String(payload$.strength));
+  if (payload.seed !== undefined) {
+    body.append("seed", String(payload.seed));
+  }
+  if (payload.strength !== undefined) {
+    body.append("strength", String(payload.strength));
   }
 
-  const path$ = pathToFunc("/image-to-image")();
+  const path = pathToFunc("/image-to-image")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const httpBearer$ = await extractSecurity(client$.options$.httpBearer);
-  const security$ = httpBearer$ == null ? {} : { httpBearer: httpBearer$ };
+  const secConfig = await extractSecurity(client._options.httpBearer);
+  const securityInput = secConfig == null ? {} : { httpBearer: secConfig };
   const context = {
     operationID: "genImageToImage",
     oAuth2Scopes: [],
-    securitySource: client$.options$.httpBearer,
+    securitySource: client._options.httpBearer,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "422", "4XX", "500", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -147,7 +147,7 @@ export async function generateImageToImage(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -155,7 +155,7 @@ export async function generateImageToImage(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GenImageToImageResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
@@ -167,16 +167,16 @@ export async function generateImageToImage(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GenImageToImageResponse$inboundSchema, {
+    M.json(200, operations.GenImageToImageResponse$inboundSchema, {
       key: "ImageResponse",
     }),
-    m$.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
-    m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

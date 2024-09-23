@@ -5,7 +5,7 @@
 ```typescript
 import { Loc } from "@livepeer/ai/models/components";
 
-let value: Loc = 272656;
+let value: Loc = "<value>";
 ```
 
 ## Supported Types

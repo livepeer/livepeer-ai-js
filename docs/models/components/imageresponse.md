@@ -10,8 +10,8 @@ import { ImageResponse } from "@livepeer/ai/models/components";
 let value: ImageResponse = {
   images: [
     {
-      url: "https://that-hellcat.name",
-      seed: 645894,
+      url: "https://unique-veto.info/",
+      seed: 791725,
       nsfw: false,
     },
   ],

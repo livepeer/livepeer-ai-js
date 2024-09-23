@@ -4,8 +4,8 @@
 
 import { LivepeerCore } from "../core.js";
 import { readableStreamToArrayBuffer } from "../lib/files.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -32,7 +32,7 @@ import { isReadableStream } from "../types/streams.js";
  * Generate a video from a provided image.
  */
 export async function generateImageToVideo(
-  client$: LivepeerCore,
+  client: LivepeerCore,
   request: components.BodyGenImageToVideo,
   options?: RequestOptions,
 ): Promise<
@@ -49,93 +49,93 @@ export async function generateImageToVideo(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => components.BodyGenImageToVideo$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => components.BodyGenImageToVideo$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = new FormData();
+  const payload = parsed.value;
+  const body = new FormData();
 
-  if (isBlobLike(payload$.image)) {
-    body$.append("image", payload$.image);
-  } else if (isReadableStream(payload$.image.content)) {
-    const buffer = await readableStreamToArrayBuffer(payload$.image.content);
+  if (isBlobLike(payload.image)) {
+    body.append("image", payload.image);
+  } else if (isReadableStream(payload.image.content)) {
+    const buffer = await readableStreamToArrayBuffer(payload.image.content);
     const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body$.append("image", blob);
+    body.append("image", blob);
   } else {
-    body$.append(
+    body.append(
       "image",
-      new Blob([payload$.image.content], { type: "application/octet-stream" }),
-      payload$.image.fileName,
+      new Blob([payload.image.content], { type: "application/octet-stream" }),
+      payload.image.fileName,
     );
   }
-  if (payload$.fps !== undefined) {
-    body$.append("fps", String(payload$.fps));
+  if (payload.fps !== undefined) {
+    body.append("fps", String(payload.fps));
   }
-  if (payload$.height !== undefined) {
-    body$.append("height", String(payload$.height));
+  if (payload.height !== undefined) {
+    body.append("height", String(payload.height));
   }
-  if (payload$.model_id !== undefined) {
-    body$.append("model_id", payload$.model_id);
+  if (payload.model_id !== undefined) {
+    body.append("model_id", payload.model_id);
   }
-  if (payload$.motion_bucket_id !== undefined) {
-    body$.append("motion_bucket_id", String(payload$.motion_bucket_id));
+  if (payload.motion_bucket_id !== undefined) {
+    body.append("motion_bucket_id", String(payload.motion_bucket_id));
   }
-  if (payload$.noise_aug_strength !== undefined) {
-    body$.append("noise_aug_strength", String(payload$.noise_aug_strength));
+  if (payload.noise_aug_strength !== undefined) {
+    body.append("noise_aug_strength", String(payload.noise_aug_strength));
   }
-  if (payload$.num_inference_steps !== undefined) {
-    body$.append("num_inference_steps", String(payload$.num_inference_steps));
+  if (payload.num_inference_steps !== undefined) {
+    body.append("num_inference_steps", String(payload.num_inference_steps));
   }
-  if (payload$.safety_check !== undefined) {
-    body$.append("safety_check", String(payload$.safety_check));
+  if (payload.safety_check !== undefined) {
+    body.append("safety_check", String(payload.safety_check));
   }
-  if (payload$.seed !== undefined) {
-    body$.append("seed", String(payload$.seed));
+  if (payload.seed !== undefined) {
+    body.append("seed", String(payload.seed));
   }
-  if (payload$.width !== undefined) {
-    body$.append("width", String(payload$.width));
+  if (payload.width !== undefined) {
+    body.append("width", String(payload.width));
   }
 
-  const path$ = pathToFunc("/image-to-video")();
+  const path = pathToFunc("/image-to-video")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const httpBearer$ = await extractSecurity(client$.options$.httpBearer);
-  const security$ = httpBearer$ == null ? {} : { httpBearer: httpBearer$ };
+  const secConfig = await extractSecurity(client._options.httpBearer);
+  const securityInput = secConfig == null ? {} : { httpBearer: secConfig };
   const context = {
     operationID: "genImageToVideo",
     oAuth2Scopes: [],
-    securitySource: client$.options$.httpBearer,
+    securitySource: client._options.httpBearer,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "422", "4XX", "500", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -143,7 +143,7 @@ export async function generateImageToVideo(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -151,7 +151,7 @@ export async function generateImageToVideo(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GenImageToVideoResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
@@ -163,16 +163,16 @@ export async function generateImageToVideo(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GenImageToVideoResponse$inboundSchema, {
+    M.json(200, operations.GenImageToVideoResponse$inboundSchema, {
       key: "VideoResponse",
     }),
-    m$.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
-    m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

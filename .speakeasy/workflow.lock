@@ -1,9 +1,9 @@
-speakeasyVersion: 1.398.1
+speakeasyVersion: 1.401.2
 sources:
     livepeer-ai-OAS:
         sourceNamespace: livepeer-ai-oas
-        sourceRevisionDigest: sha256:ecb4cf674e1ac45f4116cd5eebcfabd9446312c5f5a6fc6ff95c8e0b6d3ab3f0
-        sourceBlobDigest: sha256:84962d1cdd2b3ec311a1e3de4848a560478cefda5b3038810a518281c8032152
+        sourceRevisionDigest: sha256:c315b1b7b5fabfea70de7cbb604a022f512b8a0a8866d3d2b5d2720902b1737e
+        sourceBlobDigest: sha256:ffdfa01671cab29ecdb8b014925f080497ace7616108fe5a4b9153cc0e562f93
         tags:
             - latest
             - main
@@ -11,10 +11,10 @@ targets:
     livepeer-ai-ts:
         source: livepeer-ai-OAS
         sourceNamespace: livepeer-ai-oas
-        sourceRevisionDigest: sha256:ecb4cf674e1ac45f4116cd5eebcfabd9446312c5f5a6fc6ff95c8e0b6d3ab3f0
-        sourceBlobDigest: sha256:84962d1cdd2b3ec311a1e3de4848a560478cefda5b3038810a518281c8032152
+        sourceRevisionDigest: sha256:c315b1b7b5fabfea70de7cbb604a022f512b8a0a8866d3d2b5d2720902b1737e
+        sourceBlobDigest: sha256:ffdfa01671cab29ecdb8b014925f080497ace7616108fe5a4b9153cc0e562f93
         codeSamplesNamespace: code-samples-typescript-livepeer-ts
-        codeSamplesRevisionDigest: sha256:c7c5056503bcc37a38d70ed10bafd2ee5d820cddeaac64aef6224d8290571a90
+        codeSamplesRevisionDigest: sha256:717ed852ff71a07f8e1e0c3dd3675a8d5b73894c5b81b902d5d6b08cd0031a4c
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest

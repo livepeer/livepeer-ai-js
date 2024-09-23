@@ -3,9 +3,9 @@
  */
 
 import { LivepeerCore } from "../core.js";
-import { encodeJSON as encodeJSON$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeJSON } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Generate images from text prompts.
  */
 export async function generateTextToImage(
-  client$: LivepeerCore,
+  client: LivepeerCore,
   request: components.TextToImageParams,
   options?: RequestOptions,
 ): Promise<
@@ -47,53 +47,53 @@ export async function generateTextToImage(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => components.TextToImageParams$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => components.TextToImageParams$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$, { explode: true });
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload, { explode: true });
 
-  const path$ = pathToFunc("/text-to-image")();
+  const path = pathToFunc("/text-to-image")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
   });
 
-  const httpBearer$ = await extractSecurity(client$.options$.httpBearer);
-  const security$ = httpBearer$ == null ? {} : { httpBearer: httpBearer$ };
+  const secConfig = await extractSecurity(client._options.httpBearer);
+  const securityInput = secConfig == null ? {} : { httpBearer: secConfig };
   const context = {
     operationID: "genTextToImage",
     oAuth2Scopes: [],
-    securitySource: client$.options$.httpBearer,
+    securitySource: client._options.httpBearer,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "422", "4XX", "500", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -101,7 +101,7 @@ export async function generateTextToImage(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -109,7 +109,7 @@ export async function generateTextToImage(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GenTextToImageResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
@@ -121,16 +121,16 @@ export async function generateTextToImage(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GenTextToImageResponse$inboundSchema, {
+    M.json(200, operations.GenTextToImageResponse$inboundSchema, {
       key: "ImageResponse",
     }),
-    m$.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
-    m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

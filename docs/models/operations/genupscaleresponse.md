@@ -7,7 +7,7 @@ import { GenUpscaleResponse } from "@livepeer/ai/models/operations";
 
 let value: GenUpscaleResponse = {
   contentType: "<value>",
-  statusCode: 844266,
+  statusCode: 544883,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

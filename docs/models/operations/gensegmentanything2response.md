@@ -7,7 +7,7 @@ import { GenSegmentAnything2Response } from "@livepeer/ai/models/operations";
 
 let value: GenSegmentAnything2Response = {
   contentType: "<value>",
-  statusCode: 857946,
+  statusCode: 645894,
   rawResponse: new Response("{\"message\": \"hello world\"}", {
     headers: { "Content-Type": "application/json" },
   }),

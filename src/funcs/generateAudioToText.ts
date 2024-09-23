@@ -4,8 +4,8 @@
 
 import { LivepeerCore } from "../core.js";
 import { readableStreamToArrayBuffer } from "../lib/files.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -32,7 +32,7 @@ import { isReadableStream } from "../types/streams.js";
  * Transcribe audio files to text.
  */
 export async function generateAudioToText(
-  client$: LivepeerCore,
+  client: LivepeerCore,
   request: components.BodyGenAudioToText,
   options?: RequestOptions,
 ): Promise<
@@ -49,69 +49,69 @@ export async function generateAudioToText(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) => components.BodyGenAudioToText$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) => components.BodyGenAudioToText$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = new FormData();
+  const payload = parsed.value;
+  const body = new FormData();
 
-  if (isBlobLike(payload$.audio)) {
-    body$.append("audio", payload$.audio);
-  } else if (isReadableStream(payload$.audio.content)) {
-    const buffer = await readableStreamToArrayBuffer(payload$.audio.content);
+  if (isBlobLike(payload.audio)) {
+    body.append("audio", payload.audio);
+  } else if (isReadableStream(payload.audio.content)) {
+    const buffer = await readableStreamToArrayBuffer(payload.audio.content);
     const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body$.append("audio", blob);
+    body.append("audio", blob);
   } else {
-    body$.append(
+    body.append(
       "audio",
-      new Blob([payload$.audio.content], { type: "application/octet-stream" }),
-      payload$.audio.fileName,
+      new Blob([payload.audio.content], { type: "application/octet-stream" }),
+      payload.audio.fileName,
     );
   }
-  if (payload$.model_id !== undefined) {
-    body$.append("model_id", payload$.model_id);
+  if (payload.model_id !== undefined) {
+    body.append("model_id", payload.model_id);
   }
 
-  const path$ = pathToFunc("/audio-to-text")();
+  const path = pathToFunc("/audio-to-text")();
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     Accept: "application/json",
   });
 
-  const httpBearer$ = await extractSecurity(client$.options$.httpBearer);
-  const security$ = httpBearer$ == null ? {} : { httpBearer: httpBearer$ };
+  const secConfig = await extractSecurity(client._options.httpBearer);
+  const securityInput = secConfig == null ? {} : { httpBearer: secConfig };
   const context = {
     operationID: "genAudioToText",
     oAuth2Scopes: [],
-    securitySource: client$.options$.httpBearer,
+    securitySource: client._options.httpBearer,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "POST",
-    path: path$,
-    headers: headers$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "401", "413", "422", "4XX", "500", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -119,7 +119,7 @@ export async function generateAudioToText(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
+  const responseFields = {
     ContentType: response.headers.get("content-type")
       ?? "application/octet-stream",
     StatusCode: response.status,
@@ -127,7 +127,7 @@ export async function generateAudioToText(
     Headers: {},
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.GenAudioToTextResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
@@ -139,16 +139,16 @@ export async function generateAudioToText(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.GenAudioToTextResponse$inboundSchema, {
+    M.json(200, operations.GenAudioToTextResponse$inboundSchema, {
       key: "TextResponse",
     }),
-    m$.jsonErr([400, 401, 413, 500], errors.HTTPError$inboundSchema),
-    m$.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr([400, 401, 413, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }

@@ -8,6 +8,6 @@ import { Generate } from "./generate.js";
 export class Livepeer extends ClientSDK {
   private _generate?: Generate;
   get generate(): Generate {
-    return (this._generate ??= new Generate(this.options$));
+    return (this._generate ??= new Generate(this._options));
   }
 }

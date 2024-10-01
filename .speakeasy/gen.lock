@@ -1,12 +1,11 @@
 lockVersion: 2.0.0
 id: 8bd6d3b6-cae6-4e55-b72f-6fdc1dbce9a1
 management:
-  docChecksum: 4a28bceb165adf1c1dd97bbc8fe41a27
-  docVersion: v0.5.0
-  speakeasyVersion: 1.401.2
-  generationVersion: 2.421.3
-  releaseVersion: 0.3.4
-  configChecksum: 2f966a11db44fc8cc16835f471c700a8
+  docChecksum: 21334b8071b6c8e28a5dda229ceafd7e
+  speakeasyVersion: 1.405.6
+  generationVersion: 2.428.1
+  releaseVersion: 0.4.0
+  configChecksum: afd3c6579111409ef5d5b0b954be5634
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
   published: true
@@ -14,7 +13,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.17.6
+    core: 3.18.1
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.1
     globalSecurity: 2.82.11
@@ -41,6 +40,7 @@ generatedFiles:
   - docs/models/components/bodygenimagetoimage.md
   - docs/models/components/bodygenimagetovideo.md
   - docs/models/components/bodygenimagetovideoimage.md
+  - docs/models/components/bodygenllm.md
   - docs/models/components/bodygensegmentanything2.md
   - docs/models/components/bodygensegmentanything2image.md
   - docs/models/components/bodygenupscale.md
@@ -48,6 +48,7 @@ generatedFiles:
   - docs/models/components/chunk.md
   - docs/models/components/image.md
   - docs/models/components/imageresponse.md
+  - docs/models/components/llmresponse.md
   - docs/models/components/loc.md
   - docs/models/components/masksresponse.md
   - docs/models/components/media.md
@@ -61,6 +62,7 @@ generatedFiles:
   - docs/models/operations/genaudiototextresponse.md
   - docs/models/operations/genimagetoimageresponse.md
   - docs/models/operations/genimagetovideoresponse.md
+  - docs/models/operations/genllmresponse.md
   - docs/models/operations/gensegmentanything2response.md
   - docs/models/operations/gentexttoimageresponse.md
   - docs/models/operations/genupscaleresponse.md
@@ -72,6 +74,7 @@ generatedFiles:
   - src/funcs/generateAudioToText.ts
   - src/funcs/generateImageToImage.ts
   - src/funcs/generateImageToVideo.ts
+  - src/funcs/generateLlm.ts
   - src/funcs/generateSegmentAnything2.ts
   - src/funcs/generateTextToImage.ts
   - src/funcs/generateUpscale.ts
@@ -98,11 +101,13 @@ generatedFiles:
   - src/models/components/bodygenaudiototext.ts
   - src/models/components/bodygenimagetoimage.ts
   - src/models/components/bodygenimagetovideo.ts
+  - src/models/components/bodygenllm.ts
   - src/models/components/bodygensegmentanything2.ts
   - src/models/components/bodygenupscale.ts
   - src/models/components/chunk.ts
   - src/models/components/imageresponse.ts
   - src/models/components/index.ts
+  - src/models/components/llmresponse.ts
   - src/models/components/masksresponse.ts
   - src/models/components/media.ts
   - src/models/components/security.ts
@@ -119,6 +124,7 @@ generatedFiles:
   - src/models/operations/genaudiototext.ts
   - src/models/operations/genimagetoimage.ts
   - src/models/operations/genimagetovideo.ts
+  - src/models/operations/genllm.ts
   - src/models/operations/gensegmentanything2.ts
   - src/models/operations/gentexttoimage.ts
   - src/models/operations/genupscale.ts
@@ -193,6 +199,16 @@ examples:
       responses:
         "200":
           application/json: {"masks": "<value>", "scores": "<value>", "logits": "<value>"}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}
+  genLLM:
+    speakeasy-default-gen-LLM:
+      requestBody:
+        application/x-www-form-urlencoded: {"prompt": "<value>"}
+      responses:
+        "200":
+          application/json: {"response": "<value>", "tokens_used": 60712}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
         "422": {}

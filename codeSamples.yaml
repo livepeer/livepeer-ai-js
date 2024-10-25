@@ -50,6 +50,29 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/image-to-text"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: genImageToText
+          source: |-
+            import { Livepeer } from "@livepeer/ai";
+            import { openAsBlob } from "node:fs";
+
+            const livepeer = new Livepeer({
+              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+            });
+
+            async function run() {
+              const result = await livepeer.generate.imageToText({
+                image: await openAsBlob("example.file"),
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/image-to-video"]["post"]
     update:
       x-codeSamples:

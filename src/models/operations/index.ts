@@ -4,6 +4,7 @@
 
 export * from "./genaudiototext.js";
 export * from "./genimagetoimage.js";
+export * from "./genimagetotext.js";
 export * from "./genimagetovideo.js";
 export * from "./genllm.js";
 export * from "./gensegmentanything2.js";

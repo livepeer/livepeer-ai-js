@@ -49,10 +49,8 @@ export async function generateSegmentAnything2(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => components.BodyGenSegmentAnything2$outboundSchema.parse(value),
     "Input validation failed",
   );

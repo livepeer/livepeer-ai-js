@@ -4,6 +4,7 @@
 
 import { generateAudioToText } from "../funcs/generateAudioToText.js";
 import { generateImageToImage } from "../funcs/generateImageToImage.js";
+import { generateImageToText } from "../funcs/generateImageToText.js";
 import { generateImageToVideo } from "../funcs/generateImageToVideo.js";
 import { generateLlm } from "../funcs/generateLlm.js";
 import { generateSegmentAnything2 } from "../funcs/generateSegmentAnything2.js";
@@ -128,6 +129,23 @@ export class Generate extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GenLLMResponse> {
     return unwrapAsync(generateLlm(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Image To Text
+   *
+   * @remarks
+   * Transform image files to text.
+   */
+  async imageToText(
+    request: components.BodyGenImageToText,
+    options?: RequestOptions,
+  ): Promise<operations.GenImageToTextResponse> {
+    return unwrapAsync(generateImageToText(
       this,
       request,
       options,

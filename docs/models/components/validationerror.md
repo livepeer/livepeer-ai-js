@@ -7,7 +7,7 @@ import { ValidationError } from "@livepeer/ai/models/components";
 
 let value: ValidationError = {
   loc: [
-    143353,
+    521848,
   ],
   msg: "<value>",
   type: "<value>",

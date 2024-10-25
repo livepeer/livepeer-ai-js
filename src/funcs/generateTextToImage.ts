@@ -47,10 +47,8 @@ export async function generateTextToImage(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => components.TextToImageParams$outboundSchema.parse(value),
     "Input validation failed",
   );

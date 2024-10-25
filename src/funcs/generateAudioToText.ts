@@ -49,10 +49,8 @@ export async function generateAudioToText(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => components.BodyGenAudioToText$outboundSchema.parse(value),
     "Input validation failed",
   );
@@ -109,7 +107,7 @@ export async function generateAudioToText(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "413", "422", "4XX", "500", "5XX"],
+    errorCodes: ["400", "401", "413", "415", "422", "4XX", "500", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
@@ -142,7 +140,7 @@ export async function generateAudioToText(
     M.json(200, operations.GenAudioToTextResponse$inboundSchema, {
       key: "TextResponse",
     }),
-    M.jsonErr([400, 401, 413, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr([400, 401, 413, 415, 500], errors.HTTPError$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

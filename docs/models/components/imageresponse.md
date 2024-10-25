@@ -10,8 +10,8 @@ import { ImageResponse } from "@livepeer/ai/models/components";
 let value: ImageResponse = {
   images: [
     {
-      url: "https://bright-agreement.net/",
-      seed: 778157,
+      url: "https://talkative-sauerkraut.org/",
+      seed: 978619,
       nsfw: false,
     },
   ],

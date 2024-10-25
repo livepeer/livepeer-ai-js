@@ -26,18 +26,18 @@ import { Result } from "../types/fp.js";
 import { isReadableStream } from "../types/streams.js";
 
 /**
- * Upscale
+ * Image To Text
  *
  * @remarks
- * Upscale an image by increasing its resolution.
+ * Transform image files to text.
  */
-export async function generateUpscale(
+export async function generateImageToText(
   client: LivepeerCore,
-  request: components.BodyGenUpscale,
+  request: components.BodyGenImageToText,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.GenUpscaleResponse,
+    operations.GenImageToTextResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
     | SDKError
@@ -51,7 +51,7 @@ export async function generateUpscale(
 > {
   const parsed = safeParse(
     request,
-    (value) => components.BodyGenUpscale$outboundSchema.parse(value),
+    (value) => components.BodyGenImageToText$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -73,21 +73,14 @@ export async function generateUpscale(
       payload.image.fileName,
     );
   }
-  body.append("prompt", payload.prompt);
   if (payload.model_id !== undefined) {
     body.append("model_id", payload.model_id);
   }
-  if (payload.num_inference_steps !== undefined) {
-    body.append("num_inference_steps", String(payload.num_inference_steps));
-  }
-  if (payload.safety_check !== undefined) {
-    body.append("safety_check", String(payload.safety_check));
-  }
-  if (payload.seed !== undefined) {
-    body.append("seed", String(payload.seed));
+  if (payload.prompt !== undefined) {
+    body.append("prompt", payload.prompt);
   }
 
-  const path = pathToFunc("/upscale")();
+  const path = pathToFunc("/image-to-text")();
 
   const headers = new Headers({
     Accept: "application/json",
@@ -96,7 +89,7 @@ export async function generateUpscale(
   const secConfig = await extractSecurity(client._options.httpBearer);
   const securityInput = secConfig == null ? {} : { httpBearer: secConfig };
   const context = {
-    operationID: "genUpscale",
+    operationID: "genImageToText",
     oAuth2Scopes: [],
     securitySource: client._options.httpBearer,
   };
@@ -117,7 +110,7 @@ export async function generateUpscale(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "422", "4XX", "500", "5XX"],
+    errorCodes: ["400", "401", "413", "422", "4XX", "500", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
@@ -136,7 +129,7 @@ export async function generateUpscale(
   };
 
   const [result] = await M.match<
-    operations.GenUpscaleResponse,
+    operations.GenImageToTextResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
     | SDKError
@@ -147,10 +140,10 @@ export async function generateUpscale(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.GenUpscaleResponse$inboundSchema, {
-      key: "ImageResponse",
+    M.json(200, operations.GenImageToTextResponse$inboundSchema, {
+      key: "ImageToTextResponse",
     }),
-    M.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr([400, 401, 413, 500], errors.HTTPError$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

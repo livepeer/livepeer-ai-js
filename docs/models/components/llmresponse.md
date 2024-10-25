@@ -7,7 +7,7 @@ import { LLMResponse } from "@livepeer/ai/models/components";
 
 let value: LLMResponse = {
   response: "<value>",
-  tokensUsed: 456150,
+  tokensUsed: 18789,
 };
 ```
 

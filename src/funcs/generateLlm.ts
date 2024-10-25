@@ -47,10 +47,8 @@ export async function generateLlm(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => components.BodyGenLLM$outboundSchema.parse(value),
     "Input validation failed",
   );

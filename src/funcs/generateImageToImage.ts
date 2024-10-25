@@ -49,10 +49,8 @@ export async function generateImageToImage(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => components.BodyGenImageToImage$outboundSchema.parse(value),
     "Input validation failed",
   );

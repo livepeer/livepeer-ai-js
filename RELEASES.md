@@ -101,3 +101,13 @@ Based on:
 - [typescript v0.4.1] .
 ### Releases
 - [NPM v0.4.1] https://www.npmjs.com/package/@livepeer/ai/v/0.4.1 - .
+
+## 2024-10-26 00:01:14
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.422.1 (2.438.15) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.4.2] .
+### Releases
+- [NPM v0.4.2] https://www.npmjs.com/package/@livepeer/ai/v/0.4.2 - .

@@ -76,6 +76,9 @@ export async function generateAudioToText(
   if (payload.model_id !== undefined) {
     body.append("model_id", payload.model_id);
   }
+  if (payload.return_timestamps !== undefined) {
+    body.append("return_timestamps", payload.return_timestamps);
+  }
 
   const path = pathToFunc("/audio-to-text")();
 

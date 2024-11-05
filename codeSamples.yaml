@@ -96,6 +96,29 @@ actions:
             }
 
             run();
+  - target: $["paths"]["/live-video-to-video"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: genLiveVideoToVideo
+          source: |-
+            import { Livepeer } from "@livepeer/ai";
+
+            const livepeer = new Livepeer({
+              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+            });
+
+            async function run() {
+              const result = await livepeer.generate.liveVideoToVideo({
+                subscribeUrl: "https://soulful-lava.org/",
+                publishUrl: "https://vain-tabletop.biz",
+              });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
   - target: $["paths"]["/llm"]["post"]
     update:
       x-codeSamples:
@@ -157,6 +180,26 @@ actions:
               const result = await livepeer.generate.textToImage({
                 prompt: "<value>",
               });
+
+              // Handle the result
+              console.log(result);
+            }
+
+            run();
+  - target: $["paths"]["/text-to-speech"]["post"]
+    update:
+      x-codeSamples:
+        - lang: typescript
+          label: genTextToSpeech
+          source: |-
+            import { Livepeer } from "@livepeer/ai";
+
+            const livepeer = new Livepeer({
+              httpBearer: "<YOUR_BEARER_TOKEN_HERE>",
+            });
+
+            async function run() {
+              const result = await livepeer.generate.textToSpeech({});
 
               // Handle the result
               console.log(result);

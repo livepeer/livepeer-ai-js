@@ -9,7 +9,7 @@ import { Chunk } from "@livepeer/ai/models/components";
 
 let value: Chunk = {
   timestamp: [
-    "<value>",
+    6818.20,
   ],
   text: "<value>",
 };
@@ -19,5 +19,5 @@ let value: Chunk = {
 
 | Field                       | Type                        | Required                    | Description                 |
 | --------------------------- | --------------------------- | --------------------------- | --------------------------- |
-| `timestamp`                 | *any*[]                     | :heavy_check_mark:          | The timestamp of the chunk. |
+| `timestamp`                 | *number*[]                  | :heavy_check_mark:          | The timestamp of the chunk. |
 | `text`                      | *string*                    | :heavy_check_mark:          | The text of the chunk.      |

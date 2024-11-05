@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 8bd6d3b6-cae6-4e55-b72f-6fdc1dbce9a1
 management:
-  docChecksum: a140881cbcff74961991f5dfff13f0a0
+  docChecksum: 2f29b26e29f07ac960b8601fb85442d0
   docVersion: 0.0.0
-  speakeasyVersion: 1.421.2
-  generationVersion: 2.438.15
-  releaseVersion: 0.4.1
-  configChecksum: 2d2321dd652b40627a863461eab6e343
+  speakeasyVersion: 1.425.2
+  generationVersion: 2.446.5
+  releaseVersion: 0.5.0
+  configChecksum: 5585393ad3c74e55642c9fb7b88cd30d
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
   published: true
@@ -14,9 +14,9 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.2
+    core: 3.18.3
     defaultEnabledRetries: 0.1.0
-    envVarSecurityUsage: 0.1.1
+    envVarSecurityUsage: 0.1.2
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -25,6 +25,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
+    tests: 0.7.0
     unions: 2.85.7
     uploadStreams: 0.1.0
 generatedFiles:
@@ -37,6 +38,7 @@ generatedFiles:
   - docs/lib/utils/retryconfig.md
   - docs/models/components/apierror.md
   - docs/models/components/audio.md
+  - docs/models/components/audioresponse.md
   - docs/models/components/bodygenaudiototext.md
   - docs/models/components/bodygenimagetoimage.md
   - docs/models/components/bodygenimagetotext.md
@@ -52,13 +54,18 @@ generatedFiles:
   - docs/models/components/image.md
   - docs/models/components/imageresponse.md
   - docs/models/components/imagetotextresponse.md
+  - docs/models/components/livevideotovideoparams.md
+  - docs/models/components/livevideotovideoresponse.md
   - docs/models/components/llmresponse.md
   - docs/models/components/loc.md
   - docs/models/components/masksresponse.md
   - docs/models/components/media.md
+  - docs/models/components/mediaurl.md
+  - docs/models/components/params.md
   - docs/models/components/security.md
   - docs/models/components/textresponse.md
   - docs/models/components/texttoimageparams.md
+  - docs/models/components/texttospeechparams.md
   - docs/models/components/validationerror.md
   - docs/models/components/videoresponse.md
   - docs/models/errors/httperror.md
@@ -67,9 +74,11 @@ generatedFiles:
   - docs/models/operations/genimagetoimageresponse.md
   - docs/models/operations/genimagetotextresponse.md
   - docs/models/operations/genimagetovideoresponse.md
+  - docs/models/operations/genlivevideotovideoresponse.md
   - docs/models/operations/genllmresponse.md
   - docs/models/operations/gensegmentanything2response.md
   - docs/models/operations/gentexttoimageresponse.md
+  - docs/models/operations/gentexttospeechresponse.md
   - docs/models/operations/genupscaleresponse.md
   - docs/sdks/generate/README.md
   - docs/sdks/livepeer/README.md
@@ -80,9 +89,11 @@ generatedFiles:
   - src/funcs/generateImageToImage.ts
   - src/funcs/generateImageToText.ts
   - src/funcs/generateImageToVideo.ts
+  - src/funcs/generateLiveVideoToVideo.ts
   - src/funcs/generateLlm.ts
   - src/funcs/generateSegmentAnything2.ts
   - src/funcs/generateTextToImage.ts
+  - src/funcs/generateTextToSpeech.ts
   - src/funcs/generateUpscale.ts
   - src/hooks/hooks.ts
   - src/hooks/index.ts
@@ -104,6 +115,7 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/models/components/apierror.ts
+  - src/models/components/audioresponse.ts
   - src/models/components/bodygenaudiototext.ts
   - src/models/components/bodygenimagetoimage.ts
   - src/models/components/bodygenimagetotext.ts
@@ -115,12 +127,16 @@ generatedFiles:
   - src/models/components/imageresponse.ts
   - src/models/components/imagetotextresponse.ts
   - src/models/components/index.ts
+  - src/models/components/livevideotovideoparams.ts
+  - src/models/components/livevideotovideoresponse.ts
   - src/models/components/llmresponse.ts
   - src/models/components/masksresponse.ts
   - src/models/components/media.ts
+  - src/models/components/mediaurl.ts
   - src/models/components/security.ts
   - src/models/components/textresponse.ts
   - src/models/components/texttoimageparams.ts
+  - src/models/components/texttospeechparams.ts
   - src/models/components/validationerror.ts
   - src/models/components/videoresponse.ts
   - src/models/errors/httpclienterrors.ts
@@ -133,9 +149,11 @@ generatedFiles:
   - src/models/operations/genimagetoimage.ts
   - src/models/operations/genimagetotext.ts
   - src/models/operations/genimagetovideo.ts
+  - src/models/operations/genlivevideotovideo.ts
   - src/models/operations/genllm.ts
   - src/models/operations/gensegmentanything2.ts
   - src/models/operations/gentexttoimage.ts
+  - src/models/operations/gentexttospeech.ts
   - src/models/operations/genupscale.ts
   - src/models/operations/index.ts
   - src/sdk/generate.ts
@@ -228,6 +246,24 @@ examples:
       responses:
         "200":
           application/json: {"text": "<value>"}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}
+  genLiveVideoToVideo:
+    speakeasy-default-gen-live-video-to-video:
+      requestBody:
+        application/json: {"subscribe_url": "https://soulful-lava.org/", "publish_url": "https://vain-tabletop.biz"}
+      responses:
+        "200":
+          application/json: {"subscribe_url": "https://vain-kiss.name", "publish_url": "https://frail-duffel.com"}
+        "400":
+          application/json: {"detail": {"msg": "<value>"}}
+        "422": {}
+  genTextToSpeech:
+    speakeasy-default-gen-text-to-speech:
+      responses:
+        "200":
+          application/json: {"audio": {"url": "https://accurate-parsnip.net/"}}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
         "422": {}

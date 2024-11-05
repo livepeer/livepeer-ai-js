@@ -3,7 +3,7 @@
  */
 
 import { LivepeerCore } from "../core.js";
-import { readableStreamToArrayBuffer } from "../lib/files.js";
+import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -21,23 +21,21 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
-import { isBlobLike } from "../types/blobs.js";
 import { Result } from "../types/fp.js";
-import { isReadableStream } from "../types/streams.js";
 
 /**
- * Audio To Text
+ * Text To Speech
  *
  * @remarks
- * Transcribe audio files to text.
+ * Generate a text-to-speech audio file based on the provided text input and speaker description.
  */
-export async function generateAudioToText(
+export async function generateTextToSpeech(
   client: LivepeerCore,
-  request: components.BodyGenAudioToText,
+  request: components.TextToSpeechParams,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.GenAudioToTextResponse,
+    operations.GenTextToSpeechResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
     | SDKError
@@ -51,45 +49,26 @@ export async function generateAudioToText(
 > {
   const parsed = safeParse(
     request,
-    (value) => components.BodyGenAudioToText$outboundSchema.parse(value),
+    (value) => components.TextToSpeechParams$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = new FormData();
+  const body = encodeJSON("body", payload, { explode: true });
 
-  if (isBlobLike(payload.audio)) {
-    body.append("audio", payload.audio);
-  } else if (isReadableStream(payload.audio.content)) {
-    const buffer = await readableStreamToArrayBuffer(payload.audio.content);
-    const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body.append("audio", blob);
-  } else {
-    body.append(
-      "audio",
-      new Blob([payload.audio.content], { type: "application/octet-stream" }),
-      payload.audio.fileName,
-    );
-  }
-  if (payload.model_id !== undefined) {
-    body.append("model_id", payload.model_id);
-  }
-  if (payload.return_timestamps !== undefined) {
-    body.append("return_timestamps", payload.return_timestamps);
-  }
-
-  const path = pathToFunc("/audio-to-text")();
+  const path = pathToFunc("/text-to-speech")();
 
   const headers = new Headers({
+    "Content-Type": "application/json",
     Accept: "application/json",
   });
 
   const secConfig = await extractSecurity(client._options.httpBearer);
   const securityInput = secConfig == null ? {} : { httpBearer: secConfig };
   const context = {
-    operationID: "genAudioToText",
+    operationID: "genTextToSpeech",
     oAuth2Scopes: [],
     securitySource: client._options.httpBearer,
   };
@@ -110,7 +89,7 @@ export async function generateAudioToText(
 
   const doResult = await client._do(req, {
     context,
-    errorCodes: ["400", "401", "413", "415", "422", "4XX", "500", "5XX"],
+    errorCodes: ["400", "401", "422", "4XX", "500", "5XX"],
     retryConfig: options?.retries
       || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
@@ -129,7 +108,7 @@ export async function generateAudioToText(
   };
 
   const [result] = await M.match<
-    operations.GenAudioToTextResponse,
+    operations.GenTextToSpeechResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
     | SDKError
@@ -140,10 +119,10 @@ export async function generateAudioToText(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.GenAudioToTextResponse$inboundSchema, {
-      key: "TextResponse",
+    M.json(200, operations.GenTextToSpeechResponse$inboundSchema, {
+      key: "AudioResponse",
     }),
-    M.jsonErr([400, 401, 413, 415, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, { extraFields: responseFields });

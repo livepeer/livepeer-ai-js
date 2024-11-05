@@ -11,7 +11,7 @@ export type Chunk = {
   /**
    * The timestamp of the chunk.
    */
-  timestamp: Array<any>;
+  timestamp: Array<number>;
   /**
    * The text of the chunk.
    */
@@ -21,13 +21,13 @@ export type Chunk = {
 /** @internal */
 export const Chunk$inboundSchema: z.ZodType<Chunk, z.ZodTypeDef, unknown> = z
   .object({
-    timestamp: z.array(z.any()),
+    timestamp: z.array(z.number()),
     text: z.string(),
   });
 
 /** @internal */
 export type Chunk$Outbound = {
-  timestamp: Array<any>;
+  timestamp: Array<number>;
   text: string;
 };
 
@@ -37,7 +37,7 @@ export const Chunk$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   Chunk
 > = z.object({
-  timestamp: z.array(z.any()),
+  timestamp: z.array(z.number()),
   text: z.string(),
 });
 

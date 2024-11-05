@@ -90,6 +90,8 @@ run();
 * [segmentAnything2](docs/sdks/generate/README.md#segmentanything2) - Segment Anything 2
 * [llm](docs/sdks/generate/README.md#llm) - LLM
 * [imageToText](docs/sdks/generate/README.md#imagetotext) - Image To Text
+* [liveVideoToVideo](docs/sdks/generate/README.md#livevideotovideo) - Video To Video
+* [textToSpeech](docs/sdks/generate/README.md#texttospeech) - Text To Speech
 
 
 </details>
@@ -114,9 +116,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`generateImageToImage`](docs/sdks/generate/README.md#imagetoimage) - Image To Image
 - [`generateImageToText`](docs/sdks/generate/README.md#imagetotext) - Image To Text
 - [`generateImageToVideo`](docs/sdks/generate/README.md#imagetovideo) - Image To Video
+- [`generateLiveVideoToVideo`](docs/sdks/generate/README.md#livevideotovideo) - Video To Video
 - [`generateLlm`](docs/sdks/generate/README.md#llm) - LLM
 - [`generateSegmentAnything2`](docs/sdks/generate/README.md#segmentanything2) - Segment Anything 2
 - [`generateTextToImage`](docs/sdks/generate/README.md#texttoimage) - Text To Image
+- [`generateTextToSpeech`](docs/sdks/generate/README.md#texttospeech) - Text To Speech
 - [`generateUpscale`](docs/sdks/generate/README.md#upscale) - Upscale
 
 </details>

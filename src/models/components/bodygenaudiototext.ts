@@ -20,6 +20,10 @@ export type BodyGenAudioToText = {
    * Hugging Face model ID used for transcription.
    */
   modelId?: string | undefined;
+  /**
+   * Return timestamps for the transcribed text. Supported values: 'sentence', 'word', or a string boolean ('true' or 'false'). Default is 'true' ('sentence'). 'false' means no timestamps. 'word' means word-based timestamps.
+   */
+  returnTimestamps?: string | undefined;
 };
 
 /** @internal */
@@ -76,9 +80,11 @@ export const BodyGenAudioToText$inboundSchema: z.ZodType<
 > = z.object({
   audio: z.lazy(() => Audio$inboundSchema),
   model_id: z.string().default(""),
+  return_timestamps: z.string().default("true"),
 }).transform((v) => {
   return remap$(v, {
     "model_id": "modelId",
+    "return_timestamps": "returnTimestamps",
   });
 });
 
@@ -86,6 +92,7 @@ export const BodyGenAudioToText$inboundSchema: z.ZodType<
 export type BodyGenAudioToText$Outbound = {
   audio: Audio$Outbound | Blob;
   model_id: string;
+  return_timestamps: string;
 };
 
 /** @internal */
@@ -96,9 +103,11 @@ export const BodyGenAudioToText$outboundSchema: z.ZodType<
 > = z.object({
   audio: z.lazy(() => Audio$outboundSchema).or(blobLikeSchema),
   modelId: z.string().default(""),
+  returnTimestamps: z.string().default("true"),
 }).transform((v) => {
   return remap$(v, {
     modelId: "model_id",
+    returnTimestamps: "return_timestamps",
   });
 });
 

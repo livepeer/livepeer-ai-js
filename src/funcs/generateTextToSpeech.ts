@@ -3,7 +3,7 @@
  */
 
 import { LivepeerCore } from "../core.js";
-import { readableStreamToArrayBuffer } from "../lib/files.js";
+import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -21,23 +21,21 @@ import * as errors from "../models/errors/index.js";
 import { SDKError } from "../models/errors/sdkerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
-import { isBlobLike } from "../types/blobs.js";
 import { Result } from "../types/fp.js";
-import { isReadableStream } from "../types/streams.js";
 
 /**
- * Image To Video
+ * Text To Speech
  *
  * @remarks
- * Generate a video from a provided image.
+ * Generate a text-to-speech audio file based on the provided text input and speaker description.
  */
-export async function generateImageToVideo(
+export async function generateTextToSpeech(
   client: LivepeerCore,
-  request: components.BodyGenImageToVideo,
+  request: components.TextToSpeechParams,
   options?: RequestOptions,
 ): Promise<
   Result<
-    operations.GenImageToVideoResponse,
+    operations.GenTextToSpeechResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
     | SDKError
@@ -51,59 +49,19 @@ export async function generateImageToVideo(
 > {
   const parsed = safeParse(
     request,
-    (value) => components.BodyGenImageToVideo$outboundSchema.parse(value),
+    (value) => components.TextToSpeechParams$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-  const body = new FormData();
+  const body = encodeJSON("body", payload, { explode: true });
 
-  if (isBlobLike(payload.image)) {
-    body.append("image", payload.image);
-  } else if (isReadableStream(payload.image.content)) {
-    const buffer = await readableStreamToArrayBuffer(payload.image.content);
-    const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body.append("image", blob);
-  } else {
-    body.append(
-      "image",
-      new Blob([payload.image.content], { type: "application/octet-stream" }),
-      payload.image.fileName,
-    );
-  }
-  if (payload.fps !== undefined) {
-    body.append("fps", String(payload.fps));
-  }
-  if (payload.height !== undefined) {
-    body.append("height", String(payload.height));
-  }
-  if (payload.model_id !== undefined) {
-    body.append("model_id", payload.model_id);
-  }
-  if (payload.motion_bucket_id !== undefined) {
-    body.append("motion_bucket_id", String(payload.motion_bucket_id));
-  }
-  if (payload.noise_aug_strength !== undefined) {
-    body.append("noise_aug_strength", String(payload.noise_aug_strength));
-  }
-  if (payload.num_inference_steps !== undefined) {
-    body.append("num_inference_steps", String(payload.num_inference_steps));
-  }
-  if (payload.safety_check !== undefined) {
-    body.append("safety_check", String(payload.safety_check));
-  }
-  if (payload.seed !== undefined) {
-    body.append("seed", String(payload.seed));
-  }
-  if (payload.width !== undefined) {
-    body.append("width", String(payload.width));
-  }
-
-  const path = pathToFunc("/image-to-video")();
+  const path = pathToFunc("/text-to-speech")();
 
   const headers = new Headers({
+    "Content-Type": "application/json",
     Accept: "application/json",
   });
 
@@ -112,7 +70,7 @@ export async function generateImageToVideo(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
-    operationID: "genImageToVideo",
+    operationID: "genTextToSpeech",
     oAuth2Scopes: [],
     securitySource: client._options.httpBearer,
     retryConfig: options?.retries
@@ -154,7 +112,7 @@ export async function generateImageToVideo(
   };
 
   const [result] = await M.match<
-    operations.GenImageToVideoResponse,
+    operations.GenTextToSpeechResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
     | SDKError
@@ -165,8 +123,8 @@ export async function generateImageToVideo(
     | RequestTimeoutError
     | ConnectionError
   >(
-    M.json(200, operations.GenImageToVideoResponse$inboundSchema, {
-      key: "VideoResponse",
+    M.json(200, operations.GenTextToSpeechResponse$inboundSchema, {
+      key: "AudioResponse",
     }),
     M.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),

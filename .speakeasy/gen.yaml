@@ -10,8 +10,9 @@ generation:
     requestResponseComponentNamesFeb2024: false
   auth:
     oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
 typescript:
-  version: 0.4.1
+  version: 0.5.0
   additionalDependencies:
     dependencies:
       jest: ^29.7.0

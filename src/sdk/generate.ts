@@ -6,9 +6,11 @@ import { generateAudioToText } from "../funcs/generateAudioToText.js";
 import { generateImageToImage } from "../funcs/generateImageToImage.js";
 import { generateImageToText } from "../funcs/generateImageToText.js";
 import { generateImageToVideo } from "../funcs/generateImageToVideo.js";
+import { generateLiveVideoToVideo } from "../funcs/generateLiveVideoToVideo.js";
 import { generateLlm } from "../funcs/generateLlm.js";
 import { generateSegmentAnything2 } from "../funcs/generateSegmentAnything2.js";
 import { generateTextToImage } from "../funcs/generateTextToImage.js";
+import { generateTextToSpeech } from "../funcs/generateTextToSpeech.js";
 import { generateUpscale } from "../funcs/generateUpscale.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as components from "../models/components/index.js";
@@ -146,6 +148,40 @@ export class Generate extends ClientSDK {
     options?: RequestOptions,
   ): Promise<operations.GenImageToTextResponse> {
     return unwrapAsync(generateImageToText(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Video To Video
+   *
+   * @remarks
+   * Apply video-like transformations to a provided image.
+   */
+  async liveVideoToVideo(
+    request: components.LiveVideoToVideoParams,
+    options?: RequestOptions,
+  ): Promise<operations.GenLiveVideoToVideoResponse> {
+    return unwrapAsync(generateLiveVideoToVideo(
+      this,
+      request,
+      options,
+    ));
+  }
+
+  /**
+   * Text To Speech
+   *
+   * @remarks
+   * Generate a text-to-speech audio file based on the provided text input and speaker description.
+   */
+  async textToSpeech(
+    request: components.TextToSpeechParams,
+    options?: RequestOptions,
+  ): Promise<operations.GenTextToSpeechResponse> {
+    return unwrapAsync(generateTextToSpeech(
       this,
       request,
       options,

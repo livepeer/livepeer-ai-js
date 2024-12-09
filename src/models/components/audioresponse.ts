@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 import {
   MediaURL,
   MediaURL$inboundSchema,
@@ -54,4 +57,18 @@ export namespace AudioResponse$ {
   export const outboundSchema = AudioResponse$outboundSchema;
   /** @deprecated use `AudioResponse$Outbound` instead. */
   export type Outbound = AudioResponse$Outbound;
+}
+
+export function audioResponseToJSON(audioResponse: AudioResponse): string {
+  return JSON.stringify(AudioResponse$outboundSchema.parse(audioResponse));
+}
+
+export function audioResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<AudioResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => AudioResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'AudioResponse' from JSON`,
+  );
 }

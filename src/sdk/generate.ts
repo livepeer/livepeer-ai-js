@@ -155,10 +155,10 @@ export class Generate extends ClientSDK {
   }
 
   /**
-   * Video To Video
+   * Live Video To Video
    *
    * @remarks
-   * Apply video-like transformations to a provided image.
+   * Apply transformations to a live video streamed to the returned endpoints.
    */
   async liveVideoToVideo(
     request: components.LiveVideoToVideoParams,

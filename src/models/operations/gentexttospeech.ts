@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GenTextToSpeechResponse = {
   /**
@@ -84,4 +87,22 @@ export namespace GenTextToSpeechResponse$ {
   export const outboundSchema = GenTextToSpeechResponse$outboundSchema;
   /** @deprecated use `GenTextToSpeechResponse$Outbound` instead. */
   export type Outbound = GenTextToSpeechResponse$Outbound;
+}
+
+export function genTextToSpeechResponseToJSON(
+  genTextToSpeechResponse: GenTextToSpeechResponse,
+): string {
+  return JSON.stringify(
+    GenTextToSpeechResponse$outboundSchema.parse(genTextToSpeechResponse),
+  );
+}
+
+export function genTextToSpeechResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GenTextToSpeechResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GenTextToSpeechResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenTextToSpeechResponse' from JSON`,
+  );
 }

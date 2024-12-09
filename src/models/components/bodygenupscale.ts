@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BodyGenUpscaleImage = {
   fileName: string;
@@ -87,6 +90,24 @@ export namespace BodyGenUpscaleImage$ {
   export type Outbound = BodyGenUpscaleImage$Outbound;
 }
 
+export function bodyGenUpscaleImageToJSON(
+  bodyGenUpscaleImage: BodyGenUpscaleImage,
+): string {
+  return JSON.stringify(
+    BodyGenUpscaleImage$outboundSchema.parse(bodyGenUpscaleImage),
+  );
+}
+
+export function bodyGenUpscaleImageFromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenUpscaleImage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenUpscaleImage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenUpscaleImage' from JSON`,
+  );
+}
+
 /** @internal */
 export const BodyGenUpscale$inboundSchema: z.ZodType<
   BodyGenUpscale,
@@ -148,4 +169,18 @@ export namespace BodyGenUpscale$ {
   export const outboundSchema = BodyGenUpscale$outboundSchema;
   /** @deprecated use `BodyGenUpscale$Outbound` instead. */
   export type Outbound = BodyGenUpscale$Outbound;
+}
+
+export function bodyGenUpscaleToJSON(bodyGenUpscale: BodyGenUpscale): string {
+  return JSON.stringify(BodyGenUpscale$outboundSchema.parse(bodyGenUpscale));
+}
+
+export function bodyGenUpscaleFromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenUpscale, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenUpscale$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenUpscale' from JSON`,
+  );
 }

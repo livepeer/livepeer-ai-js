@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BodyGenImageToTextImage = {
   fileName: string;
@@ -75,6 +78,24 @@ export namespace BodyGenImageToTextImage$ {
   export type Outbound = BodyGenImageToTextImage$Outbound;
 }
 
+export function bodyGenImageToTextImageToJSON(
+  bodyGenImageToTextImage: BodyGenImageToTextImage,
+): string {
+  return JSON.stringify(
+    BodyGenImageToTextImage$outboundSchema.parse(bodyGenImageToTextImage),
+  );
+}
+
+export function bodyGenImageToTextImageFromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenImageToTextImage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenImageToTextImage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenImageToTextImage' from JSON`,
+  );
+}
+
 /** @internal */
 export const BodyGenImageToText$inboundSchema: z.ZodType<
   BodyGenImageToText,
@@ -125,4 +146,22 @@ export namespace BodyGenImageToText$ {
   export const outboundSchema = BodyGenImageToText$outboundSchema;
   /** @deprecated use `BodyGenImageToText$Outbound` instead. */
   export type Outbound = BodyGenImageToText$Outbound;
+}
+
+export function bodyGenImageToTextToJSON(
+  bodyGenImageToText: BodyGenImageToText,
+): string {
+  return JSON.stringify(
+    BodyGenImageToText$outboundSchema.parse(bodyGenImageToText),
+  );
+}
+
+export function bodyGenImageToTextFromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenImageToText, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenImageToText$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenImageToText' from JSON`,
+  );
 }

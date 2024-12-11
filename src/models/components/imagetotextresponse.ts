@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * Response model for text generation.
@@ -48,4 +51,22 @@ export namespace ImageToTextResponse$ {
   export const outboundSchema = ImageToTextResponse$outboundSchema;
   /** @deprecated use `ImageToTextResponse$Outbound` instead. */
   export type Outbound = ImageToTextResponse$Outbound;
+}
+
+export function imageToTextResponseToJSON(
+  imageToTextResponse: ImageToTextResponse,
+): string {
+  return JSON.stringify(
+    ImageToTextResponse$outboundSchema.parse(imageToTextResponse),
+  );
+}
+
+export function imageToTextResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<ImageToTextResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => ImageToTextResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'ImageToTextResponse' from JSON`,
+  );
 }

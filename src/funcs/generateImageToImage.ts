@@ -118,6 +118,9 @@ export async function generateImageToImage(
   const context = {
     operationID: "genImageToImage",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.httpBearer,
     retryConfig: options?.retries
       || client._options.retryConfig

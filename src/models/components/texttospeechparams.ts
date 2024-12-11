@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TextToSpeechParams = {
   /**
@@ -72,4 +75,22 @@ export namespace TextToSpeechParams$ {
   export const outboundSchema = TextToSpeechParams$outboundSchema;
   /** @deprecated use `TextToSpeechParams$Outbound` instead. */
   export type Outbound = TextToSpeechParams$Outbound;
+}
+
+export function textToSpeechParamsToJSON(
+  textToSpeechParams: TextToSpeechParams,
+): string {
+  return JSON.stringify(
+    TextToSpeechParams$outboundSchema.parse(textToSpeechParams),
+  );
+}
+
+export function textToSpeechParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<TextToSpeechParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TextToSpeechParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TextToSpeechParams' from JSON`,
+  );
 }

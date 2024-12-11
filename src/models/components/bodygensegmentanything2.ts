@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BodyGenSegmentAnything2Image = {
   fileName: string;
@@ -99,6 +102,26 @@ export namespace BodyGenSegmentAnything2Image$ {
   export type Outbound = BodyGenSegmentAnything2Image$Outbound;
 }
 
+export function bodyGenSegmentAnything2ImageToJSON(
+  bodyGenSegmentAnything2Image: BodyGenSegmentAnything2Image,
+): string {
+  return JSON.stringify(
+    BodyGenSegmentAnything2Image$outboundSchema.parse(
+      bodyGenSegmentAnything2Image,
+    ),
+  );
+}
+
+export function bodyGenSegmentAnything2ImageFromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenSegmentAnything2Image, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenSegmentAnything2Image$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenSegmentAnything2Image' from JSON`,
+  );
+}
+
 /** @internal */
 export const BodyGenSegmentAnything2$inboundSchema: z.ZodType<
   BodyGenSegmentAnything2,
@@ -179,4 +202,22 @@ export namespace BodyGenSegmentAnything2$ {
   export const outboundSchema = BodyGenSegmentAnything2$outboundSchema;
   /** @deprecated use `BodyGenSegmentAnything2$Outbound` instead. */
   export type Outbound = BodyGenSegmentAnything2$Outbound;
+}
+
+export function bodyGenSegmentAnything2ToJSON(
+  bodyGenSegmentAnything2: BodyGenSegmentAnything2,
+): string {
+  return JSON.stringify(
+    BodyGenSegmentAnything2$outboundSchema.parse(bodyGenSegmentAnything2),
+  );
+}
+
+export function bodyGenSegmentAnything2FromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenSegmentAnything2, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenSegmentAnything2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenSegmentAnything2' from JSON`,
+  );
 }

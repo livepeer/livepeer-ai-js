@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TextToImageParams = {
   /**
@@ -134,4 +137,22 @@ export namespace TextToImageParams$ {
   export const outboundSchema = TextToImageParams$outboundSchema;
   /** @deprecated use `TextToImageParams$Outbound` instead. */
   export type Outbound = TextToImageParams$Outbound;
+}
+
+export function textToImageParamsToJSON(
+  textToImageParams: TextToImageParams,
+): string {
+  return JSON.stringify(
+    TextToImageParams$outboundSchema.parse(textToImageParams),
+  );
+}
+
+export function textToImageParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<TextToImageParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => TextToImageParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'TextToImageParams' from JSON`,
+  );
 }

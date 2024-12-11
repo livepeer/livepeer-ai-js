@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type BodyGenLLM = {
   prompt: string;
@@ -79,4 +82,18 @@ export namespace BodyGenLLM$ {
   export const outboundSchema = BodyGenLLM$outboundSchema;
   /** @deprecated use `BodyGenLLM$Outbound` instead. */
   export type Outbound = BodyGenLLM$Outbound;
+}
+
+export function bodyGenLLMToJSON(bodyGenLLM: BodyGenLLM): string {
+  return JSON.stringify(BodyGenLLM$outboundSchema.parse(bodyGenLLM));
+}
+
+export function bodyGenLLMFromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenLLM, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenLLM$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenLLM' from JSON`,
+  );
 }

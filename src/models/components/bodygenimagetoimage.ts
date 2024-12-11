@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Image = {
   fileName: string;
@@ -108,6 +111,20 @@ export namespace Image$ {
   export type Outbound = Image$Outbound;
 }
 
+export function imageToJSON(image: Image): string {
+  return JSON.stringify(Image$outboundSchema.parse(image));
+}
+
+export function imageFromJSON(
+  jsonString: string,
+): SafeParseResult<Image, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Image$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Image' from JSON`,
+  );
+}
+
 /** @internal */
 export const BodyGenImageToImage$inboundSchema: z.ZodType<
   BodyGenImageToImage,
@@ -195,4 +212,22 @@ export namespace BodyGenImageToImage$ {
   export const outboundSchema = BodyGenImageToImage$outboundSchema;
   /** @deprecated use `BodyGenImageToImage$Outbound` instead. */
   export type Outbound = BodyGenImageToImage$Outbound;
+}
+
+export function bodyGenImageToImageToJSON(
+  bodyGenImageToImage: BodyGenImageToImage,
+): string {
+  return JSON.stringify(
+    BodyGenImageToImage$outboundSchema.parse(bodyGenImageToImage),
+  );
+}
+
+export function bodyGenImageToImageFromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenImageToImage, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenImageToImage$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenImageToImage' from JSON`,
+  );
 }

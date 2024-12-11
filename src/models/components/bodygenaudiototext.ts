@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
 import { blobLikeSchema } from "../../types/blobs.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type Audio = {
   fileName: string;
@@ -72,6 +75,20 @@ export namespace Audio$ {
   export type Outbound = Audio$Outbound;
 }
 
+export function audioToJSON(audio: Audio): string {
+  return JSON.stringify(Audio$outboundSchema.parse(audio));
+}
+
+export function audioFromJSON(
+  jsonString: string,
+): SafeParseResult<Audio, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Audio$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Audio' from JSON`,
+  );
+}
+
 /** @internal */
 export const BodyGenAudioToText$inboundSchema: z.ZodType<
   BodyGenAudioToText,
@@ -122,4 +139,22 @@ export namespace BodyGenAudioToText$ {
   export const outboundSchema = BodyGenAudioToText$outboundSchema;
   /** @deprecated use `BodyGenAudioToText$Outbound` instead. */
   export type Outbound = BodyGenAudioToText$Outbound;
+}
+
+export function bodyGenAudioToTextToJSON(
+  bodyGenAudioToText: BodyGenAudioToText,
+): string {
+  return JSON.stringify(
+    BodyGenAudioToText$outboundSchema.parse(bodyGenAudioToText),
+  );
+}
+
+export function bodyGenAudioToTextFromJSON(
+  jsonString: string,
+): SafeParseResult<BodyGenAudioToText, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => BodyGenAudioToText$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'BodyGenAudioToText' from JSON`,
+  );
 }

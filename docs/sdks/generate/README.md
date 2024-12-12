@@ -13,7 +13,7 @@
 * [segmentAnything2](#segmentanything2) - Segment Anything 2
 * [llm](#llm) - LLM
 * [imageToText](#imagetotext) - Image To Text
-* [liveVideoToVideo](#livevideotovideo) - Video To Video
+* [liveVideoToVideo](#livevideotovideo) - Live Video To Video
 * [textToSpeech](#texttospeech) - Text To Speech
 
 ## textToImage
@@ -658,7 +658,7 @@ run();
 
 ## liveVideoToVideo
 
-Apply video-like transformations to a provided image.
+Apply transformations to a live video streamed to the returned endpoints.
 
 ### Example Usage
 

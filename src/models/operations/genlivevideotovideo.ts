@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GenLiveVideoToVideoResponse = {
   /**
@@ -88,4 +91,24 @@ export namespace GenLiveVideoToVideoResponse$ {
   export const outboundSchema = GenLiveVideoToVideoResponse$outboundSchema;
   /** @deprecated use `GenLiveVideoToVideoResponse$Outbound` instead. */
   export type Outbound = GenLiveVideoToVideoResponse$Outbound;
+}
+
+export function genLiveVideoToVideoResponseToJSON(
+  genLiveVideoToVideoResponse: GenLiveVideoToVideoResponse,
+): string {
+  return JSON.stringify(
+    GenLiveVideoToVideoResponse$outboundSchema.parse(
+      genLiveVideoToVideoResponse,
+    ),
+  );
+}
+
+export function genLiveVideoToVideoResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GenLiveVideoToVideoResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GenLiveVideoToVideoResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenLiveVideoToVideoResponse' from JSON`,
+  );
 }

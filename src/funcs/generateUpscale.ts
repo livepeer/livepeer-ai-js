@@ -100,6 +100,9 @@ export async function generateUpscale(
   const context = {
     operationID: "genUpscale",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.httpBearer,
     retryConfig: options?.retries
       || client._options.retryConfig

@@ -12,7 +12,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.5.0
+  version: 0.6.0
   additionalDependencies:
     dependencies:
       jest: ^29.7.0
@@ -24,6 +24,8 @@ typescript:
   additionalPackageJSON: {}
   author: Livepeer
   clientServerStatusCodesAsErrors: true
+  defaultErrorName: SDKError
+  enableReactQuery: false
   enumFormat: enum
   flattenGlobalSecurity: true
   flatteningOrder: body-first

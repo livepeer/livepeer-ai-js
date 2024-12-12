@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type LLMResponse = {
   response: string;
@@ -55,4 +58,18 @@ export namespace LLMResponse$ {
   export const outboundSchema = LLMResponse$outboundSchema;
   /** @deprecated use `LLMResponse$Outbound` instead. */
   export type Outbound = LLMResponse$Outbound;
+}
+
+export function llmResponseToJSON(llmResponse: LLMResponse): string {
+  return JSON.stringify(LLMResponse$outboundSchema.parse(llmResponse));
+}
+
+export function llmResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<LLMResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LLMResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LLMResponse' from JSON`,
+  );
 }

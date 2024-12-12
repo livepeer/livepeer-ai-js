@@ -4,9 +4,12 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
- * Initial parameters for the model.
+ * Initial parameters for the pipeline.
  */
 export type Params = {};
 
@@ -20,11 +23,19 @@ export type LiveVideoToVideoParams = {
    */
   publishUrl: string;
   /**
-   * Hugging Face model ID used for image generation.
+   * URL for subscribing via Trickle protocol for updates in the live video-to-video generation params.
+   */
+  controlUrl?: string | undefined;
+  /**
+   * URL for publishing events via Trickle protocol for pipeline status and logs.
+   */
+  eventsUrl?: string | undefined;
+  /**
+   * Name of the pipeline to run in the live video to video job. Notice that this is named model_id for consistency with other routes, but it does not refer to a Hugging Face model ID. The exact model(s) depends on the pipeline implementation and might be configurable via the `params` argument.
    */
   modelId?: string | undefined;
   /**
-   * Initial parameters for the model.
+   * Initial parameters for the pipeline.
    */
   params?: Params | undefined;
 };
@@ -56,6 +67,20 @@ export namespace Params$ {
   export type Outbound = Params$Outbound;
 }
 
+export function paramsToJSON(params: Params): string {
+  return JSON.stringify(Params$outboundSchema.parse(params));
+}
+
+export function paramsFromJSON(
+  jsonString: string,
+): SafeParseResult<Params, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => Params$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'Params' from JSON`,
+  );
+}
+
 /** @internal */
 export const LiveVideoToVideoParams$inboundSchema: z.ZodType<
   LiveVideoToVideoParams,
@@ -64,12 +89,16 @@ export const LiveVideoToVideoParams$inboundSchema: z.ZodType<
 > = z.object({
   subscribe_url: z.string(),
   publish_url: z.string(),
+  control_url: z.string().default(""),
+  events_url: z.string().default(""),
   model_id: z.string().default(""),
   params: z.lazy(() => Params$inboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     "subscribe_url": "subscribeUrl",
     "publish_url": "publishUrl",
+    "control_url": "controlUrl",
+    "events_url": "eventsUrl",
     "model_id": "modelId",
   });
 });
@@ -78,6 +107,8 @@ export const LiveVideoToVideoParams$inboundSchema: z.ZodType<
 export type LiveVideoToVideoParams$Outbound = {
   subscribe_url: string;
   publish_url: string;
+  control_url: string;
+  events_url: string;
   model_id: string;
   params?: Params$Outbound | undefined;
 };
@@ -90,12 +121,16 @@ export const LiveVideoToVideoParams$outboundSchema: z.ZodType<
 > = z.object({
   subscribeUrl: z.string(),
   publishUrl: z.string(),
+  controlUrl: z.string().default(""),
+  eventsUrl: z.string().default(""),
   modelId: z.string().default(""),
   params: z.lazy(() => Params$outboundSchema).optional(),
 }).transform((v) => {
   return remap$(v, {
     subscribeUrl: "subscribe_url",
     publishUrl: "publish_url",
+    controlUrl: "control_url",
+    eventsUrl: "events_url",
     modelId: "model_id",
   });
 });
@@ -111,4 +146,22 @@ export namespace LiveVideoToVideoParams$ {
   export const outboundSchema = LiveVideoToVideoParams$outboundSchema;
   /** @deprecated use `LiveVideoToVideoParams$Outbound` instead. */
   export type Outbound = LiveVideoToVideoParams$Outbound;
+}
+
+export function liveVideoToVideoParamsToJSON(
+  liveVideoToVideoParams: LiveVideoToVideoParams,
+): string {
+  return JSON.stringify(
+    LiveVideoToVideoParams$outboundSchema.parse(liveVideoToVideoParams),
+  );
+}
+
+export function liveVideoToVideoParamsFromJSON(
+  jsonString: string,
+): SafeParseResult<LiveVideoToVideoParams, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => LiveVideoToVideoParams$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'LiveVideoToVideoParams' from JSON`,
+  );
 }

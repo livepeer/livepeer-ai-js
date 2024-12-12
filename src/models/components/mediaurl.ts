@@ -3,6 +3,9 @@
  */
 
 import * as z from "zod";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 /**
  * A URL from which media can be accessed.
@@ -48,4 +51,18 @@ export namespace MediaURL$ {
   export const outboundSchema = MediaURL$outboundSchema;
   /** @deprecated use `MediaURL$Outbound` instead. */
   export type Outbound = MediaURL$Outbound;
+}
+
+export function mediaURLToJSON(mediaURL: MediaURL): string {
+  return JSON.stringify(MediaURL$outboundSchema.parse(mediaURL));
+}
+
+export function mediaURLFromJSON(
+  jsonString: string,
+): SafeParseResult<MediaURL, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => MediaURL$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'MediaURL' from JSON`,
+  );
 }

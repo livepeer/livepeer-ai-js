@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 8bd6d3b6-cae6-4e55-b72f-6fdc1dbce9a1
 management:
-  docChecksum: c22f8c1b01f75ba608165e53e64fb450
+  docChecksum: a690daf53c97c95bb6c912a2c59f804d
   docVersion: 0.0.0
-  speakeasyVersion: 1.434.0
-  generationVersion: 2.452.0
-  releaseVersion: 0.5.0
-  configChecksum: aedc0e9ba8ffdca9aa407f90c308a96c
+  speakeasyVersion: 1.454.0
+  generationVersion: 2.477.0
+  releaseVersion: 0.6.0
+  configChecksum: 46257babca85eed2675780b7015dc1c1
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
   published: true
@@ -14,7 +14,7 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.3
+    core: 3.18.9
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.2
     globalSecurity: 2.82.11
@@ -25,7 +25,6 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.2.0
-    tests: 0.7.0
     unions: 2.85.8
     uploadStreams: 0.1.0
 generatedFiles:
@@ -267,3 +266,4 @@ examples:
         "400":
           application/json: {"detail": {"msg": "<value>"}}
         "422": {}
+generatedTests: {}

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GenLLMResponse = {
   /**
@@ -84,4 +87,18 @@ export namespace GenLLMResponse$ {
   export const outboundSchema = GenLLMResponse$outboundSchema;
   /** @deprecated use `GenLLMResponse$Outbound` instead. */
   export type Outbound = GenLLMResponse$Outbound;
+}
+
+export function genLLMResponseToJSON(genLLMResponse: GenLLMResponse): string {
+  return JSON.stringify(GenLLMResponse$outboundSchema.parse(genLLMResponse));
+}
+
+export function genLLMResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GenLLMResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GenLLMResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenLLMResponse' from JSON`,
+  );
 }

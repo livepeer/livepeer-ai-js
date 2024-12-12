@@ -72,6 +72,9 @@ export async function generateTextToImage(
   const context = {
     operationID: "genTextToImage",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.httpBearer,
     retryConfig: options?.retries
       || client._options.retryConfig

@@ -72,6 +72,9 @@ export async function generateTextToSpeech(
   const context = {
     operationID: "genTextToSpeech",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.httpBearer,
     retryConfig: options?.retries
       || client._options.retryConfig

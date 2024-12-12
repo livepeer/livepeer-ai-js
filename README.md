@@ -90,7 +90,7 @@ run();
 * [segmentAnything2](docs/sdks/generate/README.md#segmentanything2) - Segment Anything 2
 * [llm](docs/sdks/generate/README.md#llm) - LLM
 * [imageToText](docs/sdks/generate/README.md#imagetotext) - Image To Text
-* [liveVideoToVideo](docs/sdks/generate/README.md#livevideotovideo) - Video To Video
+* [liveVideoToVideo](docs/sdks/generate/README.md#livevideotovideo) - Live Video To Video
 * [textToSpeech](docs/sdks/generate/README.md#texttospeech) - Text To Speech
 
 
@@ -116,7 +116,7 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`generateImageToImage`](docs/sdks/generate/README.md#imagetoimage) - Image To Image
 - [`generateImageToText`](docs/sdks/generate/README.md#imagetotext) - Image To Text
 - [`generateImageToVideo`](docs/sdks/generate/README.md#imagetovideo) - Image To Video
-- [`generateLiveVideoToVideo`](docs/sdks/generate/README.md#livevideotovideo) - Video To Video
+- [`generateLiveVideoToVideo`](docs/sdks/generate/README.md#livevideotovideo) - Live Video To Video
 - [`generateLlm`](docs/sdks/generate/README.md#llm) - LLM
 - [`generateSegmentAnything2`](docs/sdks/generate/README.md#segmentanything2) - Segment Anything 2
 - [`generateTextToImage`](docs/sdks/generate/README.md#texttoimage) - Text To Image
@@ -249,11 +249,11 @@ If a HTTP request fails, an operation my also throw an error from the `models/er
 
 In addition, when custom error responses are specified for an operation, the SDK may throw their associated Error type. You can refer to respective *Errors* tables in SDK docs for more details on possible error types for each operation. For example, the `textToImage` method may throw the following errors:
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
-| errors.HTTPValidationError | 422                        | application/json           |
-| errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type                 | Status Code   | Content Type     |
+| -------------------------- | ------------- | ---------------- |
+| errors.HTTPError           | 400, 401, 500 | application/json |
+| errors.HTTPValidationError | 422           | application/json |
+| errors.SDKError            | 4XX, 5XX      | \*/\*            |
 
 ```typescript
 import { Livepeer } from "@livepeer/ai";
@@ -314,12 +314,14 @@ Validation errors can also occur when either method arguments or data returned f
 
 ### Select Server by Index
 
-You can override the default server globally by passing a server index to the `serverIdx` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
+You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://dream-gateway.livepeer.cloud` | None |
-| 1 | `https://livepeer.studio/api/beta/generate` | None |
+| #   | Server                                      |
+| --- | ------------------------------------------- |
+| 0   | `https://dream-gateway.livepeer.cloud`      |
+| 1   | `https://livepeer.studio/api/beta/generate` |
+
+#### Example
 
 ```typescript
 import { Livepeer } from "@livepeer/ai";
@@ -342,11 +344,9 @@ run();
 
 ```
 
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` optional parameter when initializing the SDK client instance. For example:
-
+The default server can also be overridden globally by passing a URL to the `serverURL: string` optional parameter when initializing the SDK client instance. For example:
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 
@@ -425,9 +425,9 @@ const sdk = new Livepeer({ httpClient });
 
 This SDK supports the following security scheme globally:
 
-| Name         | Type         | Scheme       |
-| ------------ | ------------ | ------------ |
-| `httpBearer` | http         | HTTP Bearer  |
+| Name         | Type | Scheme      |
+| ------------ | ---- | ----------- |
+| `httpBearer` | http | HTTP Bearer |
 
 To authenticate with the API the `httpBearer` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
@@ -476,19 +476,24 @@ Livepeer AI Runner: An application to run AI pipelines
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Livepeer AI JavaScript/TypeScript Library](#livepeer-ai-javascripttypescript-library)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Standalone functions](#standalone-functions)
+  * [File uploads](#file-uploads)
+  * [Retries](#retries)
+  * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Authentication](#authentication)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
 
-* [SDK Installation](#sdk-installation)
-* [Requirements](#requirements)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Standalone functions](#standalone-functions)
-* [File uploads](#file-uploads)
-* [Retries](#retries)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Custom HTTP Client](#custom-http-client)
-* [Authentication](#authentication)
-* [Debugging](#debugging)
 <!-- End Table of Contents [toc] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

@@ -4,7 +4,10 @@
 
 import * as z from "zod";
 import { remap as remap$ } from "../../lib/primitives.js";
+import { safeParse } from "../../lib/schemas.js";
+import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
+import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GenImageToTextResponse = {
   /**
@@ -84,4 +87,22 @@ export namespace GenImageToTextResponse$ {
   export const outboundSchema = GenImageToTextResponse$outboundSchema;
   /** @deprecated use `GenImageToTextResponse$Outbound` instead. */
   export type Outbound = GenImageToTextResponse$Outbound;
+}
+
+export function genImageToTextResponseToJSON(
+  genImageToTextResponse: GenImageToTextResponse,
+): string {
+  return JSON.stringify(
+    GenImageToTextResponse$outboundSchema.parse(genImageToTextResponse),
+  );
+}
+
+export function genImageToTextResponseFromJSON(
+  jsonString: string,
+): SafeParseResult<GenImageToTextResponse, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GenImageToTextResponse$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenImageToTextResponse' from JSON`,
+  );
 }

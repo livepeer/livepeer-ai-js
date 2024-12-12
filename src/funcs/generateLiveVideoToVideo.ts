@@ -24,10 +24,10 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Video To Video
+ * Live Video To Video
  *
  * @remarks
- * Apply video-like transformations to a provided image.
+ * Apply transformations to a live video streamed to the returned endpoints.
  */
 export async function generateLiveVideoToVideo(
   client: LivepeerCore,
@@ -72,6 +72,9 @@ export async function generateLiveVideoToVideo(
   const context = {
     operationID: "genLiveVideoToVideo",
     oAuth2Scopes: [],
+
+    resolvedSecurity: requestSecurity,
+
     securitySource: client._options.httpBearer,
     retryConfig: options?.retries
       || client._options.retryConfig

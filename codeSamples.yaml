@@ -133,7 +133,12 @@ actions:
 
             async function run() {
               const result = await livepeer.generate.llm({
-                prompt: "<value>",
+                messages: [
+                  {
+                    role: "<value>",
+                    content: "<value>",
+                  },
+                ],
               });
 
               // Handle the result

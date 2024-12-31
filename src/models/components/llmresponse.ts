@@ -11,6 +11,9 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 export type LLMResponse = {
   response: string;
   tokensUsed: number;
+  id: string;
+  model: string;
+  created: number;
 };
 
 /** @internal */
@@ -21,6 +24,9 @@ export const LLMResponse$inboundSchema: z.ZodType<
 > = z.object({
   response: z.string(),
   tokens_used: z.number().int(),
+  id: z.string(),
+  model: z.string(),
+  created: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     "tokens_used": "tokensUsed",
@@ -31,6 +37,9 @@ export const LLMResponse$inboundSchema: z.ZodType<
 export type LLMResponse$Outbound = {
   response: string;
   tokens_used: number;
+  id: string;
+  model: string;
+  created: number;
 };
 
 /** @internal */
@@ -41,6 +50,9 @@ export const LLMResponse$outboundSchema: z.ZodType<
 > = z.object({
   response: z.string(),
   tokensUsed: z.number().int(),
+  id: z.string(),
+  model: z.string(),
+  created: z.number().int(),
 }).transform((v) => {
   return remap$(v, {
     tokensUsed: "tokens_used",

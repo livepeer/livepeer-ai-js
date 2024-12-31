@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 8bd6d3b6-cae6-4e55-b72f-6fdc1dbce9a1
 management:
-  docChecksum: a690daf53c97c95bb6c912a2c59f804d
+  docChecksum: 5162ce13f49e729b6efa20dd5cdf32be
   docVersion: 0.0.0
-  speakeasyVersion: 1.454.0
-  generationVersion: 2.477.0
-  releaseVersion: 0.6.0
-  configChecksum: 46257babca85eed2675780b7015dc1c1
+  speakeasyVersion: 1.460.3
+  generationVersion: 2.484.0
+  releaseVersion: 0.6.1
+  configChecksum: 3f7609e2eb7caeb1f44841b4805ed0c4
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
   published: true
@@ -14,10 +14,10 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.9
+    core: 3.18.12
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.2
-    globalSecurity: 2.82.11
+    globalSecurity: 2.82.12
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -44,7 +44,6 @@ generatedFiles:
   - docs/models/components/bodygenimagetotextimage.md
   - docs/models/components/bodygenimagetovideo.md
   - docs/models/components/bodygenimagetovideoimage.md
-  - docs/models/components/bodygenllm.md
   - docs/models/components/bodygensegmentanything2.md
   - docs/models/components/bodygensegmentanything2image.md
   - docs/models/components/bodygenupscale.md
@@ -55,6 +54,8 @@ generatedFiles:
   - docs/models/components/imagetotextresponse.md
   - docs/models/components/livevideotovideoparams.md
   - docs/models/components/livevideotovideoresponse.md
+  - docs/models/components/llmmessage.md
+  - docs/models/components/llmrequest.md
   - docs/models/components/llmresponse.md
   - docs/models/components/loc.md
   - docs/models/components/masksresponse.md
@@ -119,7 +120,6 @@ generatedFiles:
   - src/models/components/bodygenimagetoimage.ts
   - src/models/components/bodygenimagetotext.ts
   - src/models/components/bodygenimagetovideo.ts
-  - src/models/components/bodygenllm.ts
   - src/models/components/bodygensegmentanything2.ts
   - src/models/components/bodygenupscale.ts
   - src/models/components/chunk.ts
@@ -128,6 +128,8 @@ generatedFiles:
   - src/models/components/index.ts
   - src/models/components/livevideotovideoparams.ts
   - src/models/components/livevideotovideoresponse.ts
+  - src/models/components/llmmessage.ts
+  - src/models/components/llmrequest.ts
   - src/models/components/llmresponse.ts
   - src/models/components/masksresponse.ts
   - src/models/components/media.ts
@@ -177,7 +179,8 @@ examples:
           application/json: {"images": []}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genImageToImage:
     speakeasy-default-gen-image-to-image:
       requestBody:
@@ -187,7 +190,8 @@ examples:
           application/json: {"images": []}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genImageToVideo:
     speakeasy-default-gen-image-to-video:
       requestBody:
@@ -197,7 +201,8 @@ examples:
           application/json: {"images": []}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genUpscale:
     speakeasy-default-gen-upscale:
       requestBody:
@@ -207,7 +212,8 @@ examples:
           application/json: {"images": []}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genAudioToText:
     speakeasy-default-gen-audio-to-text:
       requestBody:
@@ -217,7 +223,8 @@ examples:
           application/json: {"text": "<value>", "chunks": []}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genSegmentAnything2:
     speakeasy-default-gen-segment-anything2:
       requestBody:
@@ -227,17 +234,20 @@ examples:
           application/json: {"masks": "<value>", "scores": "<value>", "logits": "<value>"}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genLLM:
     speakeasy-default-gen-LLM:
       requestBody:
         application/x-www-form-urlencoded: {"prompt": "<value>"}
+        application/json: {"messages": []}
       responses:
         "200":
-          application/json: {"response": "<value>", "tokens_used": 60712}
+          application/json: {"response": "<value>", "tokens_used": 60712, "id": "<id>", "model": "Expedition", "created": 755586}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genImageToText:
     speakeasy-default-gen-image-to-text:
       requestBody:
@@ -247,7 +257,8 @@ examples:
           application/json: {"text": "<value>"}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genLiveVideoToVideo:
     speakeasy-default-gen-live-video-to-video:
       requestBody:
@@ -257,7 +268,8 @@ examples:
           application/json: {"subscribe_url": "https://vain-kiss.name", "publish_url": "https://frail-duffel.com"}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
   genTextToSpeech:
     speakeasy-default-gen-text-to-speech:
       responses:
@@ -265,5 +277,6 @@ examples:
           application/json: {"audio": {"url": "https://accurate-parsnip.net/"}}
         "400":
           application/json: {"detail": {"msg": "<value>"}}
-        "422": {}
+        "422":
+          application/json: {}
 generatedTests: {}

@@ -127,7 +127,7 @@ export class Generate extends ClientSDK {
    * Generate text using a language model.
    */
   async llm(
-    request: components.BodyGenLLM,
+    request: components.LLMRequest,
     options?: RequestOptions,
   ): Promise<operations.GenLLMResponse> {
     return unwrapAsync(generateLlm(

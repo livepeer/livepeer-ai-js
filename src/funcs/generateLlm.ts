@@ -3,7 +3,7 @@
  */
 
 import { LivepeerCore } from "../core.js";
-import { encodeBodyForm } from "../lib/encodings.js";
+import { encodeJSON } from "../lib/encodings.js";
 import * as M from "../lib/matchers.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
@@ -31,7 +31,7 @@ import { Result } from "../types/fp.js";
  */
 export async function generateLlm(
   client: LivepeerCore,
-  request: components.BodyGenLLM,
+  request: components.LLMRequest,
   options?: RequestOptions,
 ): Promise<
   Result<
@@ -49,22 +49,19 @@ export async function generateLlm(
 > {
   const parsed = safeParse(
     request,
-    (value) => components.BodyGenLLM$outboundSchema.parse(value),
+    (value) => components.LLMRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
     return parsed;
   }
   const payload = parsed.value;
-
-  const body = Object.entries(payload || {}).map(([k, v]) => {
-    return encodeBodyForm(k, v, { charEncoding: "percent" });
-  }).join("&");
+  const body = encodeJSON("body", payload, { explode: true });
 
   const path = pathToFunc("/llm")();
 
   const headers = new Headers({
-    "Content-Type": "application/x-www-form-urlencoded",
+    "Content-Type": "application/json",
     Accept: "application/json",
   });
 
@@ -88,6 +85,7 @@ export async function generateLlm(
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
     method: "POST",
+    baseURL: options?.serverURL,
     path: path,
     headers: headers,
     body: body,

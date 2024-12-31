@@ -8,7 +8,7 @@ A URL from which media can be accessed.
 import { MediaURL } from "@livepeer/ai/models/components";
 
 let value: MediaURL = {
-  url: "https://cumbersome-calculus.name/",
+  url: "https://querulous-chap.biz/",
 };
 ```
 

@@ -3,17 +3,28 @@
  */
 
 import * as z from "zod";
-import { remap as remap$ } from "../../lib/primitives.js";
 import { safeParse } from "../../lib/schemas.js";
 import { Result as SafeParseResult } from "../../types/fp.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
+import {
+  LLMChoice,
+  LLMChoice$inboundSchema,
+  LLMChoice$Outbound,
+  LLMChoice$outboundSchema,
+} from "./llmchoice.js";
+import {
+  LLMTokenUsage,
+  LLMTokenUsage$inboundSchema,
+  LLMTokenUsage$Outbound,
+  LLMTokenUsage$outboundSchema,
+} from "./llmtokenusage.js";
 
 export type LLMResponse = {
-  response: string;
-  tokensUsed: number;
   id: string;
   model: string;
   created: number;
+  usage: LLMTokenUsage;
+  choices: Array<LLMChoice>;
 };
 
 /** @internal */
@@ -22,24 +33,20 @@ export const LLMResponse$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  response: z.string(),
-  tokens_used: z.number().int(),
   id: z.string(),
   model: z.string(),
   created: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    "tokens_used": "tokensUsed",
-  });
+  usage: LLMTokenUsage$inboundSchema,
+  choices: z.array(LLMChoice$inboundSchema),
 });
 
 /** @internal */
 export type LLMResponse$Outbound = {
-  response: string;
-  tokens_used: number;
   id: string;
   model: string;
   created: number;
+  usage: LLMTokenUsage$Outbound;
+  choices: Array<LLMChoice$Outbound>;
 };
 
 /** @internal */
@@ -48,15 +55,11 @@ export const LLMResponse$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   LLMResponse
 > = z.object({
-  response: z.string(),
-  tokensUsed: z.number().int(),
   id: z.string(),
   model: z.string(),
   created: z.number().int(),
-}).transform((v) => {
-  return remap$(v, {
-    tokensUsed: "tokens_used",
-  });
+  usage: LLMTokenUsage$outboundSchema,
+  choices: z.array(LLMChoice$outboundSchema),
 });
 
 /**

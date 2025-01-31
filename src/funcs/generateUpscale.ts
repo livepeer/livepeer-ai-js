@@ -3,8 +3,10 @@
  */
 
 import { LivepeerCore } from "../core.js";
+import { appendForm } from "../lib/encodings.js";
 import { readableStreamToArrayBuffer } from "../lib/files.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -40,6 +42,7 @@ export async function generateUpscale(
     operations.GenUpscaleResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
+    | errors.HTTPError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -61,37 +64,38 @@ export async function generateUpscale(
   const body = new FormData();
 
   if (isBlobLike(payload.image)) {
-    body.append("image", payload.image);
+    appendForm(body, "image", payload.image);
   } else if (isReadableStream(payload.image.content)) {
     const buffer = await readableStreamToArrayBuffer(payload.image.content);
     const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body.append("image", blob);
+    appendForm(body, "image", blob);
   } else {
-    body.append(
+    appendForm(
+      body,
       "image",
       new Blob([payload.image.content], { type: "application/octet-stream" }),
       payload.image.fileName,
     );
   }
-  body.append("prompt", payload.prompt);
+  appendForm(body, "prompt", payload.prompt);
   if (payload.model_id !== undefined) {
-    body.append("model_id", payload.model_id);
+    appendForm(body, "model_id", payload.model_id);
   }
   if (payload.num_inference_steps !== undefined) {
-    body.append("num_inference_steps", String(payload.num_inference_steps));
+    appendForm(body, "num_inference_steps", payload.num_inference_steps);
   }
   if (payload.safety_check !== undefined) {
-    body.append("safety_check", String(payload.safety_check));
+    appendForm(body, "safety_check", payload.safety_check);
   }
   if (payload.seed !== undefined) {
-    body.append("seed", String(payload.seed));
+    appendForm(body, "seed", payload.seed);
   }
 
   const path = pathToFunc("/upscale")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.httpBearer);
   const securityInput = secConfig == null ? {} : { httpBearer: secConfig };
@@ -147,6 +151,7 @@ export async function generateUpscale(
     operations.GenUpscaleResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
+    | errors.HTTPError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -158,9 +163,11 @@ export async function generateUpscale(
     M.json(200, operations.GenUpscaleResponse$inboundSchema, {
       key: "ImageResponse",
     }),
-    M.jsonErr([400, 401, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr([400, 401], errors.HTTPError$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.jsonErr(500, errors.HTTPError$inboundSchema),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

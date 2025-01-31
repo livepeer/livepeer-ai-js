@@ -8,8 +8,8 @@ Response model for live video-to-video generation.
 import { LiveVideoToVideoResponse } from "@livepeer/ai/models/components";
 
 let value: LiveVideoToVideoResponse = {
-  subscribeUrl: "https://ruddy-bandwidth.net/",
-  publishUrl: "https://dutiful-cellar.biz",
+  subscribeUrl: "https://heavy-middle.info/",
+  publishUrl: "https://carefree-cross-contamination.com",
 };
 ```
 

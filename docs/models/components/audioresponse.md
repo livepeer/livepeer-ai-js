@@ -9,7 +9,7 @@ import { AudioResponse } from "@livepeer/ai/models/components";
 
 let value: AudioResponse = {
   audio: {
-    url: "https://lighthearted-developing.com/",
+    url: "https://hoarse-slide.com/",
   },
 };
 ```

@@ -3,8 +3,10 @@
  */
 
 import { LivepeerCore } from "../core.js";
+import { appendForm } from "../lib/encodings.js";
 import { readableStreamToArrayBuffer } from "../lib/files.js";
 import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
@@ -40,6 +42,7 @@ export async function generateAudioToText(
     operations.GenAudioToTextResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
+    | errors.HTTPError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -61,30 +64,31 @@ export async function generateAudioToText(
   const body = new FormData();
 
   if (isBlobLike(payload.audio)) {
-    body.append("audio", payload.audio);
+    appendForm(body, "audio", payload.audio);
   } else if (isReadableStream(payload.audio.content)) {
     const buffer = await readableStreamToArrayBuffer(payload.audio.content);
     const blob = new Blob([buffer], { type: "application/octet-stream" });
-    body.append("audio", blob);
+    appendForm(body, "audio", blob);
   } else {
-    body.append(
+    appendForm(
+      body,
       "audio",
       new Blob([payload.audio.content], { type: "application/octet-stream" }),
       payload.audio.fileName,
     );
   }
   if (payload.model_id !== undefined) {
-    body.append("model_id", payload.model_id);
+    appendForm(body, "model_id", payload.model_id);
   }
   if (payload.return_timestamps !== undefined) {
-    body.append("return_timestamps", payload.return_timestamps);
+    appendForm(body, "return_timestamps", payload.return_timestamps);
   }
 
   const path = pathToFunc("/audio-to-text")();
 
-  const headers = new Headers({
+  const headers = new Headers(compactMap({
     Accept: "application/json",
-  });
+  }));
 
   const secConfig = await extractSecurity(client._options.httpBearer);
   const securityInput = secConfig == null ? {} : { httpBearer: secConfig };
@@ -140,6 +144,7 @@ export async function generateAudioToText(
     operations.GenAudioToTextResponse,
     | errors.HTTPError
     | errors.HTTPValidationError
+    | errors.HTTPError
     | SDKError
     | SDKValidationError
     | UnexpectedClientError
@@ -151,9 +156,11 @@ export async function generateAudioToText(
     M.json(200, operations.GenAudioToTextResponse$inboundSchema, {
       key: "TextResponse",
     }),
-    M.jsonErr([400, 401, 413, 415, 500], errors.HTTPError$inboundSchema),
+    M.jsonErr([400, 401, 413, 415], errors.HTTPError$inboundSchema),
     M.jsonErr(422, errors.HTTPValidationError$inboundSchema),
-    M.fail(["4XX", "5XX"]),
+    M.jsonErr(500, errors.HTTPError$inboundSchema),
+    M.fail("4XX"),
+    M.fail("5XX"),
   )(response, { extraFields: responseFields });
   if (!result.ok) {
     return result;

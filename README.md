@@ -62,7 +62,16 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -152,6 +161,15 @@ async function run() {
   const result = await livepeer.generate.imageToImage({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
+    guidanceScale: 7.5,
+    imageGuidanceScale: 1.5,
+    loras: "",
+    modelId: "",
+    negativePrompt: "",
+    numImagesPerPrompt: 1,
+    numInferenceSteps: 100,
+    safetyCheck: true,
+    strength: 0.8,
   });
 
   // Handle the result
@@ -178,7 +196,16 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   }, {
     retries: {
       strategy: "backoff",
@@ -220,7 +247,16 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -237,11 +273,12 @@ run();
 
 Some methods specify known errors which can be thrown. All the known errors are enumerated in the `models/errors/errors.ts` module. The known errors for a method are documented under the *Errors* tables in SDK docs. For example, the `textToImage` method may throw the following errors:
 
-| Error Type                 | Status Code   | Content Type     |
-| -------------------------- | ------------- | ---------------- |
-| errors.HTTPError           | 400, 401, 500 | application/json |
-| errors.HTTPValidationError | 422           | application/json |
-| errors.SDKError            | 4XX, 5XX      | \*/\*            |
+| Error Type                 | Status Code | Content Type     |
+| -------------------------- | ----------- | ---------------- |
+| errors.HTTPError           | 400, 401    | application/json |
+| errors.HTTPValidationError | 422         | application/json |
+| errors.HTTPError           | 500         | application/json |
+| errors.SDKError            | 4XX, 5XX    | \*/\*            |
 
 If the method throws an error and it is not captured by the known errors, it will default to throwing a `SDKError`.
 
@@ -261,7 +298,16 @@ async function run() {
   let result;
   try {
     result = await livepeer.generate.textToImage({
+      modelId: "",
+      loras: "",
       prompt: "<value>",
+      height: 576,
+      width: 1024,
+      guidanceScale: 7.5,
+      negativePrompt: "",
+      safetyCheck: true,
+      numInferenceSteps: 50,
+      numImagesPerPrompt: 1,
     });
 
     // Handle the result
@@ -283,6 +329,11 @@ async function run() {
       }
       case (err instanceof HTTPValidationError): {
         // Handle err.data$: HTTPValidationErrorData
+        console.error(err);
+        return;
+      }
+      case (err instanceof HTTPError): {
+        // Handle err.data$: HTTPErrorData
         console.error(err);
         return;
       }
@@ -335,7 +386,16 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -359,7 +419,16 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -441,7 +510,16 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   });
 
   // Handle the result

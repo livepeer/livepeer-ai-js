@@ -31,7 +31,16 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -57,7 +66,16 @@ const livepeer = new LivepeerCore({
 
 async function run() {
   const res = await generateTextToImage(livepeer, {
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   });
 
   if (!res.ok) {
@@ -90,8 +108,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
+| errors.HTTPError           | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## imageToImage
@@ -112,6 +131,15 @@ async function run() {
   const result = await livepeer.generate.imageToImage({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
+    guidanceScale: 7.5,
+    imageGuidanceScale: 1.5,
+    loras: "",
+    modelId: "",
+    negativePrompt: "",
+    numImagesPerPrompt: 1,
+    numInferenceSteps: 100,
+    safetyCheck: true,
+    strength: 0.8,
   });
 
   // Handle the result
@@ -140,6 +168,15 @@ async function run() {
   const res = await generateImageToImage(livepeer, {
     image: await openAsBlob("example.file"),
     prompt: "<value>",
+    guidanceScale: 7.5,
+    imageGuidanceScale: 1.5,
+    loras: "",
+    modelId: "",
+    negativePrompt: "",
+    numImagesPerPrompt: 1,
+    numInferenceSteps: 100,
+    safetyCheck: true,
+    strength: 0.8,
   });
 
   if (!res.ok) {
@@ -172,8 +209,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
+| errors.HTTPError           | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## imageToVideo
@@ -193,6 +231,14 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.imageToVideo({
     image: await openAsBlob("example.file"),
+    fps: 6,
+    height: 576,
+    modelId: "",
+    motionBucketId: 127,
+    noiseAugStrength: 0.02,
+    numInferenceSteps: 25,
+    safetyCheck: true,
+    width: 1024,
   });
 
   // Handle the result
@@ -220,6 +266,14 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateImageToVideo(livepeer, {
     image: await openAsBlob("example.file"),
+    fps: 6,
+    height: 576,
+    modelId: "",
+    motionBucketId: 127,
+    noiseAugStrength: 0.02,
+    numInferenceSteps: 25,
+    safetyCheck: true,
+    width: 1024,
   });
 
   if (!res.ok) {
@@ -252,8 +306,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
+| errors.HTTPError           | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## upscale
@@ -274,6 +329,9 @@ async function run() {
   const result = await livepeer.generate.upscale({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
+    modelId: "",
+    numInferenceSteps: 75,
+    safetyCheck: true,
   });
 
   // Handle the result
@@ -302,6 +360,9 @@ async function run() {
   const res = await generateUpscale(livepeer, {
     image: await openAsBlob("example.file"),
     prompt: "<value>",
+    modelId: "",
+    numInferenceSteps: 75,
+    safetyCheck: true,
   });
 
   if (!res.ok) {
@@ -334,8 +395,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
+| errors.HTTPError           | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## audioToText
@@ -355,6 +417,8 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.audioToText({
     audio: await openAsBlob("example.file"),
+    modelId: "",
+    returnTimestamps: "true",
   });
 
   // Handle the result
@@ -382,6 +446,8 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateAudioToText(livepeer, {
     audio: await openAsBlob("example.file"),
+    modelId: "",
+    returnTimestamps: "true",
   });
 
   if (!res.ok) {
@@ -414,8 +480,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 413, 415, 500    | application/json           |
+| errors.HTTPError           | 400, 401, 413, 415         | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## segmentAnything2
@@ -435,6 +502,10 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.segmentAnything2({
     image: await openAsBlob("example.file"),
+    modelId: "",
+    multimaskOutput: true,
+    normalizeCoords: true,
+    returnLogits: true,
   });
 
   // Handle the result
@@ -462,6 +533,10 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateSegmentAnything2(livepeer, {
     image: await openAsBlob("example.file"),
+    modelId: "",
+    multimaskOutput: true,
+    normalizeCoords: true,
+    returnLogits: true,
   });
 
   if (!res.ok) {
@@ -494,8 +569,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
+| errors.HTTPError           | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## llm
@@ -514,11 +590,14 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.llm({
     messages: [
-      {
-        role: "<value>",
-        content: "<value>",
-      },
+
     ],
+    model: "",
+    temperature: 0.7,
+    maxTokens: 256,
+    topP: 1,
+    topK: -1,
+    stream: false,
   });
 
   // Handle the result
@@ -545,11 +624,14 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateLlm(livepeer, {
     messages: [
-      {
-        role: "<value>",
-        content: "<value>",
-      },
+  
     ],
+    model: "",
+    temperature: 0.7,
+    maxTokens: 256,
+    topP: 1,
+    topK: -1,
+    stream: false,
   });
 
   if (!res.ok) {
@@ -582,8 +664,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
+| errors.HTTPError           | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## imageToText
@@ -603,6 +686,8 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.imageToText({
     image: await openAsBlob("example.file"),
+    modelId: "",
+    prompt: "",
   });
 
   // Handle the result
@@ -630,6 +715,8 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateImageToText(livepeer, {
     image: await openAsBlob("example.file"),
+    modelId: "",
+    prompt: "",
   });
 
   if (!res.ok) {
@@ -662,8 +749,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 413, 500         | application/json           |
+| errors.HTTPError           | 400, 401, 413              | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## liveVideoToVideo
@@ -683,6 +771,9 @@ async function run() {
   const result = await livepeer.generate.liveVideoToVideo({
     subscribeUrl: "https://soulful-lava.org/",
     publishUrl: "https://vain-tabletop.biz",
+    controlUrl: "",
+    eventsUrl: "",
+    modelId: "",
   });
 
   // Handle the result
@@ -710,6 +801,9 @@ async function run() {
   const res = await generateLiveVideoToVideo(livepeer, {
     subscribeUrl: "https://soulful-lava.org/",
     publishUrl: "https://vain-tabletop.biz",
+    controlUrl: "",
+    eventsUrl: "",
+    modelId: "",
   });
 
   if (!res.ok) {
@@ -742,8 +836,9 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
+| errors.HTTPError           | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |
 
 ## textToSpeech
@@ -760,7 +855,11 @@ const livepeer = new Livepeer({
 });
 
 async function run() {
-  const result = await livepeer.generate.textToSpeech({});
+  const result = await livepeer.generate.textToSpeech({
+    modelId: "",
+    text: "",
+    description: "A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.",
+  });
 
   // Handle the result
   console.log(result);
@@ -784,7 +883,11 @@ const livepeer = new LivepeerCore({
 });
 
 async function run() {
-  const res = await generateTextToSpeech(livepeer, {});
+  const res = await generateTextToSpeech(livepeer, {
+    modelId: "",
+    text: "",
+    description: "A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.",
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -816,6 +919,7 @@ run();
 
 | Error Type                 | Status Code                | Content Type               |
 | -------------------------- | -------------------------- | -------------------------- |
-| errors.HTTPError           | 400, 401, 500              | application/json           |
+| errors.HTTPError           | 400, 401                   | application/json           |
 | errors.HTTPValidationError | 422                        | application/json           |
+| errors.HTTPError           | 500                        | application/json           |
 | errors.SDKError            | 4XX, 5XX                   | \*/\*                      |

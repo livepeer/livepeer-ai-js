@@ -31,7 +31,16 @@ const livepeer = new LivepeerCore({
 
 async function run() {
   const res = await generateTextToImage(livepeer, {
+    modelId: "",
+    loras: "",
     prompt: "<value>",
+    height: 576,
+    width: 1024,
+    guidanceScale: 7.5,
+    negativePrompt: "",
+    safetyCheck: true,
+    numInferenceSteps: 50,
+    numImagesPerPrompt: 1,
   });
 
   switch (true) {

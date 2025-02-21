@@ -62,16 +62,7 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -161,15 +152,6 @@ async function run() {
   const result = await livepeer.generate.imageToImage({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
-    guidanceScale: 7.5,
-    imageGuidanceScale: 1.5,
-    loras: "",
-    modelId: "",
-    negativePrompt: "",
-    numImagesPerPrompt: 1,
-    numInferenceSteps: 100,
-    safetyCheck: true,
-    strength: 0.8,
   });
 
   // Handle the result
@@ -196,16 +178,7 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   }, {
     retries: {
       strategy: "backoff",
@@ -247,16 +220,7 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -298,16 +262,7 @@ async function run() {
   let result;
   try {
     result = await livepeer.generate.textToImage({
-      modelId: "",
-      loras: "",
       prompt: "<value>",
-      height: 576,
-      width: 1024,
-      guidanceScale: 7.5,
-      negativePrompt: "",
-      safetyCheck: true,
-      numInferenceSteps: 50,
-      numImagesPerPrompt: 1,
     });
 
     // Handle the result
@@ -369,10 +324,10 @@ In some rare cases, the SDK can fail to get a response from the server or even m
 
 You can override the default server globally by passing a server index to the `serverIdx: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
 
-| #   | Server                                      |
-| --- | ------------------------------------------- |
-| 0   | `https://dream-gateway.livepeer.cloud`      |
-| 1   | `https://livepeer.studio/api/beta/generate` |
+| #   | Server                                      | Description                      |
+| --- | ------------------------------------------- | -------------------------------- |
+| 0   | `https://dream-gateway.livepeer.cloud`      | Livepeer Cloud Community Gateway |
+| 1   | `https://livepeer.studio/api/beta/generate` | Livepeer Studio Gateway          |
 
 #### Example
 
@@ -386,16 +341,7 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -419,16 +365,7 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -510,16 +447,7 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
 
   // Handle the result

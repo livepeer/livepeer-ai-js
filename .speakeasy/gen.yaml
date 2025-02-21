@@ -5,14 +5,15 @@ generation:
   usageSnippets:
     optionalPropertyRendering: withExample
   fixes:
-    nameResolutionDec2023: false
+    nameResolutionFeb2025: false
     parameterOrderingFeb2024: false
     requestResponseComponentNamesFeb2024: false
+    securityFeb2025: false
   auth:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 typescript:
-  version: 0.6.2
+  version: 0.7.0
   additionalDependencies:
     dependencies:
       jest: ^29.7.0
@@ -26,6 +27,7 @@ typescript:
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKError
   enableCustomCodeRegions: false
+  enableMCPServer: true
   enableReactQuery: false
   enumFormat: enum
   flattenGlobalSecurity: true

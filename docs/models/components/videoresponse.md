@@ -10,8 +10,8 @@ import { VideoResponse } from "@livepeer/ai/models/components";
 let value: VideoResponse = {
   images: [
     {
-      url: "https://agitated-ocelot.name",
-      seed: 616934,
+      url: "https://ruddy-bandwidth.net/",
+      seed: 670638,
       nsfw: false,
     },
   ],

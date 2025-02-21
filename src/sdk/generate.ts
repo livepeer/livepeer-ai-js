@@ -161,12 +161,16 @@ export class Generate extends ClientSDK {
    * Apply transformations to a live video streamed to the returned endpoints.
    */
   async liveVideoToVideo(
-    request: components.LiveVideoToVideoParams,
+    liveVideoToVideoParams: components.LiveVideoToVideoParams,
+    requestID?: string | undefined,
+    streamID?: string | undefined,
     options?: RequestOptions,
   ): Promise<operations.GenLiveVideoToVideoResponse> {
     return unwrapAsync(generateLiveVideoToVideo(
       this,
-      request,
+      liveVideoToVideoParams,
+      requestID,
+      streamID,
       options,
     ));
   }

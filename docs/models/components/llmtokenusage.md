@@ -6,9 +6,9 @@
 import { LLMTokenUsage } from "@livepeer/ai/models/components";
 
 let value: LLMTokenUsage = {
-  promptTokens: 670638,
-  completionTokens: 210382,
-  totalTokens: 128926,
+  promptTokens: 102044,
+  completionTokens: 208876,
+  totalTokens: 161309,
 };
 ```
 

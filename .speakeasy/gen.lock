@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 8bd6d3b6-cae6-4e55-b72f-6fdc1dbce9a1
 management:
-  docChecksum: 6657dd3e876a909472f364dc1fe34d72
+  docChecksum: 28f323b6b1fd018dc3f78ab73e1cb6f8
   docVersion: 0.0.0
-  speakeasyVersion: 1.480.0
-  generationVersion: 2.499.0
-  releaseVersion: 0.6.2
-  configChecksum: f41c806c90a2fadee46578cb5e358e89
+  speakeasyVersion: 1.498.1
+  generationVersion: 2.518.1
+  releaseVersion: 0.7.0
+  configChecksum: 787dbd457ca62ee21fbd486a5151114e
   repoURL: https://github.com/livepeer/livepeer-ai-js.git
   installationURL: https://github.com/livepeer/livepeer-ai-js
   published: true
@@ -14,10 +14,11 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.20
+    core: 3.20.0
     defaultEnabledRetries: 0.1.0
     envVarSecurityUsage: 0.1.2
-    globalSecurity: 2.82.12
+    flattening: 2.82.1
+    globalSecurity: 2.82.13
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -75,6 +76,7 @@ generatedFiles:
   - docs/models/operations/genimagetoimageresponse.md
   - docs/models/operations/genimagetotextresponse.md
   - docs/models/operations/genimagetovideoresponse.md
+  - docs/models/operations/genlivevideotovideorequest.md
   - docs/models/operations/genlivevideotovideoresponse.md
   - docs/models/operations/genllmresponse.md
   - docs/models/operations/gensegmentanything2response.md
@@ -164,6 +166,7 @@ generatedFiles:
   - src/sdk/generate.ts
   - src/sdk/index.ts
   - src/sdk/sdk.ts
+  - src/types/async.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
   - src/types/enums.ts

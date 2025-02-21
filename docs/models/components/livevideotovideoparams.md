@@ -6,8 +6,8 @@
 import { LiveVideoToVideoParams } from "@livepeer/ai/models/components";
 
 let value: LiveVideoToVideoParams = {
-  subscribeUrl: "https://fair-insolence.biz",
-  publishUrl: "https://cheerful-peony.com/",
+  subscribeUrl: "https://hoarse-slide.com/",
+  publishUrl: "https://bustling-wallaby.info",
 };
 ```
 

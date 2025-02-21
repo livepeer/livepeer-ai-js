@@ -31,16 +31,7 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
 
   // Handle the result
@@ -66,16 +57,7 @@ const livepeer = new LivepeerCore({
 
 async function run() {
   const res = await generateTextToImage(livepeer, {
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
 
   if (!res.ok) {
@@ -131,15 +113,6 @@ async function run() {
   const result = await livepeer.generate.imageToImage({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
-    guidanceScale: 7.5,
-    imageGuidanceScale: 1.5,
-    loras: "",
-    modelId: "",
-    negativePrompt: "",
-    numImagesPerPrompt: 1,
-    numInferenceSteps: 100,
-    safetyCheck: true,
-    strength: 0.8,
   });
 
   // Handle the result
@@ -168,15 +141,6 @@ async function run() {
   const res = await generateImageToImage(livepeer, {
     image: await openAsBlob("example.file"),
     prompt: "<value>",
-    guidanceScale: 7.5,
-    imageGuidanceScale: 1.5,
-    loras: "",
-    modelId: "",
-    negativePrompt: "",
-    numImagesPerPrompt: 1,
-    numInferenceSteps: 100,
-    safetyCheck: true,
-    strength: 0.8,
   });
 
   if (!res.ok) {
@@ -231,14 +195,6 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.imageToVideo({
     image: await openAsBlob("example.file"),
-    fps: 6,
-    height: 576,
-    modelId: "",
-    motionBucketId: 127,
-    noiseAugStrength: 0.02,
-    numInferenceSteps: 25,
-    safetyCheck: true,
-    width: 1024,
   });
 
   // Handle the result
@@ -266,14 +222,6 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateImageToVideo(livepeer, {
     image: await openAsBlob("example.file"),
-    fps: 6,
-    height: 576,
-    modelId: "",
-    motionBucketId: 127,
-    noiseAugStrength: 0.02,
-    numInferenceSteps: 25,
-    safetyCheck: true,
-    width: 1024,
   });
 
   if (!res.ok) {
@@ -329,9 +277,6 @@ async function run() {
   const result = await livepeer.generate.upscale({
     image: await openAsBlob("example.file"),
     prompt: "<value>",
-    modelId: "",
-    numInferenceSteps: 75,
-    safetyCheck: true,
   });
 
   // Handle the result
@@ -360,9 +305,6 @@ async function run() {
   const res = await generateUpscale(livepeer, {
     image: await openAsBlob("example.file"),
     prompt: "<value>",
-    modelId: "",
-    numInferenceSteps: 75,
-    safetyCheck: true,
   });
 
   if (!res.ok) {
@@ -417,8 +359,6 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.audioToText({
     audio: await openAsBlob("example.file"),
-    modelId: "",
-    returnTimestamps: "true",
   });
 
   // Handle the result
@@ -446,8 +386,6 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateAudioToText(livepeer, {
     audio: await openAsBlob("example.file"),
-    modelId: "",
-    returnTimestamps: "true",
   });
 
   if (!res.ok) {
@@ -502,10 +440,6 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.segmentAnything2({
     image: await openAsBlob("example.file"),
-    modelId: "",
-    multimaskOutput: true,
-    normalizeCoords: true,
-    returnLogits: true,
   });
 
   // Handle the result
@@ -533,10 +467,6 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateSegmentAnything2(livepeer, {
     image: await openAsBlob("example.file"),
-    modelId: "",
-    multimaskOutput: true,
-    normalizeCoords: true,
-    returnLogits: true,
   });
 
   if (!res.ok) {
@@ -592,12 +522,6 @@ async function run() {
     messages: [
 
     ],
-    model: "",
-    temperature: 0.7,
-    maxTokens: 256,
-    topP: 1,
-    topK: -1,
-    stream: false,
   });
 
   // Handle the result
@@ -626,12 +550,6 @@ async function run() {
     messages: [
   
     ],
-    model: "",
-    temperature: 0.7,
-    maxTokens: 256,
-    topP: 1,
-    topK: -1,
-    stream: false,
   });
 
   if (!res.ok) {
@@ -686,8 +604,6 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.imageToText({
     image: await openAsBlob("example.file"),
-    modelId: "",
-    prompt: "",
   });
 
   // Handle the result
@@ -715,8 +631,6 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateImageToText(livepeer, {
     image: await openAsBlob("example.file"),
-    modelId: "",
-    prompt: "",
   });
 
   if (!res.ok) {
@@ -771,9 +685,6 @@ async function run() {
   const result = await livepeer.generate.liveVideoToVideo({
     subscribeUrl: "https://soulful-lava.org/",
     publishUrl: "https://vain-tabletop.biz",
-    controlUrl: "",
-    eventsUrl: "",
-    modelId: "",
   });
 
   // Handle the result
@@ -801,9 +712,6 @@ async function run() {
   const res = await generateLiveVideoToVideo(livepeer, {
     subscribeUrl: "https://soulful-lava.org/",
     publishUrl: "https://vain-tabletop.biz",
-    controlUrl: "",
-    eventsUrl: "",
-    modelId: "",
   });
 
   if (!res.ok) {
@@ -823,7 +731,9 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                                                      | [components.LiveVideoToVideoParams](../../models/components/livevideotovideoparams.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | The request object to use for the request.                                                                                                                                     |
+| `liveVideoToVideoParams`                                                                                                                                                       | [components.LiveVideoToVideoParams](../../models/components/livevideotovideoparams.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `requestID`                                                                                                                                                                    | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
+| `streamID`                                                                                                                                                                     | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | N/A                                                                                                                                                                            |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
@@ -855,11 +765,7 @@ const livepeer = new Livepeer({
 });
 
 async function run() {
-  const result = await livepeer.generate.textToSpeech({
-    modelId: "",
-    text: "",
-    description: "A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.",
-  });
+  const result = await livepeer.generate.textToSpeech({});
 
   // Handle the result
   console.log(result);
@@ -883,11 +789,7 @@ const livepeer = new LivepeerCore({
 });
 
 async function run() {
-  const res = await generateTextToSpeech(livepeer, {
-    modelId: "",
-    text: "",
-    description: "A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.",
-  });
+  const res = await generateTextToSpeech(livepeer, {});
 
   if (!res.ok) {
     throw res.error;

@@ -19,8 +19,6 @@ actions:
             async function run() {
               const result = await livepeer.generate.audioToText({
                 audio: await openAsBlob("example.file"),
-                modelId: "",
-                returnTimestamps: "true",
               });
 
               // Handle the result
@@ -45,15 +43,6 @@ actions:
               const result = await livepeer.generate.imageToImage({
                 prompt: "<value>",
                 image: await openAsBlob("example.file"),
-                modelId: "",
-                loras: "",
-                strength: 0.8,
-                guidanceScale: 7.5,
-                imageGuidanceScale: 1.5,
-                negativePrompt: "",
-                safetyCheck: true,
-                numInferenceSteps: 100,
-                numImagesPerPrompt: 1,
               });
 
               // Handle the result
@@ -77,8 +66,6 @@ actions:
             async function run() {
               const result = await livepeer.generate.imageToText({
                 image: await openAsBlob("example.file"),
-                prompt: "",
-                modelId: "",
               });
 
               // Handle the result
@@ -102,14 +89,6 @@ actions:
             async function run() {
               const result = await livepeer.generate.imageToVideo({
                 image: await openAsBlob("example.file"),
-                modelId: "",
-                height: 576,
-                width: 1024,
-                fps: 6,
-                motionBucketId: 127,
-                noiseAugStrength: 0.02,
-                safetyCheck: true,
-                numInferenceSteps: 25,
               });
 
               // Handle the result
@@ -133,9 +112,6 @@ actions:
               const result = await livepeer.generate.liveVideoToVideo({
                 subscribeUrl: "https://soulful-lava.org/",
                 publishUrl: "https://vain-tabletop.biz",
-                controlUrl: "",
-                eventsUrl: "",
-                modelId: "",
               });
 
               // Handle the result
@@ -160,12 +136,6 @@ actions:
                 messages: [
 
                 ],
-                model: "",
-                temperature: 0.7,
-                maxTokens: 256,
-                topP: 1,
-                topK: -1,
-                stream: false,
               });
 
               // Handle the result
@@ -189,10 +159,6 @@ actions:
             async function run() {
               const result = await livepeer.generate.segmentAnything2({
                 image: await openAsBlob("example.file"),
-                modelId: "",
-                multimaskOutput: true,
-                returnLogits: true,
-                normalizeCoords: true,
               });
 
               // Handle the result
@@ -214,16 +180,7 @@ actions:
 
             async function run() {
               const result = await livepeer.generate.textToImage({
-                modelId: "",
-                loras: "",
                 prompt: "<value>",
-                height: 576,
-                width: 1024,
-                guidanceScale: 7.5,
-                negativePrompt: "",
-                safetyCheck: true,
-                numInferenceSteps: 50,
-                numImagesPerPrompt: 1,
               });
 
               // Handle the result
@@ -244,11 +201,7 @@ actions:
             });
 
             async function run() {
-              const result = await livepeer.generate.textToSpeech({
-                modelId: "",
-                text: "",
-                description: "A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.",
-              });
+              const result = await livepeer.generate.textToSpeech({});
 
               // Handle the result
               console.log(result);
@@ -272,9 +225,6 @@ actions:
               const result = await livepeer.generate.upscale({
                 prompt: "<value>",
                 image: await openAsBlob("example.file"),
-                modelId: "",
-                safetyCheck: true,
-                numInferenceSteps: 75,
               });
 
               // Handle the result

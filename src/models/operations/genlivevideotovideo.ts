@@ -9,6 +9,12 @@ import { Result as SafeParseResult } from "../../types/fp.js";
 import * as components from "../components/index.js";
 import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
+export type GenLiveVideoToVideoRequest = {
+  requestID?: string | undefined;
+  streamID?: string | undefined;
+  liveVideoToVideoParams: components.LiveVideoToVideoParams;
+};
+
 export type GenLiveVideoToVideoResponse = {
   /**
    * HTTP response content type for this operation
@@ -27,6 +33,74 @@ export type GenLiveVideoToVideoResponse = {
    */
   liveVideoToVideoResponse?: components.LiveVideoToVideoResponse | undefined;
 };
+
+/** @internal */
+export const GenLiveVideoToVideoRequest$inboundSchema: z.ZodType<
+  GenLiveVideoToVideoRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  requestID: z.string().optional(),
+  streamID: z.string().optional(),
+  LiveVideoToVideoParams: components.LiveVideoToVideoParams$inboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    "LiveVideoToVideoParams": "liveVideoToVideoParams",
+  });
+});
+
+/** @internal */
+export type GenLiveVideoToVideoRequest$Outbound = {
+  requestID?: string | undefined;
+  streamID?: string | undefined;
+  LiveVideoToVideoParams: components.LiveVideoToVideoParams$Outbound;
+};
+
+/** @internal */
+export const GenLiveVideoToVideoRequest$outboundSchema: z.ZodType<
+  GenLiveVideoToVideoRequest$Outbound,
+  z.ZodTypeDef,
+  GenLiveVideoToVideoRequest
+> = z.object({
+  requestID: z.string().optional(),
+  streamID: z.string().optional(),
+  liveVideoToVideoParams: components.LiveVideoToVideoParams$outboundSchema,
+}).transform((v) => {
+  return remap$(v, {
+    liveVideoToVideoParams: "LiveVideoToVideoParams",
+  });
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace GenLiveVideoToVideoRequest$ {
+  /** @deprecated use `GenLiveVideoToVideoRequest$inboundSchema` instead. */
+  export const inboundSchema = GenLiveVideoToVideoRequest$inboundSchema;
+  /** @deprecated use `GenLiveVideoToVideoRequest$outboundSchema` instead. */
+  export const outboundSchema = GenLiveVideoToVideoRequest$outboundSchema;
+  /** @deprecated use `GenLiveVideoToVideoRequest$Outbound` instead. */
+  export type Outbound = GenLiveVideoToVideoRequest$Outbound;
+}
+
+export function genLiveVideoToVideoRequestToJSON(
+  genLiveVideoToVideoRequest: GenLiveVideoToVideoRequest,
+): string {
+  return JSON.stringify(
+    GenLiveVideoToVideoRequest$outboundSchema.parse(genLiveVideoToVideoRequest),
+  );
+}
+
+export function genLiveVideoToVideoRequestFromJSON(
+  jsonString: string,
+): SafeParseResult<GenLiveVideoToVideoRequest, SDKValidationError> {
+  return safeParse(
+    jsonString,
+    (x) => GenLiveVideoToVideoRequest$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GenLiveVideoToVideoRequest' from JSON`,
+  );
+}
 
 /** @internal */
 export const GenLiveVideoToVideoResponse$inboundSchema: z.ZodType<

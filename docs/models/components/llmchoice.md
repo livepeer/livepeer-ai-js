@@ -6,7 +6,7 @@
 import { LLMChoice } from "@livepeer/ai/models/components";
 
 let value: LLMChoice = {
-  index: 666767,
+  index: 988374,
 };
 ```
 

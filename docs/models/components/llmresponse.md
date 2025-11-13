@@ -7,18 +7,14 @@ import { LLMResponse } from "@livepeer/ai/models/components";
 
 let value: LLMResponse = {
   id: "<id>",
-  model: "Volt",
-  created: 681820,
+  model: "Malibu",
+  created: 961008,
   usage: {
-    promptTokens: 359508,
-    completionTokens: 437032,
-    totalTokens: 697631,
+    promptTokens: 293908,
+    completionTokens: 872256,
+    totalTokens: 850393,
   },
-  choices: [
-    {
-      index: 60225,
-    },
-  ],
+  choices: [],
 };
 ```
 

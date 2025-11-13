@@ -7,10 +7,7 @@ import { GenAudioToTextResponse } from "@livepeer/ai/models/operations";
 
 let value: GenAudioToTextResponse = {
   contentType: "<value>",
-  statusCode: 504,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
+  statusCode: 428476,
 };
 ```
 

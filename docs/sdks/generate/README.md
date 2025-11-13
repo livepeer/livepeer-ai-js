@@ -22,6 +22,7 @@ Generate images from text prompts.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genTextToImage" method="post" path="/text-to-image" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 
@@ -31,19 +32,9 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.textToImage({
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -66,26 +57,14 @@ const livepeer = new LivepeerCore({
 
 async function run() {
   const res = await generateTextToImage(livepeer, {
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateTextToImage failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -119,6 +98,7 @@ Apply image transformations to a provided image.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genImageToImage" method="post" path="/image-to-image" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
@@ -129,20 +109,10 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.imageToImage({
-    image: await openAsBlob("example.file"),
     prompt: "<value>",
-    guidanceScale: 7.5,
-    imageGuidanceScale: 1.5,
-    loras: "",
-    modelId: "",
-    negativePrompt: "",
-    numImagesPerPrompt: 1,
-    numInferenceSteps: 100,
-    safetyCheck: true,
-    strength: 0.8,
+    image: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -166,27 +136,15 @@ const livepeer = new LivepeerCore({
 
 async function run() {
   const res = await generateImageToImage(livepeer, {
-    image: await openAsBlob("example.file"),
     prompt: "<value>",
-    guidanceScale: 7.5,
-    imageGuidanceScale: 1.5,
-    loras: "",
-    modelId: "",
-    negativePrompt: "",
-    numImagesPerPrompt: 1,
-    numInferenceSteps: 100,
-    safetyCheck: true,
-    strength: 0.8,
+    image: await openAsBlob("example.file"),
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateImageToImage failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -220,6 +178,7 @@ Generate a video from a provided image.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genImageToVideo" method="post" path="/image-to-video" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
@@ -231,17 +190,8 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.imageToVideo({
     image: await openAsBlob("example.file"),
-    fps: 6,
-    height: 576,
-    modelId: "",
-    motionBucketId: 127,
-    noiseAugStrength: 0.02,
-    numInferenceSteps: 25,
-    safetyCheck: true,
-    width: 1024,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -266,24 +216,13 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateImageToVideo(livepeer, {
     image: await openAsBlob("example.file"),
-    fps: 6,
-    height: 576,
-    modelId: "",
-    motionBucketId: 127,
-    noiseAugStrength: 0.02,
-    numInferenceSteps: 25,
-    safetyCheck: true,
-    width: 1024,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateImageToVideo failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -317,6 +256,7 @@ Upscale an image by increasing its resolution.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genUpscale" method="post" path="/upscale" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
@@ -327,14 +267,10 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.upscale({
-    image: await openAsBlob("example.file"),
     prompt: "<value>",
-    modelId: "",
-    numInferenceSteps: 75,
-    safetyCheck: true,
+    image: await openAsBlob("example.file"),
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -358,21 +294,15 @@ const livepeer = new LivepeerCore({
 
 async function run() {
   const res = await generateUpscale(livepeer, {
-    image: await openAsBlob("example.file"),
     prompt: "<value>",
-    modelId: "",
-    numInferenceSteps: 75,
-    safetyCheck: true,
+    image: await openAsBlob("example.file"),
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateUpscale failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -406,6 +336,7 @@ Transcribe audio files to text.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genAudioToText" method="post" path="/audio-to-text" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
@@ -417,11 +348,8 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.audioToText({
     audio: await openAsBlob("example.file"),
-    modelId: "",
-    returnTimestamps: "true",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -446,18 +374,13 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateAudioToText(livepeer, {
     audio: await openAsBlob("example.file"),
-    modelId: "",
-    returnTimestamps: "true",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateAudioToText failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -491,6 +414,7 @@ Segment objects in an image.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genSegmentAnything2" method="post" path="/segment-anything-2" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
@@ -502,13 +426,8 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.segmentAnything2({
     image: await openAsBlob("example.file"),
-    modelId: "",
-    multimaskOutput: true,
-    normalizeCoords: true,
-    returnLogits: true,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -533,20 +452,13 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateSegmentAnything2(livepeer, {
     image: await openAsBlob("example.file"),
-    modelId: "",
-    multimaskOutput: true,
-    normalizeCoords: true,
-    returnLogits: true,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateSegmentAnything2 failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -580,6 +492,7 @@ Generate text using a language model.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genLLM" method="post" path="/llm" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 
@@ -590,17 +503,13 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.llm({
     messages: [
-
+      {
+        role: "<value>",
+        content: "<value>",
+      },
     ],
-    model: "",
-    temperature: 0.7,
-    maxTokens: 256,
-    topP: 1,
-    topK: -1,
-    stream: false,
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -624,24 +533,18 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateLlm(livepeer, {
     messages: [
-  
+      {
+        role: "<value>",
+        content: "<value>",
+      },
     ],
-    model: "",
-    temperature: 0.7,
-    maxTokens: 256,
-    topP: 1,
-    topK: -1,
-    stream: false,
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateLlm failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -675,6 +578,7 @@ Transform image files to text.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genImageToText" method="post" path="/image-to-text" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 import { openAsBlob } from "node:fs";
@@ -686,11 +590,8 @@ const livepeer = new Livepeer({
 async function run() {
   const result = await livepeer.generate.imageToText({
     image: await openAsBlob("example.file"),
-    modelId: "",
-    prompt: "",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -715,18 +616,13 @@ const livepeer = new LivepeerCore({
 async function run() {
   const res = await generateImageToText(livepeer, {
     image: await openAsBlob("example.file"),
-    modelId: "",
-    prompt: "",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateImageToText failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -760,6 +656,7 @@ Apply transformations to a live video streamed to the returned endpoints.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genLiveVideoToVideo" method="post" path="/live-video-to-video" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 
@@ -769,14 +666,10 @@ const livepeer = new Livepeer({
 
 async function run() {
   const result = await livepeer.generate.liveVideoToVideo({
-    subscribeUrl: "https://soulful-lava.org/",
-    publishUrl: "https://vain-tabletop.biz",
-    controlUrl: "",
-    eventsUrl: "",
-    modelId: "",
+    subscribeUrl: "https://soulful-finding.biz",
+    publishUrl: "https://monumental-representation.biz/",
   });
 
-  // Handle the result
   console.log(result);
 }
 
@@ -799,21 +692,15 @@ const livepeer = new LivepeerCore({
 
 async function run() {
   const res = await generateLiveVideoToVideo(livepeer, {
-    subscribeUrl: "https://soulful-lava.org/",
-    publishUrl: "https://vain-tabletop.biz",
-    controlUrl: "",
-    eventsUrl: "",
-    modelId: "",
+    subscribeUrl: "https://soulful-finding.biz",
+    publishUrl: "https://monumental-representation.biz/",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateLiveVideoToVideo failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
@@ -847,6 +734,7 @@ Generate a text-to-speech audio file based on the provided text input and speake
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="genTextToSpeech" method="post" path="/text-to-speech" -->
 ```typescript
 import { Livepeer } from "@livepeer/ai";
 
@@ -855,13 +743,8 @@ const livepeer = new Livepeer({
 });
 
 async function run() {
-  const result = await livepeer.generate.textToSpeech({
-    modelId: "",
-    text: "",
-    description: "A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.",
-  });
+  const result = await livepeer.generate.textToSpeech({});
 
-  // Handle the result
   console.log(result);
 }
 
@@ -883,20 +766,13 @@ const livepeer = new LivepeerCore({
 });
 
 async function run() {
-  const res = await generateTextToSpeech(livepeer, {
-    modelId: "",
-    text: "",
-    description: "A male speaker delivers a slightly expressive and animated speech with a moderate speed and pitch.",
-  });
-
-  if (!res.ok) {
-    throw res.error;
+  const res = await generateTextToSpeech(livepeer, {});
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateTextToSpeech failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();

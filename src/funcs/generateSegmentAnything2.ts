@@ -4,7 +4,10 @@
 
 import { LivepeerCore } from "../core.js";
 import { appendForm } from "../lib/encodings.js";
-import { readableStreamToArrayBuffer } from "../lib/files.js";
+import {
+  getContentTypeFromFileName,
+  readableStreamToArrayBuffer,
+} from "../lib/files.js";
 import * as M from "../lib/matchers.js";
 import { compactMap } from "../lib/primitives.js";
 import { safeParse } from "../lib/schemas.js";
@@ -20,9 +23,11 @@ import {
   UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { LivepeerError } from "../models/errors/livepeererror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { isBlobLike } from "../types/blobs.js";
 import { Result } from "../types/fp.js";
 import { isReadableStream } from "../types/streams.js";
@@ -33,24 +38,53 @@ import { isReadableStream } from "../types/streams.js";
  * @remarks
  * Segment objects in an image.
  */
-export async function generateSegmentAnything2(
+export function generateSegmentAnything2(
   client: LivepeerCore,
   request: components.BodyGenSegmentAnything2,
   options?: RequestOptions,
-): Promise<
+): APIPromise<
   Result<
     operations.GenSegmentAnything2Response,
     | errors.HTTPError
     | errors.HTTPValidationError
-    | errors.HTTPError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | LivepeerError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >
+> {
+  return new APIPromise($do(
+    client,
+    request,
+    options,
+  ));
+}
+
+async function $do(
+  client: LivepeerCore,
+  request: components.BodyGenSegmentAnything2,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.GenSegmentAnything2Response,
+      | errors.HTTPError
+      | errors.HTTPValidationError
+      | LivepeerError
+      | ResponseValidationError
+      | ConnectionError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
+    >,
+    APICall,
+  ]
 > {
   const parsed = safeParse(
     request,
@@ -58,7 +92,7 @@ export async function generateSegmentAnything2(
     "Input validation failed",
   );
   if (!parsed.ok) {
-    return parsed;
+    return [parsed, { status: "invalid" }];
   }
   const payload = parsed.value;
   const body = new FormData();
@@ -67,13 +101,17 @@ export async function generateSegmentAnything2(
     appendForm(body, "image", payload.image);
   } else if (isReadableStream(payload.image.content)) {
     const buffer = await readableStreamToArrayBuffer(payload.image.content);
-    const blob = new Blob([buffer], { type: "application/octet-stream" });
-    appendForm(body, "image", blob);
+    const contentType = getContentTypeFromFileName(payload.image.fileName)
+      || "application/octet-stream";
+    const blob = new Blob([buffer], { type: contentType });
+    appendForm(body, "image", blob, payload.image.fileName);
   } else {
+    const contentType = getContentTypeFromFileName(payload.image.fileName)
+      || "application/octet-stream";
     appendForm(
       body,
       "image",
-      new Blob([payload.image.content], { type: "application/octet-stream" }),
+      new Blob([payload.image.content], { type: contentType }),
       payload.image.fileName,
     );
   }
@@ -113,8 +151,10 @@ export async function generateSegmentAnything2(
   const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const context = {
+    options: client._options,
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
     operationID: "genSegmentAnything2",
-    oAuth2Scopes: [],
+    oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
 
@@ -132,10 +172,11 @@ export async function generateSegmentAnything2(
     path: path,
     headers: headers,
     body: body,
+    userAgent: client._options.userAgent,
     timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
-    return requestRes;
+    return [requestRes, { status: "invalid" }];
   }
   const req = requestRes.value;
 
@@ -146,7 +187,7 @@ export async function generateSegmentAnything2(
     retryCodes: context.retryCodes,
   });
   if (!doResult.ok) {
-    return doResult;
+    return [doResult, { status: "request-error", request: req }];
   }
   const response = doResult.value;
 
@@ -162,14 +203,14 @@ export async function generateSegmentAnything2(
     operations.GenSegmentAnything2Response,
     | errors.HTTPError
     | errors.HTTPValidationError
-    | errors.HTTPError
-    | SDKError
-    | SDKValidationError
-    | UnexpectedClientError
-    | InvalidRequestError
+    | LivepeerError
+    | ResponseValidationError
+    | ConnectionError
     | RequestAbortedError
     | RequestTimeoutError
-    | ConnectionError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
   >(
     M.json(200, operations.GenSegmentAnything2Response$inboundSchema, {
       key: "MasksResponse",
@@ -179,10 +220,10 @@ export async function generateSegmentAnything2(
     M.jsonErr(500, errors.HTTPError$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
-  )(response, { extraFields: responseFields });
+  )(response, req, { extraFields: responseFields });
   if (!result.ok) {
-    return result;
+    return [result, { status: "complete", request: req, response }];
   }
 
-  return result;
+  return [result, { status: "complete", request: req, response }];
 }

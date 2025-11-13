@@ -7,10 +7,7 @@ import { GenLLMResponse } from "@livepeer/ai/models/operations";
 
 let value: GenLLMResponse = {
   contentType: "<value>",
-  statusCode: 308,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
+  statusCode: 250638,
 };
 ```
 

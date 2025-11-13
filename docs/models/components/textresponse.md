@@ -12,7 +12,7 @@ let value: TextResponse = {
   chunks: [
     {
       timestamp: [
-        "<value>",
+        "<value 1>",
       ],
       text: "<value>",
     },

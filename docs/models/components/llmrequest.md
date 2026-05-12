@@ -6,12 +6,7 @@
 import { LLMRequest } from "@livepeer/ai/models/components";
 
 let value: LLMRequest = {
-  messages: [
-    {
-      role: "<value>",
-      content: "<value>",
-    },
-  ],
+  messages: [],
 };
 ```
 

@@ -9,7 +9,7 @@ import { Chunk } from "@livepeer/ai/models/components";
 
 let value: Chunk = {
   timestamp: [
-    "<value>",
+    "<value 1>",
   ],
   text: "<value>",
 };

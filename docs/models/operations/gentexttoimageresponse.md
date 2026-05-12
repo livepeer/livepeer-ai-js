@@ -7,10 +7,7 @@ import { GenTextToImageResponse } from "@livepeer/ai/models/operations";
 
 let value: GenTextToImageResponse = {
   contentType: "<value>",
-  statusCode: 306,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
+  statusCode: 769008,
 };
 ```
 

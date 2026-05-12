@@ -5,5 +5,7 @@
 export * from "./httpclienterrors.js";
 export * from "./httperror.js";
 export * from "./httpvalidationerror.js";
+export * from "./livepeererror.js";
+export * from "./responsevalidationerror.js";
 export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";

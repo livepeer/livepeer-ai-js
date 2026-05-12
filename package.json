@@ -1,6 +1,6 @@
 {
   "name": "@livepeer/ai",
-  "version": "0.6.2",
+  "version": "0.7.0",
   "author": "Livepeer",
   "main": "./index.js",
   "sideEffects": false,
@@ -14,20 +14,20 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "zod": ">= 3"
+    
   },
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
+    "@eslint/js": "^9.26.0",
     "@types/jest": "^29.5.12",
-    "eslint": "^9.19.0",
+    "eslint": "^9.26.0",
     "globals": "^15.14.0",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^8.22.0",
-    "zod": "^3.23.4"
+    "typescript": "~5.8.3",
+    "typescript-eslint": "^8.26.0"
   },
   "dependencies": {
     "jest": "^29.7.0",
     "jest-junit": "^16.0.0",
-    "ts-jest": "^29.1.4"
+    "ts-jest": "^29.1.4",
+    "zod": "^3.25.0 || ^4.0.0"
   }
 }

@@ -7,10 +7,7 @@ import { GenLiveVideoToVideoResponse } from "@livepeer/ai/models/operations";
 
 let value: GenLiveVideoToVideoResponse = {
   contentType: "<value>",
-  statusCode: 103,
-  rawResponse: new Response("{\"message\": \"hello world\"}", {
-    headers: { "Content-Type": "application/json" },
-  }),
+  statusCode: 35054,
 };
 ```
 

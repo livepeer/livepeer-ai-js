@@ -1,11 +1,11 @@
 # Standalone Functions
 
 > [!NOTE]
-> This section is useful if you are using a bundler and targetting browsers and
+> This section is useful if you are using a bundler and targeting browsers and
 > runtimes where the size of an application affects performance and load times. 
 
 Every method in this SDK is also available as a standalone function. This
-alternative API is suitable when targetting the browser or serverless runtimes
+alternative API is suitable when targeting the browser or serverless runtimes
 and using a bundler to build your application since all unused functionality
 will be tree-shaken away. This includes code for unused methods, Zod schemas,
 encoding helpers and response handlers. The result is dramatically smaller
@@ -21,7 +21,6 @@ specific category of applications.
 ```typescript
 import { LivepeerCore } from "@livepeer/ai/core.js";
 import { generateTextToImage } from "@livepeer/ai/funcs/generateTextToImage.js";
-import { SDKValidationError } from "@livepeer/ai/models/errors/sdkvalidationerror.js";
 
 // Use `LivepeerCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
@@ -31,39 +30,14 @@ const livepeer = new LivepeerCore({
 
 async function run() {
   const res = await generateTextToImage(livepeer, {
-    modelId: "",
-    loras: "",
     prompt: "<value>",
-    height: 576,
-    width: 1024,
-    guidanceScale: 7.5,
-    negativePrompt: "",
-    safetyCheck: true,
-    numInferenceSteps: 50,
-    numImagesPerPrompt: 1,
   });
-
-  switch (true) {
-    case res.ok:
-      // The success case will be handled outside of the switch block
-      break;
-    case res.error instanceof SDKValidationError:
-      // Pretty-print validation errors.
-      return console.log(res.error.pretty());
-    case res.error instanceof Error:
-      return console.log(res.error);
-    default:
-      // TypeScript's type checking will fail on the following line if the above
-      // cases were not exhaustive.
-      res.error satisfies never;
-      throw new Error("Assertion failed: expected error checks to be exhaustive: " + res.error);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("generateTextToImage failed:", res.error);
   }
-
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result);
 }
 
 run();
